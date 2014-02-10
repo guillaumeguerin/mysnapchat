@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<!--
+	Astral 2.5 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Snap Chat Bordeaux</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="css/images/favicon.png" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/noscript.css" />
+		</noscript>
+	</head>
+	<body class="homepage" oncontextmenu="return false">
+
+		<!-- Wrapper-->
+			<div id="wrapper">
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="index.html" class="fa fa-home"><span>Home</span></a>
+						<a href="messages.html" class="fa fa-envelope"><span>Messages</span></a>
+						<a href="friends.html" class="fa fa-user"><span>Friends</span></a>
+                        <a href="settings.html" class="fa fa-cog"><span>Settings</span></a>
+                        <a href="settings.html" class="fa fa-ban"><span>Log out</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+							<article id="work" class="panel">
+								<header>
+									<h2><i class="fa fa-camera"><span> &nbsp;&nbsp;Video</span></i></h2>
+								</header>
+								<p>
+                                    <center>
+									    <img src="images/Universite-Bordeaux.jpg">
+                                    </center>
+                                </video> 
+
+
+
+											
+								</p>
+							</article>
+					</div>
+		
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="links">
+							<li>&copy; Jane Doe</li>
+							<li>Images : <a href="http://fotogrph.com/">fotogrph</a></li>
+							<li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+		
+			</div>
+
+	</body>
+</html>
