@@ -122,7 +122,7 @@
 	
 	#nav
 	{
-        margin-top:1em;
+        margin-top:2em;
 		text-align: center;
 		height: 4.25em;
 		cursor: default;
@@ -227,7 +227,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 45em;
+		width: 45em;		
 	}
 	
 	/* Me */

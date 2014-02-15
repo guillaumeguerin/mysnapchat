@@ -173,8 +173,8 @@
 				opacity: 0;
 				
 				/* Labels not wide enough? Increase its width below and set margin-left to ((width / 2) * -1) */
-				width: 5.5em;
-				margin-left: -2.75em;
+				width: 6.5em;
+				margin-left: -3.25em;
 			}
 			
 				#nav a span:after
@@ -227,7 +227,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 45em;
+		width: 45em;		
 	}
 	
 	/* Me */
