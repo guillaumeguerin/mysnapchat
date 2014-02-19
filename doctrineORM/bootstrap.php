@@ -14,12 +14,14 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $i
 
 // database configuration parameters
 $conn = array(
-    'dbname' => 'testDoctrine',
-    'user' => 'root',
-    'password' => 'harmony',
-    'host' => 'localhost',
+    'dbname' => 'gmeral',
+    'user' => 'gmeral',
+    'password' => 'FooFuR3$',
+    'host' => 'dbserver',
     'driver' => 'pdo_mysql',
 );
 
 // obtaining the entity manager
 $entityManager = EntityManager::create($conn, $config);
+$platform = $entityManager->getConnection()->getDatabasePlatform();
+$platform->registerDoctrineTypeMapping('enum', 'string');
