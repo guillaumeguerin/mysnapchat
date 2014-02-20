@@ -1,6 +1,4 @@
 <?php
-// src/BugRepository.php
-
 use Doctrine\ORM\EntityRepository;
 
 class userRepository extends EntityRepository
@@ -12,5 +10,20 @@ class userRepository extends EntityRepository
         if(!$user)
         	echo("User not found");
         return $user->getFriends();
+    }
+
+    public function createUser($email, $password, $name, $description)
+    {
+    	$newUser = new User();
+    	$newUser->setName($name);
+    	$newUser->setPassword($password);
+    	$newUser->setEmail($email);
+    	$newUser->setDescription($description);
+
+    	$em = $this->getEntityManager();
+    	$em->persist($newUser);
+    	$em->flush();
+
+    	return $newUser;
     }
 }
