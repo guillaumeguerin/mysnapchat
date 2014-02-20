@@ -1,8 +1,10 @@
 <?php
 use Doctrine\Common\Collections\ArrayCollection;
 require_once "Message.php";
+require_once "userRepository.php";
 /**
- * @Entity @Table(name="users")
+ * @Entity(repositoryClass="userRepository") 
+ * @Table(name="users")
  **/
 class User
 {
@@ -18,7 +20,7 @@ class User
     /** @Column(type="string") **/
     protected $description;
     /** @Column(type="string") **/
-    protected $profile_piture;
+    protected $profile_picture;
     /** @Column(type="string") **/
     protected $directory;
     /**
@@ -32,10 +34,20 @@ class User
      **/
     protected $received_messages = null;
 
+    /**
+     * @ManyToMany(targetEntity="User")
+     **/
+    protected $friends = null;
+
     public function __construct()
     {
         $this->sent_messages = new ArrayCollection();
         $this->received_messages = new ArrayCollection();
+        $this->friends = new ArrayCollection();
+        $this->email = "undefined";
+        $this->description = "undefined";
+        $this->profile_picture = "undefined";
+        $this->directory = "undefined";
     }
 
     public function getId()
@@ -111,5 +123,16 @@ class User
     public function addReceivedMessage($msg)
     {
         $this->received_messages[] = $msg;
+    }
+
+    public function addFriend($friend)
+    {
+        $this->friends[] = $friend;
+        $friend->friends[] = $this;
+    }
+
+    public function getFriends()
+    {
+        return $this->friends->toArray();
     }
 }
