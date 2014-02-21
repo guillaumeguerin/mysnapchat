@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html lang="en" ng-app="snapchatApp">
+
+		<title>{{ 'Snap Chat Bordeaux' }}</title>
+
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="css/images/favicon.png" />
+
+        <script src="javascript/lib/angular/angular.min.js"></script>
+		<script src="javascript/lib/jquery/jquery.min.js"></script>
+		<script src="javascript/lib/skeljs/skel.min.js"></script>
+		<script src="javascript/design/init.js"></script>
+
+        <!-- CSS -->
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/noscript.css" />
+		</noscript>
+
+        <!-- Controlers -->
+        <script src="javascript/app/controllers.js"></script>
+
+		
+	</head>
+	<body class="homepage">
+
+		<script src="javascript/utils/myscripts.js"></script>
+	
+		<!-- Wrapper-->
+			<div id="wrapper">
+				
+				<!-- Nav -->
+					<nav id="nav" ng-controller="snapchatAppNavController">
+						<div ng-bind-html="displayNavBar()"></div>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+							<article id="work" class="panel">
+								<header>
+									<h2>Snap Chat Bordeaux</h2>
+								</header>
+								<p>
+                                    <center><a id="signin" href="login.html"><span>Sign In</span></a><label id="bar"> / </label><a id="signup" href="register.html"><span>Sign Up</span></a></center>
+                                    <br>
+									<label id="description">
+									Snap Chat Bordeaux is an application available as a website but also for smartphones.
+									</label>
+									<p id="testUA">Please activate Javascript.</p>
+                                    <br><br>
+                                    <center>
+                                    <h2>
+                                    <a id=laptop href="" class="fa fa-laptop" style="color:rgb(201, 195, 195)"></a>    &nbsp;&nbsp;
+                                    <a id=android href="https://build.phonegap.com/apps/638828/download/android" class="fa fa-android" style="color:rgb(201, 195, 195)"></a>   &nbsp;&nbsp;
+                                    <a id=apple href="" class="fa fa-apple" style="color:rgb(201, 195, 195)"></a>     &nbsp;&nbsp;
+                                    <a id=windows href="https://build.phonegap.com/apps/638828/download/winphone" class="fa fa-windows" style="color:rgb(201, 195, 195)"></a>   &nbsp;&nbsp;
+                                    </h2>
+                                    <center>
+
+								</p>
+								<section id="gallery" class="is-gallery">
+									<div class="row half">
+                                        <div class="4u">
+											<a href="" class="image image-full"><img src="images/iPhone-5S-app.png" alt=""></a>
+										</div>
+                                        <div class="4u">
+											<a href="" class="image image-full"><img src="images/tablet-app.png" alt=""></a>
+										</div>
+                                        <div class="4u">
+											<a href="" class="image image-full"><img src="images/laptop-app.png" alt=""></a>
+										</div>
+                                    </div>
+
+									
+								</section>
+							</article>
+					</div>
+		
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="links">
+							<li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
+						</ul>
+					</div>
+		
+			</div>
+<script src="javascript/utils/website.js"></script>
+	<script>
+var pm = new PageModificator(navigator.userAgent,navigator.language);
+pm.UserAgentIndex();
+pm.NavigatorActive('home');
+	</script>		
+			
+	</body>
+</html>
