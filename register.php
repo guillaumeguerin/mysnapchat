@@ -9,10 +9,10 @@
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav -->
-					<nav id="nav">
-						<a id ="home" href="index.php" class="fa fa-home"><span id="homespan">Home</span></a>
-					</nav>
+					<!-- Nav -->
+                <?php
+                include("navigator.php");				
+                ?>
 
 				<!-- Main -->
 					<div id="main">
@@ -24,18 +24,18 @@
 									<div>
 										<div class="row half">
 											<div class="6u">
-												<input type="text" class="text" name="name" id="name" placeholder="Name" />
+												<input type="text" class="text" name="name" id="name" placeholder="Name" required/>
 											</div>
 											<div class="6u">
-												<input type="text" class="text" name="email" id="email" placeholder="Email" />
+												<input type="text" class="text" name="email" id="email" placeholder="Email" required/>
 											</div>
 										</div>
 										<div class="row half">
 											<div class="6u">
-												<input type="password" class="text" name="password" id="password" placeholder="Password" />
+												<input type="password" class="text" name="password" id="password" placeholder="Password" required/>
 											</div>
                                             <div class="6u">
-												<input type="password" class="text" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" />
+												<input type="password" class="text" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required/>
 											</div>
 										</div>
 										<div class="row half">
@@ -43,6 +43,7 @@
 												<textarea name="description" id="description" placeholder="Description"></textarea>
 											</div>
 										</div>
+                                        <!--<br>
                                           <script type="text/javascript"
                                              src="http://www.google.com/recaptcha/api/challenge?k=6Lf2le4SAAAAALxgA9l7CBqllSYOFtFdoeC3KnxP">
                                           </script>
@@ -55,7 +56,7 @@
                                              <input type="hidden" name="recaptcha_response_field"
                                                  value="manual_challenge">
                                           </noscript>
-                                        <br>
+                                        <br>-->
 										<div class="row">
 											<div class="12u">
 												<input id="signup" type="submit" class="button" value="Sign up" />
@@ -78,19 +79,8 @@
 		
 			</div>
 <script>
-var lang = navigator.language;
-if(lang !=null){
-if(lang.indexOf("fr")>=0)
-{
-document.getElementById('titlep').innerHTML="Inscription";
-document.getElementById('signup').value="S'inscrire";
-document.getElementById('name').placeholder="Nom";
-document.getElementById('email').placeholder="Adresse email";
-document.getElementById('password').placeholder="Mot de passe";
-document.getElementById('confirmpassword').placeholder="Confirmation du mot de passe";
-document.getElementById('homespan').innerHTML="Accueil";
-}
-}
+var pm = new PageModificator(navigator.userAgent,navigator.language);
+pm.NavigatorActive('register');
 </script>
 	</body>
 </html>

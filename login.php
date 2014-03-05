@@ -3,16 +3,59 @@
         <?php
         include("pagehaut.php");
         ?>
+		
+<script type="text/javascript" src="js/cookies.js"></script>
+<script>	
+		
+		
+function login()
+{
+
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {	
+	var reponseText = xmlhttp.responseText;
+		if(reponseText==" true ")
+		{
+		document.getElementById("txtHint").innerHTML="";
+		setCookie("email",email,30);
+		setCookie("password",password,30);
+		//document.getElementById("txtHint").innerHTML=getCookie("email")+" "+getCookie("password");
+		window.location.href = "index.php";
+		}
+		else
+		document.getElementById("txtHint").innerHTML=reponseText;
+    }
+  }  
+  
+xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("e="+email+"&p="+password);
+}
+</script>	
 	</head>
 	<body class="homepage">
 
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-				<!-- Nav -->
-					<nav id="nav">
-						<a id ="home" href="index.html" class="fa fa-home active"><span id="homespan">Home</span></a>
-					</nav>
+					<!-- Nav -->
+                <?php
+                include("navigator.php");				
+                ?>
 
 				<!-- Main -->
 					<div id="main">
@@ -20,23 +63,20 @@
 								<header>
 									<h2 id="ptitle">Sign In</h2>
 								</header>
-                                        <?php
-                                        include("connectdb.php");
-                                        echo $db_host;
-                                        ?>
-								<form action="#" method="post">
+								<div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b></b></div>
+                                <form onsubmit="login()" method="post" action="javascript:void(0);">
 									<div>
 										<div class="row half">
 											<div class="6u">
-												<input type="text" class="text" name="email" placeholder="Email" />
+												<input type="text" class="text" name="email" id="email"  placeholder="Email" required/>
 											</div>
 										</div>
 										<div class="row half">
 											<div class="6u">
-												<input type="password" class="text" name="password" placeholder="Password" />
+												<input type="password" class="text" name="password" id="password" placeholder="Password" required/>
 											</div>
 										</div>
-                                        <br>
+                                        <!--<br>
                                           <script type="text/javascript"
                                              src="http://www.google.com/recaptcha/api/challenge?k=6Lf2le4SAAAAALxgA9l7CBqllSYOFtFdoeC3KnxP">
                                           </script>
@@ -49,10 +89,10 @@
                                              <input type="hidden" name="recaptcha_response_field"
                                                  value="manual_challenge">
                                           </noscript>
-                                        <br>
+                                        <br>-->
 										<div class="row">
 											<div class="12u">
-												<input id="signin" type="submit" class="button" />
+												<input id="signin" type="submit" class="button" value="Sign in" />
 											</div>
 										</div>
 									</div>
@@ -67,17 +107,10 @@
                 ?>
 		
 			</div>
+
 <script>
-var lang = navigator.language;
-if(lang !=null){
-if(lang.indexOf("fr")>=0)
-{
-document.getElementById('ptitle').innerHTML="Connection";
-document.getElementById('signin').value="Se connecter";
-}
-}
-else
-document.getElementById('signin').value="Sign in"
+var pm = new PageModificator(navigator.userAgent,navigator.language);
+pm.NavigatorActive('login');
 </script>
 
 	</body>

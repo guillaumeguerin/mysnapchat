@@ -3,10 +3,52 @@
         <?php
         include("pagehaut.php");
         ?>
+	<script type="text/javascript" src="js/cookies.js"></script>	
+<script>
+function checkSession()
+{
+
+var email = getCookie("email");
+var password = getCookie("password");
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {	
+	var reponseText = xmlhttp.responseText;
+		if(reponseText==" true ")
+		{
+		
+		}
+		else
+		{
+		messages.style.display = 'none';
+		friends.style.display = 'none';
+		settings.style.display = 'none';
+		logout.style.display = 'none';
+		}
+    }
+  }  
+  
+xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("e="+email+"&p="+password);
+}
+</script>
+	
 	</head>
 
 
-	<body class="homepage">
+	<body class="homepage" onload="checkSession()">
 
 		<!-- Wrapper-->
 			<div id="wrapper">
@@ -40,21 +82,7 @@
                                     <center>
 
 								</p>
-								<section id="gallery" class="is-gallery">
-									<div class="row half">
-                                        <div class="4u">
-											<a href="" class="image image-full"><img src="images/iPhone-5S-app.png" alt=""></a>
-										</div>
-                                        <div class="4u">
-											<a href="" class="image image-full"><img src="images/tablet-app.png" alt=""></a>
-										</div>
-                                        <div class="4u">
-											<a href="" class="image image-full"><img src="images/laptop-app.png" alt=""></a>
-										</div>
-                                    </div>
 
-									
-								</section>
 							</article>
 					</div>
 		
@@ -65,90 +93,9 @@
 		
 			</div>
 <script>
-document.getElementById('home').className="fa fa-home active";
-var ua = navigator.userAgent;
-var lang = navigator.language;
-var txt;
-if (ua!= null) {
-if(lang !=null){
-if(lang.indexOf("fr")>=0)
-{
-document.getElementById('signin').innerHTML="Se connecter";
-document.getElementById('signup').innerHTML="S'enregistrer";
-document.getElementById('description').innerHTML="Snap Chat Bordeaux est une application disponible en tant que site web mais également pour smartphones.";
-txt = "Vous utilisez un navigateur sous ";
-}
-else
-{
-txt = "You are using a brower on ";
-}
-}
-
-if(ua.indexOf("Android")>0)
-{
-	gallery.style.display = 'none';
-	messages.style.display = 'none';
-	friends.style.display = 'none';
-	settings.style.display = 'none';
-	logout.style.display = 'none';
-	apple.style.display = 'none';
-	windows.style.display = 'none';
-	laptop.style.display = 'none';
-	bar.style.display = 'none';
-	signin.style.display = 'none';
-	txt += "Android";
-}
-else if(ua.indexOf("Windows Phone")>0)
-{
-	gallery.style.display = 'none';
-	messages.style.display = 'none';
-	friends.style.display = 'none';
-	settings.style.display = 'none';
-	logout.style.display = 'none';
-	apple.style.display = 'none';
-	android.style.display = 'none';
-	laptop.style.display = 'none';
-	bar.style.display = 'none';
-	signin.style.display = 'none';
-	txt += "Windows Phone";
-}
-else if(ua.indexOf("iPhone OS")>0)
-{
-	gallery.style.display = 'none';
-	messages.style.display = 'none';
-	friends.style.display = 'none';
-	settings.style.display = 'none';
-	logout.style.display = 'none';
-	android.style.display = 'none';
-	windows.style.display = 'none';
-	laptop.style.display = 'none';
-	bar.style.display = 'none';
-	signin.style.display = 'none';
-	txt += "iOS";
-}
-else {
-txt += navigator.platform;
-}
-if(lang !=null){
-if(lang.indexOf("fr")>=0)
-{
-txt += " en français. Vous pouvez télécharger notre application en cliquant ci-dessous.";
-}
-else if(lang.indexOf("en")>=0)
-{
-txt += " in english. You can download our application by clicking below.";
-}
-else
-{
-txt += ".";
-}
-}
-
-
-}
-
-document.getElementById("testUA").innerHTML=txt;
-
+var pm = new PageModificator(navigator.userAgent,navigator.language);
+pm.UserAgentIndex();
+pm.NavigatorActive('home');
 </script>
 	</body>
 </html>

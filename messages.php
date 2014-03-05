@@ -10,8 +10,228 @@
         <?php
         include("pagehaut.php");
         ?>
+		<style>
+.textInt {
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+</style>
+<script src="dist/FileAPI.js"></script>
+		<script src="plugins/caman.full.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+<script type="text/javascript" src="js/cookies.js"></script>		
+<script>
+var your_email;
+function checkSession()
+{
+
+var email = getCookie("email");
+var password = getCookie("password");
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {	
+	var reponseText = xmlhttp.responseText;
+		if(reponseText==" true ")
+		{
+		your_email = email;
+		showMessageList();
+		}
+		else
+		{
+		window.location.href = "index.php"
+		}
+    }
+  }  
+  
+xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("e="+email+"&p="+password);
+}
+
+function showMessageList()
+{
+if (your_email=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {	
+	var reponseText = xmlhttp.responseText;
+	var trad = new Traductor(navigator.language);
+	reponseText = trad.tradReponseText(reponseText);	
+    document.getElementById("txtHint").innerHTML=reponseText;
+    }
+  }
+xmlhttp.open("POST","php/messages/getmessagelist.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("q="+your_email);
+}
+
+function showMessage(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var reponseText = xmlhttp.responseText;
+	var res = reponseText.split("<content>")[0];
+	var trad = new Traductor(navigator.language);
+	res = trad.tradReponseText(res);
+	var content = reponseText.split("<content>")[1];
+	reponseText = res+content;
+	document.getElementById("txtHint").innerHTML=reponseText;
+	loadEventUnload(str.split("?")[1]);
+	setTimeout(function(){deleteMessage(str.split("?")[1])},60000);
+    }
+  }
+xmlhttp.open("POST",str.split("?")[0],true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send(str.split("?")[1]);
+}
+
+
+function showMessagePicture(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	var reponseText = xmlhttp.responseText;
+	var res = reponseText.split("<file>")[0];
+	var trad = new Traductor(navigator.language);
+	res = trad.tradReponseText(res);
+	var file = reponseText.split("<file>")[1];
+    document.getElementById("txtHint").innerHTML=res;
+	FileAPI.Image(file)
+			.resize(800, 600, 'max')
+			.get(function (err, img){
+				txtHint.appendChild(img);
+				 })
+	loadEventUnload(str.split("?")[1]);
+	setTimeout(function(){deleteMessage(str.split("?")[1])},60000);
+	}
+  }
+xmlhttp.open("POST",str.split("?")[0],true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send(str.split("?")[1]);
+}
+
+
+
+function deleteMessage(str)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	showMessageList();
+	}
+  }
+xmlhttp.open("POST","php/messages/deletemessage.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send(str);
+}
+
+
+window.addEventListener("keyup",kPress,false);
+
+function kPress(e)
+{ 
+var c=e.keyCode||e.charCode; 
+if (c==44){
+alert("print screen");
+}
+}
+
+function loadEventUnload(str)
+{ 
+window.onbeforeunload = function (e) {
+  var e = e || window.event;
+
+  // For IE and Firefox
+  if (e) {
+    e.returnValue = 'Are you sure that you want to destroy the message ?';
+  }
+
+  // For Safari
+  return 'Are you sure that you want to destroy the message ?';
+};
+
+
+window.onunload = function () {
+  deleteMessage(str);
+};
+}
+</script>
+
+<style type="text/css" media="print">
+ body {display:none;} 
+</style>
+  
 	</head>
-	<body class="homepage">
+	<body class="homepage" onload="checkSession()" >
 
 		<!-- Wrapper-->
 			<div id="wrapper">
@@ -30,9 +250,13 @@
 								</header>
                                 <p>
                                    <!-- NavMessage -->
-								    <?php
-									include("navigatorm.php");
-									?>
+                                    <center>
+                                        <label id="newm">Create new message</label><br><br>
+                                        <a id="navmt" href="submitMessage.php?type=text" class="fa fa-comment-o fa-2x" style="color:rgb(201, 195, 195);"></a>
+                                        <a id="navmp" href="submitMessage.php?type=picture" class="fa fa-camera fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmv" href="submitMessage.php?type=video" class="fa fa-film fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmm" href="submitMessage.php?type=music" class="fa fa-music fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                    </center>
                                     
                                 <!--    <table id="box-table-a">
                                     <tr>
@@ -41,37 +265,11 @@
                                 </table>
                                 -->
 								</p>
-
-                                <h3>4 <tag <label id="unreadm">unread messages</label></h3>
-								<p>
-                                    <table id="box-table-a">
-                                    <tr>
-                                        <td><a href="texttest.html" class="fa fa-comment-o" style="color:rgb(94,122,193)"><span> &nbsp;&nbsp; View</span></i></td>
-                                        <td><img src="images/user_picture2.png" width="0.3em" height="0.3em"></td>
-                                        <td>Marie Omiscar</td>
-                                        <td>2 hours ago</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="videotest.html" class="fa fa-film" style="color:rgb(94,122,193)"><span> &nbsp;&nbsp; View</span></i></td>
-                                        <td><img src="images/user_picture2.png" width="0.3em" height="0.3em"></td>
-                                        <td>Marie Omiscar</td>
-                                        <td>1 day ago</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="imagetest.html" class="fa fa-camera" style="color:rgb(94,122,193)"><span> &nbsp;&nbsp; View</span></i></td>
-                                        <td><img src="images/user_picture2.png" width="0.3em" height="0.3em"></td>
-                                        <td>Diallo Aliou</td>
-                                        <td>2 days ago</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="soundtest.html" class="fa fa-music" style="color:rgb(94,122,193)"><span> &nbsp;&nbsp; View</span></i></td>
-                                        <td><img src="images/user_picture2.png" width="0.3em" height="0.3em"></td>
-                                        <td>Diallo Aliou</td>
-                                        <td>3 days ago</td>
-                                        
-                                    </tr>
-                                </table>
-								</p>
+								                   </br>              
+                                      <p>                                 
+									<div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b>Messages will be listed here. Please activate Javascript.</b></div>
+                                    </p>
+									
 								<section class="is-gallery">
 
 									
@@ -87,15 +285,10 @@
 		
 			</div>
 <script>
-document.getElementById('messages').className="fa fa-envelope active";
-var lang = navigator.language;
-if(lang !=null){
-if(lang.indexOf("fr")>=0)
-{
-document.getElementById('newm').innerHTML="Envoyer un nouveau message";
-document.getElementById('unreadm').innerHTML="Messages non lus";
-}
-}
+work.style.height="40em";
+main.style.overflow= "auto";
+var pm = new PageModificator(navigator.userAgent,navigator.language);
+pm.NavigatorActive('messages');
 </script>
 	</body>
 </html>
