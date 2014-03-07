@@ -17,7 +17,7 @@
     $errors['email'] = 'Email address has an invalid format.';
 
     //$selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '".$_POST['email']."'";
-    $selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '".$_POST['email']."' AND `PASSWORD` LIKE '".$_POST['email']."'";
+    $selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '".$_POST['email']."' AND `PASSWORD` LIKE '".$_POST['password']."'";
     $request = mysql_query($selectEmail, $link);
     $requestData = mysql_fetch_array($request, MYSQL_BOTH);
     if (mysql_num_rows($request) == 0)
