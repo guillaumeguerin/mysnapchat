@@ -37,7 +37,11 @@ xmlhttp.onreadystatechange=function()
 		window.location.href = "index.php";
 		}
 		else
+		{
+		var trad = new Traductor(navigator.language);
+		reponseText = trad.tradReponseText(reponseText);
 		document.getElementById("txtHint").innerHTML=reponseText;
+		}
     }
   }  
   

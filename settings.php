@@ -185,7 +185,7 @@ xmlhttp.send("q="+your_email);
 								<form onsubmit="deleteAccount(this)" method="post" action="javascript:void(0);">
 								 <div>
 								<p>
-								<h2 id="ptitle">Delete Account</h2>
+								<h2 id="dtitle">Delete Account</h2>
                                 </p>
 								<div class="row">
 								<div class="12u">

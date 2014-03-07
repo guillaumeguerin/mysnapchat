@@ -28,11 +28,14 @@ user-select: none;
 <script type="text/javascript" src="js/cookies.js"></script>		
 <script>
 var your_email;
+var booleanscreen;
 function checkSession()
 {
 
 var email = getCookie("email");
 var password = getCookie("password");
+var readedMessage = getCookie("readedmessage");
+
 
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -50,8 +53,15 @@ xmlhttp.onreadystatechange=function()
 	var reponseText = xmlhttp.responseText;
 		if(reponseText==" true ")
 		{
-		your_email = email;
-		showMessageList();
+			your_email = email;
+			if (readedMessage!="")
+				{
+				deleteMessage(readedMessage);
+				}
+			else
+				{
+				showMessageList();
+				}
 		}
 		else
 		{
@@ -121,8 +131,11 @@ xmlhttp.onreadystatechange=function()
 	var content = reponseText.split("<content>")[1];
 	reponseText = res+content;
 	document.getElementById("txtHint").innerHTML=reponseText;
+	setCookie("readedmessage",str.split("?q=")[1],30);
 	loadEventUnload(str.split("?")[1]);
-	setTimeout(function(){deleteMessage(str.split("?")[1])},60000);
+	booleanscreen=true;
+	loadEventPrintScreen(str.split("?q=")[1]);
+	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
     }
   }
 xmlhttp.open("POST",str.split("?")[0],true);
@@ -160,9 +173,12 @@ xmlhttp.onreadystatechange=function()
 			.resize(800, 600, 'max')
 			.get(function (err, img){
 				txtHint.appendChild(img);
-				 })
+				 });
+	setCookie("readedmessage",str.split("?q=")[1],30);
 	loadEventUnload(str.split("?")[1]);
-	setTimeout(function(){deleteMessage(str.split("?")[1])},60000);
+	booleanscreen=true;
+	loadEventPrintScreen(str.split("?q=")[1]);
+	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
 	}
   }
 xmlhttp.open("POST",str.split("?")[0],true);
@@ -186,24 +202,59 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+	setCookie("readedmessage","",-30);
 	showMessageList();
 	}
   }
 xmlhttp.open("POST","php/messages/deletemessage.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send(str);
+xmlhttp.send("q="+str+"&e="+your_email);
 }
 
 
-window.addEventListener("keyup",kPress,false);
 
-function kPress(e)
-{ 
-var c=e.keyCode||e.charCode; 
-if (c==44){
-alert("print screen");
+function showMessageSender(str)
+{
+if (str=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var reponseText = xmlhttp.responseText;
+	var trad = new Traductor(navigator.language);
+	reponseText = trad.tradReponseText(reponseText);
+	document.getElementById("txtHint").innerHTML=reponseText;
+	if(str=="picture")
+		pm.NavigatorActive('messagePicture');
+	else
+		if(str=="video")
+			pm.NavigatorActive('messageVideo');
+	else
+		if(str=="text")
+			pm.NavigatorActive('messageText');
+	else
+		if(str=="music")
+			pm.NavigatorActive('messageMusic');
+    }
+  }
+xmlhttp.open("POST","php/messages/messagesender.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("type="+str+"&email="+your_email);
 }
-}
+
+
 
 function loadEventUnload(str)
 { 
@@ -224,6 +275,48 @@ window.onunload = function () {
   deleteMessage(str);
 };
 }
+
+function loadEventPrintScreen(str)
+{ 
+
+function kPress(e)
+{ 
+var c=e.keyCode||e.charCode; 
+if (c==44){
+if(booleanscreen)
+{
+sendScreenshotAlert(str);
+booleanscreen=false;
+}
+alert("Screenshot Detected");
+}
+}
+
+window.addEventListener("keyup",kPress,false);
+}
+
+function sendScreenshotAlert(str)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	
+	}
+  }
+xmlhttp.open("POST","php/messages/sendscreenshotalert.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("q="+str+"&e="+your_email);
+}
+
 </script>
 
 <style type="text/css" media="print">
@@ -252,10 +345,10 @@ window.onunload = function () {
                                    <!-- NavMessage -->
                                     <center>
                                         <label id="newm">Create new message</label><br><br>
-                                        <a id="navmt" href="submitMessage.php?type=text" class="fa fa-comment-o fa-2x" style="color:rgb(201, 195, 195);"></a>
-                                        <a id="navmp" href="submitMessage.php?type=picture" class="fa fa-camera fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmv" href="submitMessage.php?type=video" class="fa fa-film fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmm" href="submitMessage.php?type=music" class="fa fa-music fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmt" href="javascript:void(0)" onclick="showMessageSender('text')" class="fa fa-comment-o fa-2x" style="color:rgb(201, 195, 195);"></a>
+                                        <a id="navmp" href="javascript:void(0)" onclick="showMessageSender('picture')" class="fa fa-camera fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmv" href="javascript:void(0)" onclick="showMessageSender('video')" class="fa fa-film fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmm" href="javascript:void(0)" onclick="showMessageSender('music')" class="fa fa-music fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
                                     </center>
                                     
                                 <!--    <table id="box-table-a">
