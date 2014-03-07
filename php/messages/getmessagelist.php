@@ -5,12 +5,13 @@ echo "Access denied";
 }
 else
 {
-$q = strval($_POST['q']);
+$email = strval($_POST['email']);
+$password = strval($_POST['password']);
 
 include '../connect.php';
 include '../timeago.php';
 
-$sql = "SELECT ID FROM user WHERE EMAIL = '".$q."'";
+$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 $result = mysql_query($sql);
 $userId = mysql_result($result, 0);
 $sql="SELECT * FROM MESSAGE WHERE MSG_USER_ID_TO = '".$userId."'";

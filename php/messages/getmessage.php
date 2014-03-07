@@ -5,37 +5,38 @@ echo "Access denied";
 }
 else
 {
-set_time_limit(0);
+
 $q = strval($_POST['q']);
+$email = strval($_POST['email']); 
+$password = strval($_POST['password']);
 
 include '../connect.php';
 include '../timeago.php';
 
-$sql="SELECT MSG_CONTENT FROM MESSAGE WHERE MSG_ID = '".$q."'";
+$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 $result = mysql_query($sql);
-$messagecontent = mysql_result($result, 0);
+$userId = mysql_result($result, 0);
 
-$sqlfrom="SELECT MSG_USER_ID_FROM FROM MESSAGE WHERE MSG_ID = '".$q."'";
-$resultfrom = mysql_query($sqlfrom);
-$from = mysql_result($resultfrom, 0);
+$sql="SELECT * FROM MESSAGE WHERE MSG_ID = '".$q."' AND MSG_USER_ID_TO = '".$userId."'";
+$result = mysql_query($sql);
+$row = mysql_fetch_array($result);
 
-$sqlName = "SELECT name FROM user WHERE ID = '".$from."'";
+
+$sqlName = "SELECT name FROM user WHERE ID = '".$row['MSG_USER_ID_FROM']."'";
 $resultName = mysql_query($sqlName);
 $name = mysql_result($resultName, 0);
 
-$sql="SELECT MSG_TYPE FROM MESSAGE WHERE MSG_ID = '".$q."'";
-$result = mysql_query($sql);
-$type = mysql_result($result, 0);
 
-if($type=="text")
+
+if($row['MSG_TYPE']=="text")
 {
 echo "<h3>Message from ".$name."</h3>";
-echo "<content>"."<p></br><table id=\"box-table-a\"><tr><td>".$messagecontent."</td></tr></table></p>";
+echo "<content>"."<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT']."</td></tr></table></p>";
 }
 
-if($type=="screenshotalert")
+if($row['MSG_TYPE']=="screenshotalert")
 {
-$datetime = strtotime($messagecontent);
+$datetime = strtotime($row['MSG_CONTENT']);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
 	
@@ -45,30 +46,30 @@ timeago2($difference);
 echo "</td></tr></table></p><content>";
 }
 
-if($type=="video")
+if($row['MSG_TYPE']=="video")
 {
 echo "<h3>Message from ".$name."</h3>";
 echo "<content>"."<p></br><video controls autoplay>
-<source src=\"".$messagecontent."\">
+<source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this video format.
 </video></p>";
 }
 
 
-if($type=="music")
+if($row['MSG_TYPE']=="music")
 {
 echo "<h3>Message from ".$name."</h3>";
 echo "<content>"."<p></br><audio controls autoplay>
-<source src=\"".$messagecontent."\">
+<source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this audio format.
 </audio>";
 }
 
 
-if($type=="picture")
+if($row['MSG_TYPE']=="picture")
 {
 echo "<h3>Message from ".$name."</h3></br>";
-echo "<file>".$messagecontent;
+echo "<file>".$row['MSG_CONTENT'];
 }
 
 

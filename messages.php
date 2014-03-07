@@ -28,6 +28,7 @@ user-select: none;
 <script type="text/javascript" src="js/cookies.js"></script>		
 <script>
 var your_email;
+var your_password;
 var booleanscreen;
 function checkSession()
 {
@@ -54,6 +55,7 @@ xmlhttp.onreadystatechange=function()
 		if(reponseText==" true ")
 		{
 			your_email = email;
+			your_password = password;
 			if (readedMessage!="")
 				{
 				deleteMessage(readedMessage);
@@ -102,7 +104,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","php/messages/getmessagelist.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("q="+your_email);
+xmlhttp.send("email="+your_email+"&password="+your_password);
 }
 
 function showMessage(str)
@@ -140,7 +142,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST",str.split("?")[0],true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send(str.split("?")[1]);
+xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 }
 
 
@@ -183,7 +185,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST",str.split("?")[0],true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send(str.split("?")[1]);
+xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 }
 
 

@@ -16,6 +16,7 @@
 <script type="text/javascript" src="js/cookies.js"></script>		
 <script>
 var your_email;
+var your_password;
 function checkSession()
 {
 
@@ -39,6 +40,7 @@ xmlhttp.onreadystatechange=function()
 		if(reponseText==" true ")
 		{
 		your_email = email;
+		your_password=password;
 		showSettings();
 		}
 		else
@@ -82,7 +84,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","php/settings/getsettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("q="+your_email);
+xmlhttp.send("email="+your_email+"&password="+your_password);
 }
 
 
@@ -124,7 +126,7 @@ xmlhttp.onreadystatechange=function()
   
 xmlhttp.open("POST","php/settings/updatesettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("e="+your_email+"&ne="+newEmail+"&np="+newPassword+"&nn="+newName+"&nd="+newDescription);
+xmlhttp.send("email="+your_email+"&password="+your_password+"&ne="+newEmail+"&np="+newPassword+"&nn="+newName+"&nd="+newDescription);
 
 }
 
@@ -151,7 +153,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","php/settings/deleteaccount.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("q="+your_email);
+xmlhttp.send("email="+your_email+"&password="+your_password);
 }
 }
 

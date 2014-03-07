@@ -7,12 +7,13 @@ echo "Access denied";
 else
 {
 
-$q = strval($_POST['q']);
+$email = strval($_POST['email']);
+$password = strval($_POST['password']);
 
 include '../connect.php';
 include '../timeago.php';
 
-$sql = "SELECT * FROM user WHERE EMAIL = '".$q."'";
+$sql = "SELECT * FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 
 $result = mysql_query($sql);
 

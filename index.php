@@ -27,10 +27,13 @@ xmlhttp.onreadystatechange=function()
 	var reponseText = xmlhttp.responseText;
 		if(reponseText==" true ")
 		{
-		
+		signin.style.display = 'none';
+		signup.style.display = 'none';
+		bar.style.display = 'none';
+		//document.getElementById("bar").innerHTML="Welcome to our website "+email+" !";		
 		}
 		else
-		{
+		{		
 		messages.style.display = 'none';
 		friends.style.display = 'none';
 		settings.style.display = 'none';
