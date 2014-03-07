@@ -110,6 +110,7 @@
 				text = text.replace("Unread messages","Messages non lus");
 				text = text.replace("Unread message","Message non lu");
 				text = text.replace("Message from","Message de");
+				text = text.replace("Welcome to our website ","Bienvenue sur notre site ");
 				
 				find = " days ago</td>";
 				re = new RegExp(find, 'g');

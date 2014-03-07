@@ -11,11 +11,12 @@ $p = strval($_POST['p']);
 
 include 'connect.php';
 
-$sqluserId1 = "SELECT ID FROM user WHERE EMAIL = '".$e."' AND PASSWORD = '".$p."'";
-$userId1 = mysql_result(mysql_query($sqluserId1), 0);
+$sql = "SELECT * FROM user WHERE EMAIL = '".$e."' AND PASSWORD = '".$p."'";
+$result = mysql_query($sql);
+$row = mysql_fetch_array($result);
 
-if($userId1>=1)
-echo "true";
+if($row['ID']>=1)
+echo "Welcome to our website " . $row['NAME'] .".";
 else
 echo "You have written a wrong email or a wrong password.";
 

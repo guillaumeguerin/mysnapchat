@@ -25,12 +25,11 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
 	var reponseText = xmlhttp.responseText;
-		if(reponseText==" true ")
+		if(reponseText!=" You have written a wrong email or a wrong password. ")
 		{
-		signin.style.display = 'none';
-		signup.style.display = 'none';
-		bar.style.display = 'none';
-		//document.getElementById("bar").innerHTML="Welcome to our website "+email+" !";		
+		var trad = new Traductor(navigator.language);
+		reponseText = trad.tradReponseText(reponseText);			
+		document.getElementById("signbar").innerHTML=reponseText;		
 		}
 		else
 		{		
@@ -68,7 +67,7 @@ xmlhttp.send("e="+email+"&p="+password);
 									<h2>Snap Chat Bordeaux</h2>
 								</header>
 								<p>
-                                    <center><a id="signin" href="login.php"><span>Sign In</span></a><label id="bar"> / </label><a id="signup" href="register.php"><span>Sign Up</span></a></center>
+                                    <center><label id="signbar"><a id="signin" href="login.php"><span>Sign In</span></a><label id="bar"> / </label><a id="signup" href="register.php"><span>Sign Up</span></a></label></center>
                                     <br>
 									<label id="description">
 									Snap Chat Bordeaux is an application available as a website but also for smartphones.

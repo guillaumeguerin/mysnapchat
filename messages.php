@@ -52,7 +52,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
 	var reponseText = xmlhttp.responseText;
-		if(reponseText==" true ")
+		if(reponseText!=" You have written a wrong email or a wrong password. ")
 		{
 			your_email = email;
 			your_password = password;
