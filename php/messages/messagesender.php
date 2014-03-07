@@ -46,7 +46,8 @@ echo '<div class="row">';
 echo '<div class="12u" style="margin-bottom:1em;">';
 
 if($type == "text"){
-	echo '<input type=\"text\" id="content" class="text" name="content" placeholder="Your message" />';
+	echo '<input type=\"text\" id="content" class="text" name="content" placeholder="Your message" 
+    maxlength="200" />';
 }
 if($type == "music"){
 	echo '<input type="file" id="file" class="text" name="file" accept="audio/mp3"/>';
