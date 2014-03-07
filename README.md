@@ -1,4 +1,0 @@
-mysnapchat
-==========
-
-MySnapChat

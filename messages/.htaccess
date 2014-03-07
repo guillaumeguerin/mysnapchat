@@ -1,6 +1,0 @@
-ErrorDocument 403 http://gguerind.0fees.net/index.php
-AuthUserFile .htpasswords
-AuthGroupFile /dev/null 
-AuthName "Secure access to messages" 
-AuthType Basic 
-Require valid-user 
