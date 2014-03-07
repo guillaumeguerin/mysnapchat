@@ -132,7 +132,7 @@ xmlhttp.onreadystatechange=function()
 	reponseText = res+content;
 	document.getElementById("txtHint").innerHTML=reponseText;
 	setCookie("readedmessage",str.split("?q=")[1],30);
-	loadEventUnload(str.split("?")[1]);
+	loadEventBeforeUnload(str.split("?")[1]);
 	booleanscreen=true;
 	loadEventPrintScreen(str.split("?q=")[1]);
 	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
@@ -175,7 +175,7 @@ xmlhttp.onreadystatechange=function()
 				txtHint.appendChild(img);
 				 });
 	setCookie("readedmessage",str.split("?q=")[1],30);
-	loadEventUnload(str.split("?")[1]);
+	loadEventBeforeUnload(str.split("?")[1]);
 	booleanscreen=true;
 	loadEventPrintScreen(str.split("?q=")[1]);
 	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
@@ -203,6 +203,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 	setCookie("readedmessage","",-30);
+	unloadEventBeforeUnload();
 	showMessageList();
 	}
   }
@@ -256,7 +257,7 @@ xmlhttp.send("type="+str+"&email="+your_email);
 
 
 
-function loadEventUnload(str)
+function loadEventBeforeUnload(str)
 { 
 window.onbeforeunload = function (e) {
   var e = e || window.event;
@@ -275,6 +276,14 @@ window.onunload = function () {
   deleteMessage(str);
 };
 }
+
+
+function unloadEventBeforeUnload()
+{ 
+window.onbeforeunload = function () {};
+window.onunload = function () {};
+}
+
 
 function loadEventPrintScreen(str)
 { 
