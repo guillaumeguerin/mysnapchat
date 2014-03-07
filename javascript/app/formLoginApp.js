@@ -1,5 +1,5 @@
 // define angular module/app
-var formApp = angular.module('formLoginApp', []);
+var formApp = angular.module('formLoginApp', ['navBar']);
 
 // create angular controller and pass in $scope and $http
 function formController($scope, $http) {
@@ -22,8 +22,7 @@ function formController($scope, $http) {
 	        if (!data.success) {
 		        // if not successful, bind errors to error variables
 		        $scope.errorEmail = data.errors.email;
-		        $scope.errorPassword = data.errors.password;
-                $scope.errorCaptcha = data.errors.captcha;
+		        //$scope.errorPassword = data.errors.password;
 	        } else {
 		        // if successful, bind success message to message
 			        $scope.message = data.message;

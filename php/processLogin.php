@@ -16,24 +16,27 @@
     if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $_POST['email']))
     $errors['email'] = 'Email address has an invalid format.';
 
-    $selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '" . $_POST['email'] . "'";
+    //$selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '".$_POST['email']."'";
+    $selectEmail = "SELECT * FROM `user` WHERE `EMAIL` LIKE '".$_POST['email']."' AND `PASSWORD` LIKE '".$_POST['email']."'";
     $request = mysql_query($selectEmail, $link);
-    $requestData = mysql_fetch_array($request);
+    $requestData = mysql_fetch_array($request, MYSQL_BOTH);
     if (mysql_num_rows($request) == 0)
-    $errors['email'] = 'Email address does not exist in the database.' . $selectEmail ;
+    $errors['email'] = 'Invalid Email/Password.'.$selectEmail.' .'.$requestData["NAME"];
+    //$errors['email'] = 'Email address does not exist in the database.'.$selectEmail.' .'.$requestData["NAME"];
 
-    if (empty($_POST['password']))
-    $errors['password'] = 'You need to enter a password.';
-    if (strlen($_POST['password']) < 4)
-    $errors['password'] = 'Password too short.';
-    if (strlen($_POST['password']) > 20)
-    $errors['password'] = 'Password too long.';
-    if ($requestData['PASSWORD'] != md5($_POST['password']))
-    $errors['password'] = 'Password does not match.';
+
+    //if (empty($_POST['password']))
+    //$errors['password'] = 'You need to enter a password.';
+    //if (strlen($_POST['password']) < 4)
+    //$errors['password'] = 'Password too short.';
+    //if (strlen($_POST['password']) > 20)
+    //$errors['password'] = 'Password too long.';
+    //if ($requestData['PASSWORD'] != /*md5(*/$_POST['password']/*)*/)
+    //$errors['password'] = 'Password does not match.';
 
     mysql_close($link);
     
-    $privatekey = "6LddxO4SAAAAAFtuqo6yvNn7rUcfCf8fc5rFz6Ft";
+    /*$privatekey = "6LddxO4SAAAAAFtuqo6yvNn7rUcfCf8fc5rFz6Ft";
 
     $resp = recaptcha_check_answer ($privatekey,
          $_SERVER['processLogin.php'],
@@ -42,7 +45,7 @@
 
     if (!$resp->is_valid) {
         $errors['captcha'] = 'The captcha is incorrect.';
-    }
+    }*/
 
 
     // return a response ===========================================================
@@ -67,7 +70,8 @@
     }
 
     // return all our data to an AJAX call
-    die(json_encode($data));
+    echo json_encode($data);
 
+    mysql_close($link);
     
 ?>

@@ -26,6 +26,8 @@
 
         <!-- Controlers -->
         <script src="javascript/app/formLoginApp.js"></script>
+        <script src="javascript/app/navBar.js"></script>
+
 
 		
 	</head>
@@ -35,9 +37,9 @@
 			<div id="wrapper">
 				
 				<!-- Nav -->
-					<!--<nav id="nav" ng-controller="snapchatAppNavController">
+					<nav id="nav" ng-controller="navBarController">
 						<div ng-bind-html="displayNavBar()"></div>
-					</nav>-->
+					</nav>
 
 				<!-- Main -->
 					<div id="main">
@@ -52,7 +54,7 @@
 
 
                                         
-								<form ng-submit="processForm()">
+								<form autocomplete="off" ng-submit="processForm()">
 									<div>
 										<div class="row half">
 											<div class="6u">
@@ -67,24 +69,9 @@
 											</div>
 										</div>
                                         <br>
-                                          <script type="text/javascript"
-                                             src="http://www.google.com/recaptcha/api/challenge?k=6Lf2le4SAAAAALxgA9l7CBqllSYOFtFdoeC3KnxP">
-                                          </script>
-                                          <noscript>
-                                             <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Lf2le4SAAAAALxgA9l7CBqllSYOFtFdoeC3KnxP"
-                                                     frameborder="0">
-                                             </iframe><br>
-                                             <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                                             </textarea>
-                                             <input type="hidden" name="recaptcha_response_field"
-                                                 value="manual_challenge" >
-                                                 
-                                                 
-                                          </noscript>
-                                        <br>
 										<div class="row">
 											<div class="12u">
-												<input id="signin" type="submit" class="button" />
+												<input id="signin" type="submit" class="button" style="margin-top: 1em;"/>
 											</div>
 										</div>
 									</div>
@@ -95,7 +82,10 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="links">
-							<li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
+							<li>Créé par : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
+                            <li>Projet pour l'Université Bordeaux</li>
+                            <li>Client : Xavier Blanc</li>
+                            <li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
 						</ul>
 					</div>
 		
