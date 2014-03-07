@@ -10,11 +10,12 @@ else
 
 $type = strval($_POST['type']);
 $email = strval($_POST['email']);
+$password = strval($_POST['password']);
 
 
 include '../connect.php';
 
-$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
+$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 $result = mysql_query($sql);
 $userId = mysql_result($result, 0);
 

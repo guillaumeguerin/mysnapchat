@@ -254,7 +254,7 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("POST","php/messages/messagesender.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("type="+str+"&email="+your_email);
+xmlhttp.send("type="+str+"&email="+your_email+"&password="+your_password);
 }
 
 
