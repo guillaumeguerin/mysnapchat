@@ -22,6 +22,12 @@ $userId = mysql_result($result, 0);
 $sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '1'";
 $result = mysql_query($sql);
 
+if(mysql_num_rows($result)==0)
+{
+echo "<h3>You need to have at least a friend to send messages.</h3>";
+}
+else
+{
 
 if($type == "text" || $type == "music" || $type == "video" ||$type == "picture"){
 
@@ -67,6 +73,7 @@ echo '<div class="row">
 <input id="send" class="button" type="submit" value="Send"/>
 </div>
 </div></form>';
+}
 }
 mysql_close($con);
 }

@@ -24,7 +24,7 @@ $result = mysql_query($sql);
 								
 $row_num = mysql_num_rows($result);	
 if($row_num>1){
-echo "<h3> You have ".$row_num." friend requests</h3>
+echo "<h3>You have ".$row_num." friend requests</h3>
 <p><table id=\"box-table-a\">";
 }
 else
@@ -33,7 +33,7 @@ echo "<h3>You have no friend request</h3>
 <p><table id=\"box-table-a\">";
 }
 else
-echo "<h3> You have ".$row_num." friend request</h3>
+echo "<h3>You have ".$row_num." friend request</h3>
 <p><table id=\"box-table-a\">";
 
 while($row = mysql_fetch_array($result))
@@ -73,7 +73,7 @@ $result = mysql_query($sql);
 								
 $row_num = mysql_num_rows($result);	
 if($row_num>1){
-echo "<h3> You have ".$row_num." friends</h3>
+echo "<h3>You have ".$row_num." friends</h3>
 <p><table id=\"box-table-a\">";
 }
 else
@@ -82,7 +82,7 @@ echo "<h3>You have no friend</h3>
 <p><table id=\"box-table-a\">";
 }
 else
-echo "<h3> You have ".$row_num." friend</h3>
+echo "<h3>You have ".$row_num." friend</h3>
 <p><table id=\"box-table-a\">";
 
 while($row = mysql_fetch_array($result))

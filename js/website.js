@@ -48,20 +48,6 @@
 	}
 
 
-	/*this.tradMessagePicture = function(){
-		if(language != null){
-			if(language.indexOf("fr") >= 0){
-				document.getElementById('selectp').innerHTML="Selectionner une photo";
-				document.getElementById('send').innerHTML="Envoyer";
-				document.getElementById('openCam').innerHTML="Utiliser la webcam";
-				document.getElementById('ptitle').innerHTML=" &nbsp;&nbsp;Message photo";
-				document.getElementById('newm').innerHTML="Envoyer un nouveau message";
-			}
-		}
-	}*/
-
-
-
 	this.tradMessages = function(){
 		if(language != null){
 			if(language.indexOf("fr") >= 0){
@@ -71,20 +57,11 @@
 	}
 
 
-	this.tradMessageSender = function(){
-		if(language != null){
-			if(language.indexOf("fr") >= 0){
-				document.getElementById('send').value="Envoyer";
-			}
-		}
-	}
-
 
 	this.tradFriends = function(){
 		if(language != null){
 			if(language.indexOf("fr") >= 0){
-				document.getElementById('ptitle').innerHTML="Amis";
-				//document.getElementById('your-email').placeholder="Votre adresse email";
+				document.getElementById('ptitle').innerHTML="Amis";				
 				document.getElementById('friend-email').placeholder="Adresse email de votre ami";
 				document.getElementById('add-friend').value="Ajouter";
 			}
@@ -107,10 +84,28 @@
 		if(language != null){
 			if(language.indexOf("fr") >= 0){
 				var find,re;
-				text = text.replace("Unread messages","Messages non lus");
-				text = text.replace("Unread message","Message non lu");
-				text = text.replace("Message from","Message de");
+				text = text.replace("Unread messages</label>","Messages non lus</label>");
+				text = text.replace("Unread message</label>","Message non lu</label>");
+				text = text.replace("You have no unread message</label>","Vous n'avez aucun message non lu</label>");
+				text = text.replace("<h3>Message from","<h3>Message de");
 				text = text.replace("Welcome to our website ","Bienvenue sur notre site ");
+				text = text.replace("<h3>You have no friend request","<h3>Vous n'avez aucune demande d'ami");
+				text = text.replace("<h3>You have no friend","<h3>Vous n'avez pas encore d'ami");
+				text = text.replace(" friend request</h3>"," demande d'ami</h3>");
+				text = text.replace(" friend requests</h3>"," demandes d'amis</h3>");
+				text = text.replace(" friend</h3>"," ami</h3>");
+				text = text.replace(" friends</h3>"," amis</h3>");
+				text = text.replace("VALUE=\"Apply new settings\"","VALUE=\"Appliquer les nouveaux paramètres\"");
+				text = text.replace("Your email :","Votre adresse email :");
+				text = text.replace("Your password :","Votre mot de passe :");
+				text = text.replace("Your name :","Votre nom :");
+				text = text.replace("Your description :","Votre description :");
+				text = text.replace('placeholder="Your message"' ,'placeholder="Votre message"');
+				text = text.replace('value="Send"' ,'value="Envoyer"');
+				text = text.replace("<h3>You need to have at least a friend to send messages.</h3>","<h3>Vous devez avoir au moins un ami pour envoyer des messages.</h3>");
+				text = text.replace("You have written a wrong email or a wrong password","Vous avez écrit une mauvaise adresse email ou un mauvais mot de passe");
+				text = text.replace("I took a screenshot from the message you sent me","J'ai pris un screenshot du message que vous m'avez envoyé il y a");
+				
 				
 				find = " days ago</td>";
 				re = new RegExp(find, 'g');
@@ -128,13 +123,13 @@
 				re = new RegExp(find, 'g');
 				text = text.replace(re," heure</td>");
 				
-				find = " minutes ago";
+				find = " minutes ago</td>";
 				re = new RegExp(find, 'g');
-				text = text.replace(re," minutes");
+				text = text.replace(re," minutes</td>");
 				
-				find = " minute ago";
+				find = " minute ago</td>";
 				re = new RegExp(find, 'g');
-				text = text.replace(re," minute");
+				text = text.replace(re," minute</td>");
 				
 				find = " seconds ago</td>";
 				re = new RegExp(find, 'g');
@@ -158,69 +153,11 @@
 				
 				find = "<span id=\"delete\"> Delete</span>";
 				re = new RegExp(find, 'g');
-				text = text.replace(re,"<span id=\"delete\"> Supprimer</span>");
-				
-				find = "<h3>You have no friend request</h3>";
+				text = text.replace(re,"<span id=\"delete\"> Supprimer</span>");				
+						
+				find = "<h3>You have ";
 				re = new RegExp(find, 'g');
-				text = text.replace(re,"<h3>Vous n'avez aucune requête d'amis</h3>");
-				
-				find = "<h3>You have no friend</h3>";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"<h3>Vous n'avez pas d'amis</h3>");
-				
-				find = "<h3> You have ";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"<h3> Vous avez ");
-				
-				find = " friend request</h3>";
-				re = new RegExp(find, 'g');
-				text = text.replace(re," requête d'ami</h3>");
-				
-				find = " friend requests</h3>";
-				re = new RegExp(find, 'g');
-				text = text.replace(re," requêtes d'amis</h3>");
-				
-				
-				find = " friend</h3>";
-				re = new RegExp(find, 'g');
-				text = text.replace(re," ami</h3>");
-				
-				find = " friends</h3>";
-				re = new RegExp(find, 'g');
-				text = text.replace(re," amis</h3>");
-				
-				
-				find = "Apply new settings";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Appliquer les nouveaux paramètres");
-				
-				find = "Your email :";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Votre adresse email :");
-				
-				find = "Your password :";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Votre mot de passe :");
-				
-				find = "Your name :";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Votre nom :");
-				
-				find = "Your description :";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Votre description :");
-				
-				find = "Your message";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Votre message");
-				
-				find = "You have written a wrong email or a wrong password.";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"Vous avez écrit une mauvaise adresse email ou un mauvais mot de passe.");
-				
-				find = "I took a screenshot from the message you sent me";
-				re = new RegExp(find, 'g');
-				text = text.replace(re,"J'ai pris un screenshot du message que vous m'avez envoyé il y a");
+				text = text.replace(re,"<h3>Vous avez ");
 				
 			}
 		}	
@@ -327,7 +264,6 @@ var PageModificator = function(userAgent,language){
 			document.getElementById('navmp').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmt').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmm').style.color="rgb(201, 195, 195)";
-			traductor.tradMessageSender();
 		}
 		
 		if(pageName=='messageText'){
@@ -335,7 +271,6 @@ var PageModificator = function(userAgent,language){
 			document.getElementById('navmp').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmv').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmm').style.color="rgb(201, 195, 195)";
-			traductor.tradMessageSender();
 		}
 		
 		if(pageName=='messageMusic'){			
@@ -343,7 +278,6 @@ var PageModificator = function(userAgent,language){
 			document.getElementById('navmp').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmt').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmv').style.color="rgb(201, 195, 195)";
-			traductor.tradMessageSender();
 		}
 
 		if(pageName=='messagePicture'){
@@ -351,7 +285,6 @@ var PageModificator = function(userAgent,language){
 			document.getElementById('navmv').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmt').style.color="rgb(201, 195, 195)";
 			document.getElementById('navmm').style.color="rgb(201, 195, 195)";
-			traductor.tradMessageSender();
 		}
 
 		if(pageName=='friends'){
@@ -383,13 +316,7 @@ var PageModificator = function(userAgent,language){
 		}
 
 
-	}
-	
-	this.autoResize = function(id){
-	
-   document.getElementById(id).style.height = '100%';
-
-}
+	}	
 
 }
 

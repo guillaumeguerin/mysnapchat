@@ -27,11 +27,17 @@ $result = mysql_query($sql);
 								
 $row_num = mysql_num_rows($result);	
 if($row_num>1){
-echo "<h3>".$row_num." <label id=\"unreadm\">Unread messages</label></h3>
+echo "<h3>You have ".$row_num." <label id=\"unreadm\">Unread messages</label></h3>
+<p><table id=\"box-table-a\">";
+}
+else 
+if($row_num==0)
+{
+echo "<h3><label id=\"unreadm\">You have no unread message</label></h3>
 <p><table id=\"box-table-a\">";
 }
 else
-echo "<h3>".$row_num." <label id=\"unreadm\">Unread message</label></h3>
+echo "<h3>You have ".$row_num." <label id=\"unreadm\">Unread message</label></h3>
 <p><table id=\"box-table-a\">";
 
 while($row = mysql_fetch_array($result))
