@@ -18,7 +18,7 @@ $result = mysql_query($sql);
 $userId = mysql_result($result, 0);
 
 
-$sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '0'";
+$sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '0' ORDER BY FDS_ID DESC";
 $result = mysql_query($sql);
 
 								
@@ -67,7 +67,7 @@ $name = mysql_result($resultName, 0);
 echo "</table></p>";
 
 
-$sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '1'";
+$sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '1' ORDER BY FDS_ID DESC";
 $result = mysql_query($sql);
 
 								

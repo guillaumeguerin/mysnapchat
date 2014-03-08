@@ -14,7 +14,7 @@ include '../timeago.php';
 $sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 $result = mysql_query($sql);
 $userId = mysql_result($result, 0);
-$sql="SELECT * FROM MESSAGE WHERE MSG_USER_ID_TO = '".$userId."'";
+$sql="SELECT * FROM MESSAGE WHERE MSG_USER_ID_TO = '".$userId."' ORDER BY MSG_ID DESC";
 $result = mysql_query($sql);
 
 /*echo "<table id=\"box-table-a\">
