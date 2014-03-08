@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snap Chat Bordeaux</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style-mobile.css" />
+			<link rel="stylesheet" href="css/noscript.css" />
+		</noscript>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="json2.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+	// Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        navigator.splashscreen.hide();
+    }
+	
+    // Called when capture operation is finished
+    //
+    function captureSuccess(mediaFiles) {
+        var i, len;
+        for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+            uploadFile(mediaFiles[i]);
+        }
+    }
+
+    // Called if something bad happens.
+    //
+    function captureError(error) {
+        var msg = 'An error occurred during capture: ' + error.code;
+        navigator.notification.alert(msg, null, 'Uh oh!');
+    }
+
+    // A button will call this function
+    //
+	function captureImage() {
+        // Launch device camera application,
+        // allowing user to capture up to 2 images
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 2});
+    }
+	
+    function captureVideo() {
+        // Launch device video recording application,
+        // allowing user to capture up to 2 video clips
+        navigator.device.capture.captureVideo(captureSuccess, captureError, {limit: 2, duration: 10});
+    }
+	
+	function captureAudio() {
+        // Launch device audio recording application,
+        // allowing user to capture up to 2 audio clips
+        navigator.device.capture.captureAudio(captureSuccess, captureError, {limit: 2});
+    }
+	
+
+    // Upload files to server
+    function uploadFile(mediaFile) {
+        var ft = new FileTransfer(),
+            path = mediaFile.fullPath,
+            name = mediaFile.name;
+
+        ft.upload(path,
+            "http://gguerind.0fees.net/mysnapchat/test/upload.php",
+            function(result) {
+                console.log('Upload success: ' + result.responseCode);
+                console.log(result.bytesSent + ' bytes sent');
+            },
+            function(error) {
+                console.log('Error uploading file ' + path + ': ' + error.code);
+            },
+            { fileName: name });
+    }
+
+    </script>
+    </head>
+    <body class="homepage">
+		
+		<div id="wrapper">
+				
+					<nav id="nav">
+						<a href="messages.html" class="fa fa-envelope active"><span>Messages</span></a>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+							<article id="work" class="panel">
+								<header>
+                                    <h2>Messages</h2>
+								</header>
+                                <p>
+                                    <center>
+                                        Create a new message<br><br>
+										<button onclick="captureImage();"><i class="fa fa-camera fa-2x" style="color:rgb(100, 95, 95);"></i> &nbsp; Capture Image</button>
+										<button onclick="captureVideo();"><i class="fa fa-film fa-2x" style="color:rgb(100, 95, 95);"></i> &nbsp; Capture Video</button>
+										<button onclick="captureAudio();"><i class="fa fa-music fa-2x" style="color:rgb(100, 95, 95);"></i> &nbsp; Capture Audio</button>
+                                    </center>
+								</p>
+							</article>
+					</div>
+		
+    </body>
+</html>
