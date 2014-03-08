@@ -46,6 +46,17 @@ timeago2($difference);
 echo "</td></tr></table></p><content>";
 }
 
+if($row['MSG_TYPE']=='alert')
+{
+$datetime = strtotime($row['MSG_CONTENT']);
+$datetimenow = strtotime("now");
+$difference = $datetimenow - $datetime;
+	
+echo "<h3>Message from ".$name."</h3>";
+echo "<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT'];
+echo "</td></tr></table></p><content>";
+}
+
 if($row['MSG_TYPE']=="video")
 {
 echo "<h3>Message from ".$name."</h3>";

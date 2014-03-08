@@ -46,9 +46,10 @@ while($row = mysql_fetch_array($result))
   if($row['MSG_TYPE']=='text'){
   echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-comment-o\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
-  else if($row['MSG_TYPE']=='screenshotalert'){
+  else if(($row['MSG_TYPE']=='screenshotalert')||($row['MSG_TYPE']=='alert')){
   echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-warning\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
+  
  else if($row['MSG_TYPE']=='video'){
   echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-film\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }

@@ -22,14 +22,13 @@ $sql="SELECT * FROM MESSAGE WHERE MSG_ID = '".$q."'";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
 
+if($row['MSG_USER_ID_FROM']!='1')
+{
+
 $content = $row['MSG_TIME'];
-
 $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $row['MSG_USER_ID_TO'] ."', '". $row['MSG_USER_ID_FROM'] ."', 'screenshotalert', '". $content ."');";
-
-
-
 mysql_query($sql);
-
+}
 
 mysql_close($con);
 }

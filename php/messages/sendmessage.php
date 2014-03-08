@@ -11,7 +11,21 @@
 	
 	$type = $_GET["type"];
 	$email = $_GET["email"];
-    
+	
+	
+	
+	$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
+	$result = mysql_query($sql);
+	$userId = mysql_result($result, 0);
+	
+	$content="Please don\'t spam the admin account !";
+	if($_POST['receiver']=='1')
+	{
+	$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $_POST['receiver'] ."', '".$userId."', 'alert', '". $content ."');";
+	mysql_query($sql);
+	}
+    else
+	{
     if($type == "text" || $type == "music" || $type == "video" ||$type == "picture"){
 
         
@@ -22,13 +36,10 @@
             $content = $_POST['content'];
 			if($content != NULL){
 		
-		$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
-		$result = mysql_query($sql);
-		$userId = mysql_result($result, 0);
+		
 		
             $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
-			//echo $sql;			  
-           $result= mysql_query($sql);
+			mysql_query($sql);
         }
         }
         else
@@ -99,10 +110,7 @@
 
         if($content != NULL){
 		
-		$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
-		$result = mysql_query($sql);
-		$userId = mysql_result($result, 0);
-		
+				
             $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
 			//echo $sql;			  
            $result= mysql_query($sql);
@@ -111,12 +119,14 @@
 	else
 	echo "Wrong file type";
 	
-        mysql_close($con);
+        
 		  
     
 	}
-	header('Location: ../../messages.php');
-	}
 	
+	}
+	}
+	mysql_close($con);
+	header('Location: ../../messages.php');
 	}
 ?>

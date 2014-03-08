@@ -105,7 +105,7 @@
 				text = text.replace("<h3>You need to have at least a friend to send messages.</h3>","<h3>Vous devez avoir au moins un ami pour envoyer des messages.</h3>");
 				text = text.replace("You have written a wrong email or a wrong password","Vous avez écrit une mauvaise adresse email ou un mauvais mot de passe");
 				text = text.replace("I took a screenshot from the message you sent me","J'ai pris un screenshot du message que vous m'avez envoyé il y a");
-				
+				text = text.replace("Please don't spam the admin account !","Nous vous prions de bien vouloir ne pas spammer le compte admin !");
 				
 				find = " days ago</td>";
 				re = new RegExp(find, 'g');
