@@ -180,12 +180,13 @@ xmlhttp.onreadystatechange=function()
 	var trad = new Traductor(navigator.language);
 	res = trad.tradReponseText(res);
 	var file = reponseText.split("<file>")[1];
-    document.getElementById("txtHint").innerHTML=res;
+    document.getElementById("txtHint").innerHTML=res;	
 	FileAPI.Image(file)
-			.resize(800, 600, 'max')
+			.resize(screen.height/2, screen.width/2, 'max')
 			.get(function (err, img){
 				txtHint.appendChild(img);
 				 });
+	
 	setCookie("readedmessage",str.split("?q=")[1],30);
 	loadEventBeforeUnload(str.split("?")[1]);
 	booleanscreen=true;
@@ -470,13 +471,13 @@ document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+t
 								</header>
                                 <p>
                                    <!-- NavMessage -->
-                                    <center>
+										<center>
                                         <label id="newm">Create new message</label><br><br>
                                         <a id="navmt" href="javascript:void(0)" onclick="showMessageSender('text')" class="fa fa-comment-o fa-2x" style="color:rgb(201, 195, 195);"></a>
-                                        <a id="navmp" href="javascript:void(0)" onclick="showMessageSender('picture')" class="fa fa-camera fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmv" href="javascript:void(0)" onclick="showMessageSender('video')" class="fa fa-film fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmm" href="javascript:void(0)" onclick="showMessageSender('music')" class="fa fa-music fa-2x" style="margin-left:2em;color:rgb(201, 195, 195);"></a>
-                                    </center>
+                                        <a id="navmp" href="javascript:void(0)" onclick="showMessageSender('picture')" class="fa fa-camera fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmv" href="javascript:void(0)" onclick="showMessageSender('video')" class="fa fa-film fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>
+                                        <a id="navmm" href="javascript:void(0)" onclick="showMessageSender('music')" class="fa fa-music fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>							
+										</center>
                                     
                                 <!--    <table id="box-table-a">
                                     <tr>
@@ -507,6 +508,7 @@ document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+t
 <script>
 work.style.height="50em";
 main.style.overflow= "auto";
+work.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
 pm.NavigatorActive('messages');
 </script>

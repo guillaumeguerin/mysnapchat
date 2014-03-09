@@ -207,6 +207,7 @@ xmlhttp.send("e="+your_email+"&fe="+friend_email);
 <script>
 work.style.height="40em";
 main.style.overflow= "auto";
+work.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
 pm.NavigatorActive('friends');
 </script>

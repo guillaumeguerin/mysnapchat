@@ -219,6 +219,7 @@ xmlhttp.send("email="+your_email+"&password="+your_password);
 <script>
 work.style.height="40em";
 main.style.overflow= "auto";
+work.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
 pm.NavigatorActive('settings');
 </script>
