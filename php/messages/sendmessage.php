@@ -9,12 +9,12 @@
 	
     include("../connect.php");
 	
-	$type = $_GET["type"];
-	$email = $_GET["email"];
+	$type = $_POST["type"];
+	$email = $_POST["email"];
+	$password = $_POST["password"];
 	
 	
-	
-	$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
+	$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 	$result = mysql_query($sql);
 	$userId = mysql_result($result, 0);
 	
@@ -40,6 +40,7 @@
 		
             $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
 			mysql_query($sql);
+			echo "Your message has been sent.";
         }
         }
         else
@@ -79,7 +80,8 @@
               {*/
 			  
 			  
-			  
+			  if($_FILES["file"]["size"] <= 10485760)
+			  {
 			  if(strpos($_FILES["file"]["type"], $typem)!== false)
 			  {
               if ($_FILES["file"]["error"] > 0)
@@ -111,14 +113,16 @@
         if($content != NULL){
 		
 				
-            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
-			//echo $sql;			  
+            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";			  
            $result= mysql_query($sql);
+		   echo "Your message has been sent.";
         }
 	}
 	else
 	echo "Wrong file type";
-	
+	}
+	else
+	echo "Wrong file size";
         
 		  
     
@@ -127,6 +131,5 @@
 	}
 	}
 	mysql_close($con);
-	header('Location: ../../messages.php');
 	}
 ?>

@@ -58,7 +58,7 @@ xmlhttp.onreadystatechange=function()
 			your_password = password;
 			if (readedMessage!="")
 				{
-				deleteMessage(readedMessage);
+				deleteMessage(readedMessage,false);
 				}
 			else
 				{
@@ -137,7 +137,7 @@ xmlhttp.onreadystatechange=function()
 	loadEventBeforeUnload(str.split("?")[1]);
 	booleanscreen=true;
 	loadEventPrintScreen(str.split("?q=")[1]);
-	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
+	setTimeout(function(){deleteMessage(str.split("?q=")[1],true)},60000);
     }
   }
 xmlhttp.open("POST",str.split("?")[0],true);
@@ -180,7 +180,7 @@ xmlhttp.onreadystatechange=function()
 	loadEventBeforeUnload(str.split("?")[1]);
 	booleanscreen=true;
 	loadEventPrintScreen(str.split("?q=")[1]);
-	setTimeout(function(){deleteMessage(str.split("?q=")[1])},60000);
+	setTimeout(function(){deleteMessage(str.split("?q=")[1],true)},60000);
 	}
   }
 xmlhttp.open("POST",str.split("?")[0],true);
@@ -190,7 +190,7 @@ xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 
 
 
-function deleteMessage(str)
+function deleteMessage(str,showlist)
 {
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -206,7 +206,8 @@ xmlhttp.onreadystatechange=function()
     {
 	setCookie("readedmessage","",-30);
 	unloadEventBeforeUnload();
-	showMessageList();
+	if(showlist)
+		showMessageList();
 	}
   }
 xmlhttp.open("POST","php/messages/deletemessage.php",true);
@@ -250,6 +251,10 @@ xmlhttp.onreadystatechange=function()
 	else
 		if(str=="music")
 			pm.NavigatorActive('messageMusic');
+			
+	readedMessage=getCookie("readedmessage");
+	if(readedMessage!="")
+		deleteMessage(readedMessage,false);
     }
   }
 xmlhttp.open("POST","php/messages/messagesender.php",true);
@@ -275,7 +280,7 @@ window.onbeforeunload = function (e) {
 
 
 window.onunload = function () {
-  deleteMessage(str);
+  deleteMessage(str,true);
 };
 }
 
@@ -327,6 +332,58 @@ xmlhttp.open("POST","php/messages/sendscreenshotalert.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("q="+str+"&e="+your_email);
 }
+
+function sendMessage(obj,type)
+{
+var booleansize = true;
+var	receiver = obj.receiver.value;
+
+var data = new FormData();
+
+if(type == "text"){
+var	content = obj.content.value;
+data.append('content', content);
+}
+else
+{
+var	content = obj.content.files[0];
+if(content.size>10485760)
+	booleansize = false;
+data.append('file', content);
+}
+
+if(booleansize)
+{
+data.append('receiver', receiver);
+data.append('type', type);
+data.append('email', your_email);
+data.append('password', your_password);
+
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+		showMessageList();
+	}
+  }
+xmlhttp.open("POST","php/messages/sendmessage.php",true);
+//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//xmlhttp.setRequestHeader("Content-type","multipart/form-data");
+xmlhttp.send(data);
+}
+else
+document.getElementById("messageSendertxtHint").innerHTML="Your file is too big.";
+}
+
 
 </script>
 
