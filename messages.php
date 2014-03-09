@@ -19,6 +19,16 @@
 -o-user-select: none;
 user-select: none;
 }
+ 
+    .progressbar_container {
+        border: 1px solid #000;
+    }
+    .progressbar {
+        width: 0%;
+        background: #DEDEDE;
+        height: 20px;  
+    }
+    
 </style>
 <script src="dist/FileAPI.js"></script>
 		<script src="plugins/caman.full.js"></script>
@@ -358,7 +368,7 @@ if(type == "video")
 	typem = "video";
 if(type == "picture")
 	typem = "image";
-
+if(typeof content != 'undefined'){
 if(content.type.indexOf(typem) == 0){
 	booleantype=true;
 	if(content.size>10485760)
@@ -367,6 +377,10 @@ if(content.type.indexOf(typem) == 0){
 	data.append('file', content);
 }
 }
+
+
+}
+
 if(booleantype){
 if(booleansize)
 {
@@ -391,14 +405,42 @@ xmlhttp.onreadystatechange=function()
 		showMessageList();
 	}
   }
+  
+  xmlhttp.upload.addEventListener('progress', function(e){   
+    progressbar.style.width = e.loaded/e.total * 100 + '%';	
+}, false);
+  
 xmlhttp.open("POST","php/messages/sendmessage.php",true);
 xmlhttp.send(data);
 }
 else
-document.getElementById("messageSendertxtHint").innerHTML="Your file is too big.";
+{
+if(navigator.language != null){
+			if(navigator.language.indexOf("fr") >= 0)
+			document.getElementById("messageSendertxtHint").innerHTML="Votre fichier est trop gros, il doit faire moins de 10 MO.";
+}
+else
+document.getElementById("messageSendertxtHint").innerHTML="Your file is too big it should be less than 10 MB.";
+}
+}
+else
+{
+if(navigator.language != null){
+			if(navigator.language.indexOf("fr") >= 0)
+			{
+			var typeReponse;
+			if(type == "music")
+				typeReponse = "musique";
+			if(type == "video")
+				typeReponse = "vidéo";
+			if(type == "picture")
+				typeReponse = "image";
+			document.getElementById("messageSendertxtHint").innerHTML="Votre fichier n'est pas une "+typeReponse+".";
+			}
 }
 else
 document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+type+".";
+}
 }
 
 
@@ -463,7 +505,7 @@ document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+t
 		
 			</div>
 <script>
-work.style.height="40em";
+work.style.height="45em";
 main.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
 pm.NavigatorActive('messages');

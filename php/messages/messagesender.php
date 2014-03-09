@@ -70,6 +70,11 @@ if($type == "picture"){
 echo '</div>';
 echo '</div>';
 
+echo '<p>';
+echo "<div class='progressbar_container'>
+            <div id='progressbar' class='progressbar'></div>
+        </div>";
+echo '</p>';
 
 echo '<div class="row">										
 <div class="12u">
