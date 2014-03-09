@@ -336,22 +336,38 @@ xmlhttp.send("q="+str+"&e="+your_email);
 function sendMessage(obj,type)
 {
 var booleansize = true;
+var booleantype = false;
 var	receiver = obj.receiver.value;
 
 var data = new FormData();
 
 if(type == "text"){
 var	content = obj.content.value;
+booleantype=true;
 data.append('content', content);
 }
 else
 {
 var	content = obj.content.files[0];
-if(content.size>10485760)
-	booleansize = false;
-data.append('file', content);
-}
+var typem;
 
+
+if(type == "music")
+	typem = "audio";
+if(type == "video")
+	typem = "video";
+if(type == "picture")
+	typem = "image";
+
+if(content.type.indexOf(typem) == 0){
+	booleantype=true;
+	if(content.size>10485760)
+		booleansize = false;
+	else
+	data.append('file', content);
+}
+}
+if(booleantype){
 if(booleansize)
 {
 data.append('receiver', receiver);
@@ -376,12 +392,13 @@ xmlhttp.onreadystatechange=function()
 	}
   }
 xmlhttp.open("POST","php/messages/sendmessage.php",true);
-//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//xmlhttp.setRequestHeader("Content-type","multipart/form-data");
 xmlhttp.send(data);
 }
 else
 document.getElementById("messageSendertxtHint").innerHTML="Your file is too big.";
+}
+else
+document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+type+".";
 }
 
 

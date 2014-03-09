@@ -34,7 +34,6 @@ if($type == "text" || $type == "music" || $type == "video" ||$type == "picture")
  echo '<p><div id="messageSendertxtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b></b></div></p>';
                                     
 
-//echo '<form action="php/messages/sendmessage.php?type='.$type.'&email='.$email.'" method="post" enctype="multipart/form-data">';
 echo "<form onsubmit=\"sendMessage(this,'".$type."')\" method=\"post\" action=\"javascript:void(0);\">";
 echo '<div class="row">';
 echo '<div class="12u" style="margin-bottom:1em;">
