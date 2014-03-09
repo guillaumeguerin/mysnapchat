@@ -87,7 +87,7 @@ if($type != "text"){
 echo '<h3>Upload progression :</h3><p>';
 echo "<div class='progressbar_container'>
             <div id='progressbar' class='progressbar'></div>
-        </div>";
+        </div><div id='progressbarpercent' class='progressbarpercent'>0%</div>";
 echo '</p>';
 }
 

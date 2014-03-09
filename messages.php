@@ -28,6 +28,7 @@ user-select: none;
         background: #DEDEDE;
         height: 20px;  
     }
+	
     
 </style>
 <script src="dist/FileAPI.js"></script>
@@ -408,7 +409,8 @@ xmlhttp.onreadystatechange=function()
   }
   
   xmlhttp.upload.addEventListener('progress', function(e){   
-    progressbar.style.width = e.loaded/e.total * 100 + '%';	
+    progressbar.style.width = Math.round((e.loaded/e.total) * 100) + '%';	
+	progressbarpercent.innerHTML = Math.round((e.loaded/e.total) * 100) + '%';
 }, false);
   
 xmlhttp.open("POST","php/messages/sendmessage.php",true);
