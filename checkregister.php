@@ -59,7 +59,7 @@
                         echo checkmdpS($_POST['password'], $_POST['confirmpassword']);
                         if(checkmdpS($_POST['password'], $_POST['confirmpassword']) == 'ok'){
 
-                             $insertion = "INSERT INTO `fees0_14337243_snapchat`.`user` (`ID`, `EMAIL`, `PASSWORD`, `NAME`, `DESCRIPTION`, `PROFILE_PICTURE`, `DIRECTORY`) VALUES (NULL, '". $_POST['email'] ."', '". $_POST['password'] ."', '". $_POST['name'] ."', '" . $_POST['description'] . "', '', '');";
+                             $insertion = "INSERT INTO `fees0_14337243_snapchat`.`user` (`ID`, `EMAIL`, `PASSWORD`, `NAME`, `DESCRIPTION`, `PROFILE_PICTURE`, `DIRECTORY`) VALUES (NULL, '". $_POST['email'] ."', '". md5($_POST['password']) ."', '". $_POST['name'] ."', '" . $_POST['description'] . "', '', '');";
     
 
                             echo $insertion . "<br><br>";

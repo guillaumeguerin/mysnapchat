@@ -5,6 +5,7 @@
         ?>
 		
 <script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
 <script>	
 		
 		
@@ -13,6 +14,7 @@ function login()
 
 var email = document.getElementById("email").value;
 var password = document.getElementById("password").value;
+password = CryptoJS.MD5(password).toString();
 
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
