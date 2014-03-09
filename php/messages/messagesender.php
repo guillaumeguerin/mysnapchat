@@ -35,6 +35,8 @@ if($type == "text" || $type == "music" || $type == "video" ||$type == "picture")
                                     
 
 echo "<form onsubmit=\"sendMessage(this,'".$type."')\" method=\"post\" action=\"javascript:void(0);\">";
+
+echo '<h3>Receiver :</h3><p>';
 echo '<div class="row">';
 echo '<div class="12u" style="margin-bottom:1em;">
 	<select name="receiver">';
@@ -51,30 +53,43 @@ while($row = mysql_fetch_array($result))
 echo'</select>
 </div></div>';
 
-echo '<div class="row">';
-echo '<div class="12u" style="margin-bottom:1em;">';
+
 
 if($type == "text"){
+	echo '<h3>Your message :</h3><p>';
+	echo '<div class="row">';
+	echo '<div class="12u" style="margin-bottom:1em;">';
 	echo '<input type=\"text\" id="content" class="text" name="content" placeholder="Your message" 
     maxlength="200" />';
 }
 if($type == "music"){
+	echo '<h3>Your music :</h3><p>';
+	echo '<div class="row">';
+	echo '<div class="12u" style="margin-bottom:1em;">';
 	echo '<input type="file" id="content" class="text" name="file" accept="audio/mp3"/>';
 }
 if($type == "video"){
+	echo '<h3>Your video :</h3><p>';
+	echo '<div class="row">';
+	echo '<div class="12u" style="margin-bottom:1em;">';
 	echo '<input type="file" id="content" class="text" name="file" accept="video/mp4"/>';
 }
 if($type == "picture"){
+	echo '<h3>Your picture :</h3><p>';
+	echo '<div class="row">';
+	echo '<div class="12u" style="margin-bottom:1em;">';
 	echo '<input type="file" id="content" class="text" name="file" accept="image/*"/>';
 }
 echo '</div>';
 echo '</div>';
 
-echo '<p>';
+if($type != "text"){
+echo '<h3>Upload progression :</h3><p>';
 echo "<div class='progressbar_container'>
             <div id='progressbar' class='progressbar'></div>
         </div>";
 echo '</p>';
+}
 
 echo '<div class="row">										
 <div class="12u">

@@ -101,6 +101,12 @@
 				text = text.replace("Your name :","Votre nom :");
 				text = text.replace("Your description :","Votre description :");
 				text = text.replace('placeholder="Your message"' ,'placeholder="Votre message"');
+				text = text.replace('<h3>Receiver :</h3>' ,'<h3>Destinataire :</h3>');
+				text = text.replace('<h3>Your message :</h3>' ,'<h3>Votre message :</h3>');
+				text = text.replace('<h3>Your picture :</h3>' ,'<h3>Votre image :</h3>');
+				text = text.replace('<h3>Your video :</h3>' ,'<h3>Votre vidéo :</h3>');
+				text = text.replace('<h3>Your music :</h3>' ,'<h3>Votre musique :</h3>');
+				text = text.replace("<h3>Upload progression :</h3>" ,"<h3>Progression de l'envoi :</h3>");
 				text = text.replace('value="Send"' ,'value="Envoyer"');
 				text = text.replace("<h3>You need to have at least a friend to send messages.</h3>","<h3>Vous devez avoir au moins un ami pour envoyer des messages.</h3>");
 				text = text.replace("You have written a wrong email or a wrong password","Vous avez écrit une mauvaise adresse email ou un mauvais mot de passe");

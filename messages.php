@@ -68,7 +68,7 @@ xmlhttp.onreadystatechange=function()
 			your_password = password;
 			if (readedMessage!="")
 				{
-				deleteMessage(readedMessage,false);
+				deleteMessage(readedMessage,true);
 				}
 			else
 				{
@@ -505,7 +505,7 @@ document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+t
 		
 			</div>
 <script>
-work.style.height="45em";
+work.style.height="50em";
 main.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
 pm.NavigatorActive('messages');
