@@ -76,6 +76,7 @@ function modifySettings(obj)
 {
 var	newEmail = obj.email.value;
 var	newPassword = obj.password.value;
+var newPasswordConfirm = obj.passwordconfirmation.value;
 var newName = obj.name.value;
 var newDescription = obj.description.value;
 
@@ -85,7 +86,7 @@ var booleanPassword = true;
 var booleanName = true;
 var booleanEmail = true;
 var booleanDescription = true;
-
+var booleanPasswordConfirm = true;
 
 if (newEmail!="")
 {
@@ -111,8 +112,12 @@ booleanPassword = false;
 if (newPassword.search(/[0-9]/) < 0) {
 booleanPassword = false;
 }
+if (newPassword!=newPasswordConfirm) {
+booleanPasswordConfirm = false;
+}
 newPassword = CryptoJS.MD5(newPassword).toString();
 }
+
 
 if (newName!="")
 {
@@ -129,7 +134,7 @@ booleanDescription = false;
 }
 
 
-if(booleanEmail && booleanPassword && booleanName && booleanDescription)
+if(booleanEmail && booleanPassword && booleanPasswordConfirm && booleanName && booleanDescription)
 {
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -175,6 +180,8 @@ if(!booleanDescription)
 document.getElementById("settingsTxtHint").innerHTML="Votre description doit faire moins de 50 caractères";
 if(!booleanPassword)
 document.getElementById("settingsTxtHint").innerHTML="Votre mot de passe doit faire entre 8 et 50 caractères avec au moins un chiffre, un caractère majuscule et minuscule";
+if(!booleanPasswordConfirm)
+document.getElementById("settingsTxtHint").innerHTML="Votre mot de passe et le mot de passe de confirmation  sont différents.";
 }
 else
 {
@@ -186,6 +193,8 @@ if(!booleanDescription)
 document.getElementById("settingsTxtHint").innerHTML="Your description must be less than 50 characters";
 if(!booleanPassword)
 document.getElementById("settingsTxtHint").innerHTML="Your password must be at least 8 characters and less than 20 characters with one uppercase, one lowercase and one digit.";
+if(!booleanPasswordConfirm)
+document.getElementById("settingsTxtHint").innerHTML="Your password and your password confirmation are different.";
 }
 }
 }

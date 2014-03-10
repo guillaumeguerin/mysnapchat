@@ -109,6 +109,7 @@
 				text = text.replace("VALUE=\"Apply new settings\"","VALUE=\"Appliquer les nouveaux paramètres\"");
 				text = text.replace("Your email :","Votre adresse email :");
 				text = text.replace("Your password :","Votre mot de passe :");
+				text = text.replace("Password confirmation :","Confirmation du mot de passe :");
 				text = text.replace("Your name :","Votre nom :");
 				text = text.replace("Your description :","Votre description :");
 				text = text.replace('placeholder="Your message"' ,'placeholder="Votre message"');
