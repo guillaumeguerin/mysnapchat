@@ -76,11 +76,61 @@ function modifySettings(obj)
 {
 var	newEmail = obj.email.value;
 var	newPassword = obj.password.value;
-newPassword = CryptoJS.MD5(newPassword).toString();
 var newName = obj.name.value;
 var newDescription = obj.description.value;
 
 
+
+var booleanPassword = true;
+var booleanName = true;
+var booleanEmail = true;
+var booleanDescription = true;
+
+
+if (newEmail!="")
+{
+if (!newEmail.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)) { 
+booleanEmail = false;
+}
+}
+
+if (newPassword!="")
+{
+if (newPassword.length < 8) {
+booleanPassword = false;
+}
+if (newPassword.length > 20) {
+booleanPassword = false;
+}
+if (newPassword.search(/[a-z]/) < 0) { 
+booleanPassword = false;
+}
+ if (newPassword.search(/[A-Z]/) < 0) { 
+booleanPassword = false;
+}
+if (newPassword.search(/[0-9]/) < 0) {
+booleanPassword = false;
+}
+newPassword = CryptoJS.MD5(newPassword).toString();
+}
+
+if (newName!="")
+{
+if (newName.length < 2) {
+booleanName = false;
+}
+if (newName.length > 50) {
+booleanName = false;
+}
+}
+
+if (newDescription.length > 50) {
+booleanDescription = false;
+}
+
+
+if(booleanEmail && booleanPassword && booleanName && booleanDescription)
+{
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();
@@ -111,7 +161,33 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("POST","php/settings/updatesettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password+"&ne="+newEmail+"&np="+newPassword+"&nn="+newName+"&nd="+newDescription);
+}
 
+else
+{
+if(navigator.language.indexOf("fr") >= 0)
+{
+if(!booleanEmail)
+document.getElementById("settingsTxtHint").innerHTML="Votre adresse email n'est pas valide.";
+if(!booleanName)
+document.getElementById("settingsTxtHint").innerHTML="Votre nom doit faire entre 2 et 50 caractères";
+if(!booleanDescription)
+document.getElementById("settingsTxtHint").innerHTML="Votre description doit faire moins de 50 caractères";
+if(!booleanPassword)
+document.getElementById("settingsTxtHint").innerHTML="Votre mot de passe doit faire entre 8 et 50 caractères avec au moins un chiffre, un caractère majuscule et minuscule";
+}
+else
+{
+if(!booleanEmail)
+document.getElementById("settingsTxtHint").innerHTML="Your email is not valid.";
+if(!booleanName)
+document.getElementById("settingsTxtHint").innerHTML="Your name must be at least 2 characters and less than 50 characters";
+if(!booleanDescription)
+document.getElementById("settingsTxtHint").innerHTML="Your description must be less than 50 characters";
+if(!booleanPassword)
+document.getElementById("settingsTxtHint").innerHTML="Your password must be at least 8 characters and less than 20 characters with one uppercase, one lowercase and one digit.";
+}
+}
 }
 
 function deleteAccount(obj)

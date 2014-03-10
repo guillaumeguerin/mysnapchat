@@ -26,7 +26,8 @@
 	
 		
 <script type="text/javascript" src="js/cookies.js"></script>
-<script type="text/javascript" src="js/md5.js"></script>	
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript"  src="js/website.js"></script>	
 <script type="text/javascript" src="js/settings.js"></script>		
 	</head>
 	<body class="homepage" onload="checkSession()">
@@ -44,7 +45,6 @@
 	<a id ="settings" href="settings.html" class="fa fa-cog"><span id="settingsspan">Settings</span></a>
 	<a id="logout" onclick="flogout()" href="index.html"  class="fa fa-ban"><span id="logoutspan">Log out</span></a>
 </nav>
-<script src="js/website.js"></script>
 <script>
 var trad = new Traductor(navigator.language);
 trad.tradNavBar();
@@ -93,16 +93,20 @@ trad.tradNavBar();
 									<!-- Footer -->
 <div id="footer">
     <ul class="links">
-        <li>Créé par : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
-        <li>Projet pour l'Université Bordeaux</li>
+        <li><label id="createb">Created by</label> : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
+        <li><label id="projetf">Project for the University of Bordeaux</label></li>
         <li>Client : Xavier Blanc</li>
         <li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
     </ul>
 </div>
+<script>
+var trad = new Traductor(navigator.language);
+trad.tradFooter();
+</script>
 		
 			</div>
 <script>
-work.style.height="40em";
+work.style.height="45em";
 main.style.overflow= "auto";
 work.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);

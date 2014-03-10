@@ -19,7 +19,7 @@ $result = mysql_query($sql);
 
 $row = mysql_fetch_array($result);
 
-
+echo '<div id="settingsTxtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b></b></div>';
 echo "
 <form onsubmit=\"modifySettings(this)\" method=\"post\" action=\"javascript:void(0);\">
 								 <div>
@@ -27,7 +27,7 @@ echo "
 								
 								<div class=\"row half\">
 								<div class=\"6u\">
-								Your email : <input type=\"text\" class=\"text\" name=\"email\" id=\"email\" placeholder=\"".$row['EMAIL']."\" />
+								Your email : <input type=\"text\" class=\"text\" name=\"email\" id=\"email\" placeholder=\"".$row['EMAIL']."\" maxlength=\"100\"/>
 								</div>
 								
 								<div class=\"6u\">
@@ -37,11 +37,11 @@ echo "
 								
 								<div class=\"row half\">
 								<div class=\"6u\">
-								Your name : <input type=\"text\" class=\"text\" name=\"name\" id=\"name\" placeholder=\"".$row['NAME']."\" />
+								Your name : <input type=\"text\" class=\"text\" name=\"name\" id=\"name\" placeholder=\"".$row['NAME']."\" maxlength=\"50\"/>
 								</div>
 								
 								<div class=\"6u\">
-								Your description : <input type=\"text\" class=\"text\" name=\"description\" id=\"description\" placeholder=\"".$row['DESCRIPTION']."\" />
+								Your description : <input type=\"text\" class=\"text\" name=\"description\" id=\"description\" placeholder=\"".$row['DESCRIPTION']."\" maxlength=\"50\" />
 								</div>
 								</div>
 								

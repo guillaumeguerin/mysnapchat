@@ -22,6 +22,17 @@
 		}
 	}
 
+		this.tradFooter = function(){
+		if(language != null){
+			if(language.indexOf("fr") >= 0){
+				document.getElementById('createb').innerHTML="Créé par";
+				document.getElementById('projetf').innerHTML="Projet pour l'Université de Bordeaux";
+				
+			}
+		}
+	}
+	
+	
 	this.tradRegister = function(){
 		if(language != null){
 			if(language.indexOf("fr") >= 0){
@@ -112,6 +123,12 @@
 				text = text.replace("You have written a wrong email or a wrong password","Vous avez écrit une mauvaise adresse email ou un mauvais mot de passe");
 				text = text.replace("I took a screenshot from the message you sent me","J'ai pris un screenshot du message que vous m'avez envoyé il y a");
 				text = text.replace("Please don't spam the admin account !","Nous vous prions de bien vouloir ne pas spammer le compte admin !");
+				
+				text = text.replace("Your email is not valid.","Votre adresse email n'est pas valide.");
+				text = text.replace("Your name must be at least 2 characters and less than 50 characters","Votre nom doit faire entre 2 et 50 caractères");
+				text = text.replace("Your description must be less than 50 characters","Votre description doit faire moins de 50 caractères");
+				text = text.replace("Your password must be at least 8 characters and less than 20 characters with one uppercase, one lowercase and one digit.","Votre mot de passe doit faire entre 8 et 50 caractères avec au moins un chiffre, un caractère majuscule et minuscule");
+				
 				
 				find = " days ago</td>";
 				re = new RegExp(find, 'g');
