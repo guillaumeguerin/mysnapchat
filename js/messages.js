@@ -1,43 +1,3 @@
-<!DOCTYPE HTML>
-<!--
-	Astral 2.5 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-		<head>
-	
-        <?php
-        include("pagehaut.php");
-        ?>
-		<style>
-.textInt {
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
-}
- 
-    .progressbar_container {
-        border: 1px solid #000;
-    }
-    .progressbar {
-        width: 0%;
-        background: #DEDEDE;
-        height: 20px;  
-    }
-	
-    
-</style>
-<script src="dist/FileAPI.js"></script>
-		<script src="plugins/caman.full.js"></script>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/init.js"></script>
-<script type="text/javascript" src="js/cookies.js"></script>		
-<script>
 var your_email;
 var your_password;
 var booleanscreen;
@@ -78,7 +38,7 @@ xmlhttp.onreadystatechange=function()
 		}
 		else
 		{
-		window.location.href = "index.php"
+		window.location.href = "index.html"
 		}
     }
   }  
@@ -447,72 +407,4 @@ document.getElementById("messageSendertxtHint").innerHTML="Your file isn't a "+t
 }
 
 
-</script>
 
-<style type="text/css" media="print">
- body {display:none;} 
-</style>
-  
-	</head>
-	<body class="homepage" onload="checkSession()" >
-
-		<!-- Wrapper-->
-			<div id="wrapper">
-				
-				<!-- Nav -->
-                <?php
-                include("navigator.php");				
-                ?>
-
-
-				<!-- Main -->
-					<div id="main">
-							<article id="work" class="panel">
-								<header>
-                                    <h2>Messages</h2>
-								</header>
-                                <p>
-                                   <!-- NavMessage -->
-										<center>
-                                        <label id="newm">Create new message</label><br><br>
-                                        <a id="navmt" href="javascript:void(0)" onclick="showMessageSender('text')" class="fa fa-comment-o fa-2x" style="color:rgb(201, 195, 195);"></a>
-                                        <a id="navmp" href="javascript:void(0)" onclick="showMessageSender('picture')" class="fa fa-camera fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmv" href="javascript:void(0)" onclick="showMessageSender('video')" class="fa fa-film fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>
-                                        <a id="navmm" href="javascript:void(0)" onclick="showMessageSender('music')" class="fa fa-music fa-2x" style="margin-left:1em;color:rgb(201, 195, 195);"></a>							
-										</center>
-                                    
-                                <!--    <table id="box-table-a">
-                                    <tr>
-                                        <td><a href="" class="fa fa-plus" style="color:rgb(90, 90, 90);"><span> &nbsp;&nbsp; New message</span></i></td>
-                                    </tr>
-                                </table>
-                                -->
-								</p>
-								                   </br>              
-                                      <p>                                 
-									<div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b>Messages will be listed here. Please activate Javascript.</b></div>
-                                    </p>
-									
-								<section class="is-gallery">
-
-									
-								</section>
-							</article>
-					</div>
-		
-				<!-- Footer -->
-									<!-- Footer -->
-                <?php
-                include("pagebas.php");
-                ?>
-		
-			</div>
-<script>
-work.style.height="50em";
-main.style.overflow= "auto";
-work.style.overflow= "auto";
-var pm = new PageModificator(navigator.userAgent,navigator.language);
-pm.NavigatorActive('messages');
-</script>
-	</body>
-</html>

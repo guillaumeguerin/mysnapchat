@@ -1,20 +1,3 @@
-<!DOCTYPE HTML>
-<!--
-	Astral 2.5 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-	
-        <?php
-        include("pagehaut.php");
-        ?>
-		
-		
-		
-<script type="text/javascript" src="js/cookies.js"></script>		
-<script>
 var your_email;
 var your_password;
 function checkSession()
@@ -45,7 +28,7 @@ xmlhttp.onreadystatechange=function()
 		}
 		else
 		{
-		window.location.href = "index.php"
+		window.location.href = "index.html"
 		}
     }
   }  
@@ -93,6 +76,7 @@ function modifySettings(obj)
 {
 var	newEmail = obj.email.value;
 var	newPassword = obj.password.value;
+newPassword = CryptoJS.MD5(newPassword).toString();
 var newName = obj.name.value;
 var newDescription = obj.description.value;
 
@@ -115,7 +99,7 @@ xmlhttp.onreadystatechange=function()
 		{
 		setCookie("email","",-30);
 		setCookie("password","",-30);
-		window.location.href = "index.php"		
+		window.location.href = "index.html"		
 		}
 		else
 		{
@@ -148,7 +132,7 @@ xmlhttp.onreadystatechange=function()
     {	
 	setCookie("email","",-30);
 	setCookie("password","",-30);
-	window.location.href = "index.php"		
+	window.location.href = "index.html"		
     }
   }
 xmlhttp.open("POST","php/settings/deleteaccount.php",true);
@@ -157,72 +141,3 @@ xmlhttp.send("email="+your_email+"&password="+your_password);
 }
 }
 
-</script>		
-	</head>
-	<body class="homepage" onload="checkSession()">
-
-		<!-- Wrapper-->
-			<div id="wrapper">
-				
-					<!-- Nav -->
-                <?php
-                include("navigator.php");				
-                ?>
-
-
-				<!-- Main -->
-					<div id="main">
-							<article id="work" class="panel">
-								<header>
-									<h2 id="ptitle">Settings</h2>
-								</header>
-								<p>
-								                              
-                                                                       
-									<div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b>Settings will be listed here. Please activate Javascript.</b></div>
-							  
-							  </p>
-							  
-                                <p>
-								<form onsubmit="deleteAccount(this)" method="post" action="javascript:void(0);">
-								 <div>
-								<p>
-								<h2 id="dtitle">Delete Account</h2>
-                                </p>
-								<div class="row">
-								<div class="12u">
-								<input type="text" class="text" name="confirmation" id="confirmation" placeholder="Are you sure ? Type 'Yes' if you want to delete your account and click on the button." required/>
-								</div>
-								</div>
-								
-								</br>	
-								<div class="row">
-								<div class="12u">
-								<input id="deletea" type="submit" class="button" VALUE="Delete Account" />
-								</div>
-								</div>
-								
-								</div>
-								</form>
-								  </p>
-								
-							</article>
-					</div>
-		
-				<!-- Footer -->
-									<!-- Footer -->
-                <?php
-                include("pagebas.php");
-                ?>
-		
-			</div>
-<script>
-work.style.height="40em";
-main.style.overflow= "auto";
-work.style.overflow= "auto";
-var pm = new PageModificator(navigator.userAgent,navigator.language);
-pm.NavigatorActive('settings');
-</script>
-
-	</body>
-</html>

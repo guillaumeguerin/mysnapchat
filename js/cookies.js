@@ -17,3 +17,9 @@ for(var i=0; i<ca.length; i++)
   }
 return "";
 }
+
+function flogout()
+{
+setCookie("email","",-30);
+setCookie("password","",-30);
+}

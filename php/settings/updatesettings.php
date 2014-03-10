@@ -30,7 +30,7 @@ mysql_query($sql);
 
 if($_POST['np']!="")
 {
-$sql = "UPDATE user SET PASSWORD='".md5($np)."' WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
+$sql = "UPDATE user SET PASSWORD='".$np."' WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
 mysql_query($sql);
 }
 
