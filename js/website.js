@@ -128,6 +128,7 @@
 				text = text.replace("Your name must be at least 2 characters and less than 50 characters","Votre nom doit faire entre 2 et 50 caractères");
 				text = text.replace("Your description must be less than 50 characters","Votre description doit faire moins de 50 caractères");
 				text = text.replace("Your password must be at least 8 characters and less than 20 characters with one uppercase, one lowercase and one digit.","Votre mot de passe doit faire entre 8 et 50 caractères avec au moins un chiffre, un caractère majuscule et minuscule");
+				text = text.replace("Welcome to Snap chat Bordeaux !","Bienvenue sur Snap chat Bordeaux");
 				
 				
 				find = " days ago</td>";

@@ -41,7 +41,22 @@ if(mysql_num_rows($result)<=0)
 {
     $sql = "INSERT INTO user (EMAIL, PASSWORD, NAME, DESCRIPTION) VALUES ('". $email ."', '". md5($_POST['password']) ."', '". $name ."', '" . $description . "');";
 	mysql_query($sql);
+	
+	
+	$sqluserId = "SELECT ID FROM user WHERE EMAIL = '".$email."'";
+	$userId = mysql_result(mysql_query($sqluserId), 0);
+	
+	if($userId>0)
+	{
+	$sql = "INSERT INTO FRIENDS (FDS_USER_ID_1, FDS_USER_ID_2, FDS_RELATIONSHIP) VALUES ('".$userId."', '1', '1');";	
+	mysql_query($sql);
+	$sql = "INSERT INTO FRIENDS (FDS_USER_ID_1, FDS_USER_ID_2, FDS_RELATIONSHIP) VALUES ('1', '".$userId."', '1');";	
+	mysql_query($sql);
+	$content="Welcome to Snap chat Bordeaux !";
+	$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('1', '".$userId."', 'alert', '". $content ."');";
+	mysql_query($sql);
 	echo "True";
+	}
 }
 else
 echo "Email is already used.";
