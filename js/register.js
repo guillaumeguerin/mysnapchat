@@ -58,8 +58,7 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
-	var reponseText = xmlhttp.responseText;
-	console.log(reponseText);
+	var reponseText = xmlhttp.responseText;	
 		if(reponseText.replace(' ','') == "True")
 		{
 		password = CryptoJS.MD5(password).toString();
