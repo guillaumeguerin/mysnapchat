@@ -27,7 +27,15 @@
         <!-- Phonegap -->
         <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <script type="text/javascript" charset="utf-8" src="json2.js"></script>
-	
+        <script type="text/javascript" charset="utf-8">
+	        // Wait for device API libraries to load
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // device APIs are available
+            function onDeviceReady() {
+                navigator.splashscreen.hide();
+            }
+	    </script>
 	</head>
 
 
@@ -36,20 +44,20 @@
 		<!-- Wrapper-->
 			<div id="wrapper">
 				
-<!-- Nav -->
-<script>
-</script>
-<nav id="nav">
-	<a id ="home" href="index.html" class="fa fa-home"><span id="homespan">Home</span></a>
-	<a id ="messages" href="messages.html" class="fa fa-envelope"><span id="messagespan">Messages</span></a>
-	<a id ="friends" href="friends.html" class="fa fa-user"><span id="friendsspan">Friends</span></a>
-	<a id ="settings" href="settings.html" class="fa fa-cog"><span id="settingsspan">Settings</span></a>
-	<a id="logout" onclick="flogout()" href="index.html"  class="fa fa-ban"><span id="logoutspan">Log out</span></a>
-</nav>
-<script>
-var trad = new Traductor(navigator.language);
-trad.tradNavBar();
-</script>
+        <!-- Nav -->
+        <script>
+        </script>
+        <nav id="nav">
+	        <a id ="home" href="index.html" class="fa fa-home"><span id="homespan">Home</span></a>
+	        <a id ="messages" href="messages.html" class="fa fa-envelope"><span id="messagespan">Messages</span></a>
+	        <a id ="friends" href="friends.html" class="fa fa-user"><span id="friendsspan">Friends</span></a>
+	        <a id ="settings" href="settings.html" class="fa fa-cog"><span id="settingsspan">Settings</span></a>
+	        <a id="logout" onclick="flogout()" href="index.html"  class="fa fa-ban"><span id="logoutspan">Log out</span></a>
+        </nav>
+        <script>
+        var trad = new Traductor(navigator.language);
+        trad.tradNavBar();
+        </script>
 
 				<!-- Main -->
 					<div id="main">
@@ -80,24 +88,24 @@ trad.tradNavBar();
 					</div>
 		
 				<!-- Footer -->
-<div id="footer">
-    <ul class="links">
-        <li><label id="createb">Created by</label> : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
-        <li><label id="projetf">Project for the University of Bordeaux</label></li>
-        <li>Client : Xavier Blanc</li>
-        <li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
-    </ul>
-</div>
-<script>
-var trad = new Traductor(navigator.language);
-trad.tradFooter();
-</script>
+                    <div id="footer">
+                        <ul class="links">
+                            <li><label id="createb">Created by</label> : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
+                            <li><label id="projetf">Project for the University of Bordeaux</label></li>
+                            <li>Client : Xavier Blanc</li>
+                            <li>Design : <a href="http://html5up.net/">HTML5 UP</a></li>
+                        </ul>
+                    </div>
+                    <script>
+                    var trad = new Traductor(navigator.language);
+                    trad.tradFooter();
+                    </script>
 		
 			</div>
-<script>
-var pm = new PageModificator(navigator.userAgent,navigator.language);
-pm.UserAgentIndex();
-pm.NavigatorActive('home');
-</script>
+        <script>
+        var pm = new PageModificator(navigator.userAgent,navigator.language);
+        pm.UserAgentIndex();
+        pm.NavigatorActive('home');
+        </script>
 	</body>
 </html>
