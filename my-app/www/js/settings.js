@@ -33,7 +33,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/logindb.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("e="+email+"&p="+password);
 }
@@ -65,7 +65,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=reponseText;
     }
   }
-xmlhttp.open("POST","php/settings/getsettings.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/settings/getsettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }
@@ -163,7 +163,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/settings/updatesettings.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/settings/updatesettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password+"&ne="+newEmail+"&np="+newPassword+"&nn="+newName+"&nd="+newDescription);
 }
@@ -220,7 +220,7 @@ xmlhttp.onreadystatechange=function()
 	window.location.href = "index.html"		
     }
   }
-xmlhttp.open("POST","php/settings/deleteaccount.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/settings/deleteaccount.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }

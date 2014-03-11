@@ -43,7 +43,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/logindb.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("e="+email+"&p="+password);
 }
@@ -73,7 +73,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=reponseText;
     }
   }
-xmlhttp.open("POST","php/messages/getmessagelist.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/messages/getmessagelist.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }
@@ -182,7 +182,7 @@ xmlhttp.onreadystatechange=function()
 		showMessageList();
 	}
   }
-xmlhttp.open("POST","php/messages/deletemessage.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/messages/deletemessage.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("q="+str+"&e="+your_email);
 }
@@ -229,7 +229,7 @@ xmlhttp.onreadystatechange=function()
 		deleteMessage(readedMessage,false);
     }
   }
-xmlhttp.open("POST","php/messages/messagesender.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/messages/messagesender.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("type="+str+"&email="+your_email+"&password="+your_password);
 }
@@ -300,7 +300,7 @@ xmlhttp.onreadystatechange=function()
 	
 	}
   }
-xmlhttp.open("POST","php/messages/sendscreenshotalert.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/messages/sendscreenshotalert.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("q="+str+"&e="+your_email);
 }
@@ -374,7 +374,7 @@ xmlhttp.onreadystatechange=function()
 	progressbarpercent.innerHTML = Math.round((e.loaded/e.total) * 100) + '%';
 }, false);
   
-xmlhttp.open("POST","php/messages/sendmessage.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/messages/sendmessage.php",true);
 xmlhttp.send(data);
 }
 else

