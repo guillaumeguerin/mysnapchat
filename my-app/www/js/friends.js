@@ -1,125 +1,96 @@
 var your_email;
 var your_password;
-function checkSession()
-{
 
-var email = getCookie("email");
-var password = getCookie("password");
+function checkSession() {
 
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+    var email = getCookie("email");
+    var password = getCookie("password");
 
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {	
-	var reponseText = xmlhttp.responseText;
-		if(reponseText!=" You have written a wrong email or a wrong password. ")
-		{
-		your_email = email;
-		your_password = password;
-		showFriendList();
-		}
-		else
-		{
-		window.location.href = "index.html"
-		}
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-  }  
-  
-xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/logindb.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("e="+email+"&p="+password);
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var reponseText = xmlhttp.responseText;
+            if (reponseText != " You have written a wrong email or a wrong password. ") {
+                your_email = email;
+                your_password = password;
+                showFriendList();
+            } else {
+                window.location.href = "index.html"
+            }
+        }
+    }
+
+    xmlhttp.open("POST", "http://gguerind.0fees.net/mysnapchat/php/logindb.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("e=" + email + "&p=" + password);
 }
 
 
-function showFriendList()
-{
+function showFriendList() {
 
-if (your_email=="")
-  {
-  document.getElementById("txtHint").innerHTML="";
-  return;
-  }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {	
-	var reponseText = xmlhttp.responseText;
-	var trad = new Traductor(navigator.language);
-	reponseText = trad.tradReponseText(reponseText);	
-    document.getElementById("txtHint").innerHTML=reponseText;
+    if (your_email == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
     }
-  }
-xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/friends/getfriendlist.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("email="+your_email+"&password="+your_password);
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var reponseText = xmlhttp.responseText;
+            var trad = new Traductor(navigator.language);
+            reponseText = trad.tradReponseText(reponseText);
+            document.getElementById("txtHint").innerHTML = reponseText;
+        }
+    }
+    xmlhttp.open("POST", "http://gguerind.0fees.net/mysnapchat/php/friends/getfriendlist.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("email=" + your_email + "&password=" + your_password);
 }
 
 
-function callphp(str)
-{
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {	
-		showFriendList();
+function callphp(str) {
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-  }  
-  
-xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/"+str.split("?")[0],true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send(str.split("?")[1]);
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            showFriendList();
+        }
+    }
+
+    xmlhttp.open("POST", "http://gguerind.0fees.net/mysnapchat/" + str.split("?")[0], true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(str.split("?")[1]);
 }
 
 
-function addFriend()
-{
-var friend_email = document.getElementById("friend-email").value;
+function addFriend() {
+    var friend_email = document.getElementById("friend-email").value;
 
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {	
-		showFriendList();
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-  }  
-  
-xmlhttp.open("POST","http://gguerind.0fees.net/mysnapchat/php/friends/addfriend.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send("e="+your_email+"&fe="+friend_email);
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            showFriendList();
+        }
+    }
+
+    xmlhttp.open("POST", "http://gguerind.0fees.net/mysnapchat/php/friends/addfriend.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("e=" + your_email + "&fe=" + friend_email);
 }
-
-
