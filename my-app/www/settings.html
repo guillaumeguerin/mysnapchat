@@ -1,3 +1,9 @@
+<!DOCTYPE HTML>
+<!--
+	Astral 2.5 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 	<head>
 
@@ -18,13 +24,12 @@
 		</noscript>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 	
+		
 <script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
 <script type="text/javascript"  src="js/website.js"></script>	
-<script type="text/javascript" src="js/index.js"></script>	
-	
+<script type="text/javascript" src="js/settings.js"></script>		
 	</head>
-
-
 	<body class="homepage" onload="checkSession()">
 
 		<!-- Wrapper-->
@@ -49,31 +54,40 @@ trad.tradNavBar();
 					<div id="main">
 							<article id="work" class="panel">
 								<header>
-									<h2>Snap Chat Bordeaux</h2>
+									<h2 id="ptitle">Settings</h2>
 								</header>
-								<p>
-                                    <center><label id="signbar"><a id="signin" href="login.html"><span>Sign In</span></a><label id="bar"> / </label><a id="signup" href="register.html"><span>Sign Up</span></a></label></center>
-                                    <br>
-									<label id="description">
-									Snap Chat Bordeaux is an application available as a website but also for smartphones.
-									</label>
-									<p id="testUA">Please activate Javascript.</p>
-                                    <br><br>
-                                    <center>
-                                    <h2>
-                                    <a id=laptop href="" class="fa fa-laptop" style="color:rgb(201, 195, 195)"></a>    &nbsp;&nbsp;
-                                    <a id=android href="https://build.phonegap.com/apps/638828/download/android" class="fa fa-android" style="color:rgb(201, 195, 195)"></a>   &nbsp;&nbsp;
-                                    <a id=apple href="" class="fa fa-apple" style="color:rgb(201, 195, 195)"></a>     &nbsp;&nbsp;
-                                    <a id=windows href="https://build.phonegap.com/apps/638828/download/winphone" class="fa fa-windows" style="color:rgb(201, 195, 195)"></a>   &nbsp;&nbsp;
-                                    </h2>
-                                    <center>
-
+								<p>   
+									<div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;" ><b>Settings will be listed here. Please activate Javascript.</b></div>							  
 								</p>
-
+							  
+                                <p>
+								<form onsubmit="deleteAccount(this)" method="post" action="javascript:void(0);">
+								 <div>
+								<p>
+								<h2 id="dtitle">Delete Account</h2>
+                                </p>
+								<div class="row">
+								<div class="12u">
+								<input type="text" class="text" name="confirmation" id="confirmation" placeholder="Are you sure ? Type 'Yes' if you want to delete your account and click on the button." required/>
+								</div>
+								</div>
+								
+								
+								<div class="row">
+								<div class="12u">
+								<input id="deletea" type="submit" class="button" VALUE="Delete Account" />
+								</div>
+								</div>
+								
+								</div>
+								</form>
+								  </p>
+								
 							</article>
 					</div>
 		
 				<!-- Footer -->
+									<!-- Footer -->
 <div id="footer">
     <ul class="links">
         <li><label id="createb">Created by</label> : Marie Omiscar, Julio Matarranz, Guillaume Meral, Aliou Diallo & Guillaume Guerin de Tourville</li>
@@ -89,9 +103,12 @@ trad.tradFooter();
 		
 			</div>
 <script>
+work.style.height="45em";
+main.style.overflow= "auto";
+work.style.overflow= "auto";
 var pm = new PageModificator(navigator.userAgent,navigator.language);
-pm.UserAgentIndex();
-pm.NavigatorActive('home');
+pm.NavigatorActive('settings');
 </script>
+
 	</body>
 </html>

@@ -1,9 +1,11 @@
-
-function checkSession()
+		
+		
+function login()
 {
 
-var email = getCookie("email");
-var password = getCookie("password");
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+password = CryptoJS.MD5(password).toString();
 
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -21,16 +23,17 @@ xmlhttp.onreadystatechange=function()
 	var reponseText = xmlhttp.responseText;
 		if(reponseText!=" You have written a wrong email or a wrong password. ")
 		{
-		var trad = new Traductor(navigator.language);
-		reponseText = trad.tradReponseText(reponseText);			
-		document.getElementById("signbar").innerHTML=reponseText;		
+		document.getElementById("txtHint").innerHTML="";
+		setCookie("email",email,30);
+		setCookie("password",password,30);
+		//document.getElementById("txtHint").innerHTML=getCookie("email")+" "+getCookie("password");
+		window.location.href = "index.html";
 		}
 		else
-		{		
-		messages.style.display = 'none';
-		friends.style.display = 'none';
-		settings.style.display = 'none';
-		logout.style.display = 'none';
+		{
+		var trad = new Traductor(navigator.language);
+		reponseText = trad.tradReponseText(reponseText);
+		document.getElementById("txtHint").innerHTML=reponseText;
 		}
     }
   }  
