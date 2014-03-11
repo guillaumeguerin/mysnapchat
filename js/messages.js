@@ -346,6 +346,7 @@ if(content.type.indexOf(typem) == 0){
 if(booleantype){
 if(booleansize)
 {
+document.getElementById("messageSendertxtHint").innerHTML="";
 data.append('receiver', receiver);
 data.append('type', type);
 data.append('email', your_email);
