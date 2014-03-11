@@ -152,8 +152,7 @@ xmlhttp.onreadystatechange=function()
 	var reponseText = xmlhttp.responseText;
 		if(newEmail!=""||newPassword!="")
 		{
-		setCookie("email","",-30);
-		setCookie("password","",-30);
+		flogout();
 		window.location.href = "index.html"		
 		}
 		else
