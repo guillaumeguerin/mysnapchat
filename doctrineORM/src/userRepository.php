@@ -12,8 +12,26 @@ class userRepository extends EntityRepository
         return $user->getFriends();
     }
 
+    public function userExists($email) {
+        $entityManager = $this->getEntityManager();
+        $dql = "SELECT u FROM User u WHERE u.email= :email";
+        $query = $entityManager->createQuery($dql);
+        $query->setParameter("email", $email);
+        $user = $query->getResult();
+        return $user? True : False;
+    }
+
+
     public function createUser($email, $password, $name, $description)
     {
+        $em = $this->getEntityManager();
+        if($this->userExists($email))
+        {
+             echo "This user already exists\n";
+             return null;
+        }
+           
+
     	$newUser = new User();
     	$newUser->setName($name);
     	$newUser->setPassword($password);
@@ -26,4 +44,20 @@ class userRepository extends EntityRepository
 
     	return $newUser;
     }
+
+    public function checkUser($email, $password)
+    {
+        $entityManager = $this->getEntityManager();
+        $dql = "SELECT u FROM User u WHERE u.email= :email AND u.password= :password";
+        $query = $entityManager->createQuery($dql);
+        $query->setParameter("email", $email);
+        $query->setParameter("password", $password);
+        $user = $query->getResult();
+        if(!$user)
+            return False;
+        else
+            return True;
+    }
+
+    
 }

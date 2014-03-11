@@ -29,7 +29,7 @@ class User
      **/
     protected $sent_messages = null;
     /**
-     * @OneToMany(targetEntity="Message", mappedBy="receiver")
+     * @OneToMany(targetEntity="Message", mappedBy="receiver", cascade={"remove"})
      * @var Message[]
      **/
     protected $received_messages = null;

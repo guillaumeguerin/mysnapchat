@@ -21,7 +21,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
 	var reponseText = xmlhttp.responseText;
-		if(reponseText!=" You have written a wrong email or a wrong password. ")
+		if(reponseText!="You have written a wrong email or a wrong password. ")
 		{
 		document.getElementById("txtHint").innerHTML="";
 		setCookie("email",email,30);

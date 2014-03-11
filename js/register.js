@@ -76,7 +76,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/registerdb.php",true);
+xmlhttp.open("POST","php/registerdbORM.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+email+"&password="+password+"&description="+description+"&name="+name);
 }
