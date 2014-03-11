@@ -17,16 +17,10 @@
 			<link rel="stylesheet" href="css/noscript.css" />
 		</noscript>
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-
 	
-        <script type="text/javascript" src="js/cookies.js"></script>
-        <script type="text/javascript"  src="js/website.js"></script>	
-        <script type="text/javascript" src="js/index.js"></script>	
-
-
-        <!-- Phonegap -->
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <script type="text/javascript" charset="utf-8" src="json2.js"></script>
+<script type="text/javascript" src="js/cookies.js"></script>
+<script type="text/javascript"  src="js/website.js"></script>	
+<script type="text/javascript" src="js/index.js"></script>	
 	
 	</head>
 

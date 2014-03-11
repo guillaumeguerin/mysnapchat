@@ -22,11 +22,6 @@
         <script type="text/javascript" src="js/md5.js"></script>
         <script type="text/javascript"  src="js/website.js"></script>
         <script type="text/javascript" src="js/register.js"></script>
-
-        
-        <!-- Phonegap -->
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <script type="text/javascript" charset="utf-8" src="json2.js"></script>
 	
 	</head>
 	<body class="homepage">
