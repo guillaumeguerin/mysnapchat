@@ -54,13 +54,13 @@
 		if($type == "music"){
             $allowedExts = array("mp3");      
 			$path = "messages/musics/";			
-			$typem = "audio";
+			$typem = "audio/mpeg";
         }
 		else
         if($type == "video"){
             $allowedExts = array("mp4");
 			$path = "messages/videos/";
-			$typem = "video";
+			$typem = "video/mp4";
         }
 		else
         if($type == "picture"){

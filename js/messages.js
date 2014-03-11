@@ -325,9 +325,9 @@ var typem;
 
 
 if(type == "music")
-	typem = "audio";
+	typem = "audio/mpeg";
 if(type == "video")
-	typem = "video";
+	typem = "video/mp4";
 if(type == "picture")
 	typem = "image";
 if(typeof content != 'undefined'){
