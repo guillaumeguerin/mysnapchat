@@ -39,18 +39,25 @@ class User
      **/
     protected $friends = null;
 
+    /**
+     * @ManyToMany(targetEntity="User")
+     * @JoinTable(name = "user_user_request")
+     **/
+    protected $friend_requests = null;
+
     public function __construct()
     {
         $this->sent_messages = new ArrayCollection();
         $this->received_messages = new ArrayCollection();
         $this->friends = new ArrayCollection();
+        $this->friends_requests = new ArrayCollection();
         $this->email = "undefined";
         $this->description = "undefined";
         $this->profile_picture = "undefined";
         $this->directory = "undefined";
     }
 
-    public function getId()
+    public function getId() 
     {
         return $this->id;
     }
@@ -134,5 +141,16 @@ class User
     public function getFriends()
     {
         return $this->friends->toArray();
+    }
+
+    public function addFriendRequest($friend)
+    {
+        $this->friend_requests[] = $friend;
+        $friend->friend_requests[] = $this;
+    }
+
+    public function getFriendRequests()
+    {
+        return $this->friend_requests->toArray();
     }
 }

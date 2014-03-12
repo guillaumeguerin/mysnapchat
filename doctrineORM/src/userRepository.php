@@ -12,6 +12,15 @@ class userRepository extends EntityRepository
         return $user->getFriends();
     }
 
+    public function getFriendRequests($userId)
+    {
+        $em = $this->getEntityManager();
+        $user = $em->find("User", $userId);
+        if(!$user)
+            echo("User not found");
+        return $user->getFriendRequests();
+    }
+
     public function userExists($email) {
         $entityManager = $this->getEntityManager();
         $dql = "SELECT u FROM User u WHERE u.email= :email";
@@ -59,5 +68,44 @@ class userRepository extends EntityRepository
             return True;
     }
 
-    
+    public function getUserByEmail($email) 
+    {
+        $entityManager = $this->getEntityManager();
+        $user = $this->findOneBy(array('email' => $email));
+        return $user;
+    }
+
+    public function addFriend($email, $friendMail)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        $friend = $this->getUserByEmail($friendMail);
+        if(!$friend) {
+            echo "Friend user not found";
+            return null;
+        }
+        else {
+            $user->addFriend($friend);
+        }
+        $this->getEntityManager()->flush();
+        return $user;
+    }
+
+    public function addFriendRequest($email, $friendMail)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        $friend = $this->getUserByEmail($friendMail);
+        if(!$friend) {
+            echo "Friend user not found";
+            return null;
+        }
+        else {
+            $user->addFriendRequest($friend);
+        }
+        $this->getEntityManager()->flush();
+        return $user;
+    }
 }

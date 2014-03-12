@@ -86,7 +86,7 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
-		showFriendList();
+		//showFriendList();
     }
   }  
   
@@ -99,6 +99,9 @@ xmlhttp.send(str.split("?")[1]);
 function addFriend()
 {
 var friend_email = document.getElementById("friend-email").value;
+console.log(your_email);
+console.log(friend_email);
+
 
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -113,11 +116,11 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
-		showFriendList();
+		//showFriendList();
     }
   }  
   
-xmlhttp.open("POST","php/friends/addfriend.php",true);
+xmlhttp.open("POST","php/addfriend.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("e="+your_email+"&fe="+friend_email);
 }

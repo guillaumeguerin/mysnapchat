@@ -20,6 +20,8 @@ xmlhttp.onreadystatechange=function()
     {	
 	var reponseText = xmlhttp.responseText;
 	//throw new Error("\""+reponseText+"\""+"avec logs email : "+email+" password : "+password);
+	//console.log("email : " + email + " password : " + password);
+	//console.log(""+reponseText+"");
 		if(reponseText!="You have written a wrong email or a wrong password. ")
 		{
 		var trad = new Traductor(navigator.language);
