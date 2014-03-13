@@ -1,11 +1,9 @@
 var your_email;
 var your_password;
-function checkSession()
-{
 
-var email = getCookie("email");
-var password = getCookie("password");
 
+function createXmlHttpRquestObject(){
+var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();
@@ -14,7 +12,17 @@ else
   {// code for IE6, IE5
   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
+return xmlhttp;
+}
 
+
+function checkSession()
+{
+
+var email = getCookie("email");
+var password = getCookie("password");
+
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -47,14 +55,7 @@ if (your_email=="")
   document.getElementById("txtHint").innerHTML="";
   return;
   }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -136,15 +137,7 @@ booleanDescription = false;
 
 if(booleanEmail && booleanPassword && booleanPasswordConfirm && booleanName && booleanDescription)
 {
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -202,14 +195,7 @@ function deleteAccount(obj)
 {
 if(obj.confirmation.value=="Yes"||obj.confirmation.value=="Oui")
 {
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
