@@ -44,9 +44,9 @@ foreach($friendRequests as $fr)
 
     //ACCEPT et REFUSE à refaire
 
-  echo "<td> <a onclick=\"callphp('php/friends/accept.php?q=".TODO."')\" class=\"fa fa-check\" style=\"color:rgb(143, 224, 143);\"><span id=\"accept\"> Accept</span></a></td>";
+  echo "<td> <a onclick=\"callphp('php/accept.php?e=".$user->getEmail()."&fe=".$fr->getEmail()."')\" class=\"fa fa-check\" style=\"color:rgb(143, 224, 143);\"><span id=\"accept\"> Accept</span></a></td>";
   
-   echo "<td> <a onclick=\"callphp('php/friends/refuse.php?q=".TODO."')\" class=\"fa fa-times\" style=\"color:#F76969;\"><span id=\"refuse\"> Refuse</span></a></td>";
+   echo "<td> <a onclick=\"callphp('php/refuse.php?e=".$user->getEmail()."&fe=".$fr->getEmail()."')\" class=\"fa fa-times\" style=\"color:#F76969;\"><span id=\"refuse\"> Refuse</span></a></td>";
   
   
   //$datetime = strtotime($row['FDS_DATE']);
@@ -84,7 +84,7 @@ foreach($friends as $friend)
   
   echo "<td>" . $friend->getName() . "</td>";
 //delete friend TODO
-    echo "<td> <a onclick=\"callphp('php/friends/delete.php?q=".TODO."')\" class=\"fa fa-times\" style=\"color:#F76969;\"><span id=\"delete\"> Delete</span></a></td>";
+   echo "<td> <a onclick=\"callphp('php/delete.php?e=".$user->getEmail()."&fe=".$friend->getEmail()."')\" class=\"fa fa-times\" style=\"color:#F76969;\"><span id=\"delete\"> Delete</span></a></td>";
   
   
   //$datetime = strtotime($row['FDS_DATE']);

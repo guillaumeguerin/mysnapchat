@@ -5,17 +5,17 @@ echo "Access denied";
 }
 else
 {
-$e = strval($_POST['e']);
-
-$fe = strval($_POST['fe']);
+  
+$email = strval($_POST['e']);
+$friendEmail = strval($_POST['fe']);
 
 require_once "../doctrineORM/bootstrap.php";
 include "../doctrineORM/src/User.php";
 
 
 $repository = $entityManager->getRepository('User');
-$repository->sendFriendRequest($e, $fe);
+$repository->acceptFriendRequest($email, $friendEmail);
 
-echo $e;
+echo $email;
 }
 ?> 

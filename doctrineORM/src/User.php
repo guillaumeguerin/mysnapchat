@@ -143,14 +143,26 @@ class User
         return $this->friends->toArray();
     }
 
-    public function addFriendRequest($friend)
+    public function removeFriend($friend)
     {
-        $this->friend_requests[] = $friend;
+        $res1 = $this->friends->removeElement($friend);
+        $res2 = $friend->friends->removeElement($this);
+        return $res1 && $res2;
+    }
+
+    public function sendFriendRequest($friend)
+    {
         $friend->friend_requests[] = $this;
     }
 
     public function getFriendRequests()
     {
         return $this->friend_requests->toArray();
+    }
+
+    public function removeFriendRequest($friend) 
+    {
+        $res1 = $this->friend_requests->removeElement($friend);
+        return $res1;
     }
 }

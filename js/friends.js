@@ -86,10 +86,12 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
-		//showFriendList();
+		showFriendList();
     }
   }  
-  
+  var email = getCookie("email");
+  console.log("\""+str+"\"");
+  console.log(email);
 xmlhttp.open("POST",str.split("?")[0],true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send(str.split("?")[1]);
@@ -116,7 +118,7 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {	
-		//showFriendList();
+		showFriendList();
     }
   }  
   

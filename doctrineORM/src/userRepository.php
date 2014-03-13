@@ -92,7 +92,7 @@ class userRepository extends EntityRepository
         return $user;
     }
 
-    public function addFriendRequest($email, $friendMail)
+    public function deleteFriend($email, $friendMail)
     {
         $user = $this->getUserByEmail($email);
         if(!$user)
@@ -103,8 +103,57 @@ class userRepository extends EntityRepository
             return null;
         }
         else {
-            $user->addFriendRequest($friend);
+            $user->removeFriend($friend);
         }
+        $this->getEntityManager()->flush();
+        return $user;
+    }
+
+    public function sendFriendRequest($email, $friendMail)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        $friend = $this->getUserByEmail($friendMail);
+        if(!$friend) {
+            echo "Friend user not found";
+            return null;
+        }
+        $user->sendFriendRequest($friend);
+        $this->getEntityManager()->flush();
+        return $user;
+    }
+
+    public function acceptFriendRequest($email, $friendMail)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        $friend = $this->getUserByEmail($friendMail);
+        if(!$friend) {
+            echo "Friend user not found";
+            return null;
+        }
+
+        $user->addFriend($friend);
+        $user->removeFriendRequest($friend);
+
+        $this->getEntityManager()->flush();
+        return $user;
+    }
+
+    public function refuseFriendRequest($email, $friendMail)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        $friend = $this->getUserByEmail($friendMail);
+        if(!$friend) {
+            echo "Friend user not found";
+            return null;
+        }
+        $user->removeFriendRequest($friend);
+
         $this->getEntityManager()->flush();
         return $user;
     }
