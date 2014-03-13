@@ -1,46 +1,41 @@
+function checkEmail(email){
+    return (email.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/));
+}
+
+function checkPassword(password){
+    return !(password.length < 8 || password.length > 20 || password.search(/[a-z]/) < 0 || password.search(/[A-Z]/) < 0 || password.search(/[0-9]/) < 0);
+}
+
+function checkPasswordConfirm(password, passwordconfirm){
+    return (password == passwordconfirm);
+}
+
+function checkName(name){
+    return !(name.length < 2 || name.length > 50);
+}
+
+function checkDescription(description){
+    return (description.length < 50);
+}
+
+/*function checkData(email, password, passwordconfirm, name, description){
+    return (checkEmail(email) && checkPassword(password) && checkPasswordConfirm(password, passwordconfirm) && checkName(name) && checkDescription(description));
+}*/
+
 function register()
 {
-var booleanPassword = true;
-var booleanPasswordConfirm = true;
-var booleanName = true;
-var booleanEmail = true;
-var booleanDescription = true;
 var email = document.getElementById("email").value;
 var password = document.getElementById("password").value;
 var passwordconfirm = document.getElementById("confirmpassword").value;
 var description = document.getElementById("description").value;
 var name = document.getElementById("name").value;
 
-if (!email.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/)) { 
-booleanEmail = false;
-}
-if (password.length < 8) {
-booleanPassword = false;
-}
-if (password.length > 20) {
-booleanPassword = false;
-}
-if (password.search(/[a-z]/) < 0) { 
-booleanPassword = false;
-}
- if (password.search(/[A-Z]/) < 0) { 
-booleanPassword = false;
-}
-if (password.search(/[0-9]/) < 0) {
-booleanPassword = false;
-}
-if (password!=passwordconfirm) {
-booleanPasswordConfirm = false;
-}
-if (name.length < 2) {
-booleanName = false;
-}
-if (name.length > 50) {
-booleanName = false;
-}
-if (description.length > 50) {
-booleanDescription = false;
-}
+
+booleanEmail = checkEmail(email);
+booleanPassword = checkPassword(password);
+booleanPasswordConfirm = checkPasswordConfirm(password, passwordconfirm);
+booleanName = checkName(name);
+booleanDescription = checkDescription(description);
 
 if(booleanEmail && booleanPassword && booleanPasswordConfirm && booleanName && booleanDescription)
 {

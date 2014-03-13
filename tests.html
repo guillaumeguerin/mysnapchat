@@ -11,20 +11,52 @@
 <script src="js/qunit-1.14.0.js"></script>
 <script src="js/md5.js"></script>
 <script src="js/cookies.js"></script>
+<script src="js/xmlhttprequest.js"></script>
+<script src="js/register.js"></script>
+<script src="js/friends.js"></script>
 </body>
 
 
 <script>
 test( "md5 test", function() {
-equal(CryptoJS.MD5("123456"), "e10adc3949ba59abbe56e057f20f883e");
+    equal(CryptoJS.MD5("123456"), "e10adc3949ba59abbe56e057f20f883e");
 });
 
 test( "Cookie test", function() {
-setCookie("email","guerin_guillaume@hotmail.fr",30);
-setCookie("password","123456",30);
-equal(getCookie("email"), "guerin_guillaume@hotmail.fr");
-flogout();
-equal(getCookie("email"), "");
+    setCookie("email","guerin_guillaume@hotmail.fr",30);
+    setCookie("password","123456",30);
+    equal(getCookie("email"), "guerin_guillaume@hotmail.fr");
+    flogout();
+    equal(getCookie("email"), "");
+});
+
+test( "Register test", function() {
+    var email = "guerin_guillaume@hotmail.fr";
+    var password = "A1b2c3aa";
+    var confirmpassword = "A1b2c3aa";
+    var name = "Guillaume";
+    var description = "Etudiant";
+    /* Email */
+    ok(checkEmail(email));
+    ok(!checkEmail("toto"));
+    ok(!checkEmail("toto.fr"));
+    ok(!checkEmail("toto@"));
+    ok(!checkEmail("toto@toto"));
+    ok(!checkEmail("@toto.fr"));
+    /* Password */
+    ok(checkPassword(password));
+    ok(!checkPassword("aa"));
+    ok(!checkPassword("0123456789abcdefghijklmnopqrstuvwxyz"));
+    ok(!checkPassword("AAAAAAAA5"));
+    ok(checkPasswordConfirm(password, confirmpassword));
+    ok(!checkPasswordConfirm(password, ""));
+    /* Name */
+    ok(checkName(name));
+    ok(!checkName("b"));
+    ok(!checkName("0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz"));
+    /* Description */
+    ok(checkDescription(description));
+    ok(!checkDescription("0123456789abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz"));
 });
 </script>
 </html>
