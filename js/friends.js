@@ -65,7 +65,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=reponseText;
     }
   }
-xmlhttp.open("POST","php/friends/getfriendlist.php",true);
+xmlhttp.open("POST","php/getfriendlist.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }

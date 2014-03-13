@@ -3,19 +3,19 @@ use Doctrine\ORM\EntityRepository;
 
 class userRepository extends EntityRepository
 {
-	public function getFriends($userId)
+	public function getFriends($email)
     {
         $em = $this->getEntityManager();
-        $user = $em->find("User", $userId);
+        $user = $em->getUserByEmail($email);
         if(!$user)
         	echo("User not found");
         return $user->getFriends();
     }
 
-    public function getFriendRequests($userId)
+    public function getFriendRequests($email)
     {
         $em = $this->getEntityManager();
-        $user = $em->find("User", $userId);
+        $user = $em->getUserByEmail($email);
         if(!$user)
             echo("User not found");
         return $user->getFriendRequests();
