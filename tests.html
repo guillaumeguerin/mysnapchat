@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>QUnit SnapChatBordeaux</title>
+<link rel="stylesheet" href="css/qunit-1.14.0.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="js/qunit-1.14.0.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/cookies.js"></script>
+</body>
+
+
+<script>
+test( "md5 test", function() {
+equal(CryptoJS.MD5("123456"), "e10adc3949ba59abbe56e057f20f883e");
+});
+
+test( "Cookie test", function() {
+setCookie("email","guerin_guillaume@hotmail.fr",30);
+setCookie("password","123456",30);
+equal(getCookie("email"), "guerin_guillaume@hotmail.fr");
+flogout();
+equal(getCookie("email"), "");
+});
+</script>
+</html>
