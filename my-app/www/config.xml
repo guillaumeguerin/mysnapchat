@@ -52,4 +52,6 @@
     <access origin="http://127.0.0.1*" />
 	<access origin="*" />
 	<gap:plugin name="org.apache.cordova.media" />
+    <plugin name="Media" value="org.apache.cordova.AudioHandler" />
+
 </widget>
