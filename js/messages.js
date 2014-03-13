@@ -73,7 +73,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=reponseText;
     }
   }
-xmlhttp.open("POST","php/messages/getmessagelist.php",true);
+xmlhttp.open("POST","php/getmessagelist.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }
@@ -229,7 +229,7 @@ xmlhttp.onreadystatechange=function()
 		deleteMessage(readedMessage,false);
     }
   }
-xmlhttp.open("POST","php/messages/messagesender.php",true);
+xmlhttp.open("POST","php/messagesender.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("type="+str+"&email="+your_email+"&password="+your_password);
 }

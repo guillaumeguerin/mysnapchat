@@ -42,7 +42,6 @@ foreach($friendRequests as $fr)
   
   
 
-    //ACCEPT et REFUSE à refaire
 
   echo "<td> <a onclick=\"callphp('php/accept.php?e=".$user->getEmail()."&fe=".$fr->getEmail()."')\" class=\"fa fa-check\" style=\"color:rgb(143, 224, 143);\"><span id=\"accept\"> Accept</span></a></td>";
   
@@ -83,7 +82,6 @@ foreach($friends as $friend)
  echo "<tr>";
   
   echo "<td>" . $friend->getName() . "</td>";
-//delete friend TODO
    echo "<td> <a onclick=\"callphp('php/delete.php?e=".$user->getEmail()."&fe=".$friend->getEmail()."')\" class=\"fa fa-times\" style=\"color:#F76969;\"><span id=\"delete\"> Delete</span></a></td>";
   
   

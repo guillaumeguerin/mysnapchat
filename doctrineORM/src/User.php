@@ -127,6 +127,11 @@ class User
         $this->sent_messages[] = $msg;
     }
 
+    public function getReceivedMessages()
+    {
+        return $this->received_messages->toArray();
+    }
+    
     public function addReceivedMessage($msg)
     {
         $this->received_messages[] = $msg;
