@@ -126,8 +126,7 @@ function modifySettings(obj) {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var reponseText = xmlhttp.responseText;
                 if (newEmail != "" || newPassword != "") {
-                    setCookie("email", "", -30);
-                    setCookie("password", "", -30);
+                    flogout();
                     window.location.href = "index.html"
                 } else {
                     showSettings();
