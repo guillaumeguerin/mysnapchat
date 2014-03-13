@@ -30,12 +30,11 @@ var passwordconfirm = document.getElementById("confirmpassword").value;
 var description = document.getElementById("description").value;
 var name = document.getElementById("name").value;
 
-
-booleanEmail = checkEmail(email);
-booleanPassword = checkPassword(password);
-booleanPasswordConfirm = checkPasswordConfirm(password, passwordconfirm);
-booleanName = checkName(name);
-booleanDescription = checkDescription(description);
+var booleanEmail = checkEmail(email);
+var booleanPassword = checkPassword(password);
+var booleanPasswordConfirm = checkPasswordConfirm(password, passwordconfirm);
+var booleanName = checkName(name);
+var booleanDescription = checkDescription(description);
 
 if(booleanEmail && booleanPassword && booleanPasswordConfirm && booleanName && booleanDescription)
 {
