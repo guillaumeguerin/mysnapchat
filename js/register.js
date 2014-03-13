@@ -45,14 +45,7 @@ booleanDescription = false;
 if(booleanEmail && booleanPassword && booleanPasswordConfirm && booleanName && booleanDescription)
 {
 document.getElementById("txtHint").innerHTML="";
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 
 xmlhttp.onreadystatechange=function()
   {

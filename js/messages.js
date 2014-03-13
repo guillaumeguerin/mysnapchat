@@ -1,23 +1,14 @@
 var your_email;
 var your_password;
 var booleanscreen;
+
 function checkSession()
 {
 
 var email = getCookie("email");
 var password = getCookie("password");
 var readedMessage = getCookie("readedmessage");
-
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -55,14 +46,7 @@ if (your_email=="")
   document.getElementById("txtHint").innerHTML="";
   return;
   }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -85,14 +69,7 @@ if (str=="")
   document.getElementById("txtHint").innerHTML="";
   return;
   }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -124,14 +101,7 @@ if (str=="")
   document.getElementById("txtHint").innerHTML="";
   return;
   }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -164,14 +134,7 @@ xmlhttp.send(str.split("?")[1]+"&email="+your_email+"&password="+your_password);
 
 function deleteMessage(str,showlist)
 {
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -196,14 +159,7 @@ if (str=="")
   document.getElementById("txtHint").innerHTML="";
   return;
   }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -285,14 +241,7 @@ window.addEventListener("keyup",kPress,false);
 
 function sendScreenshotAlert(str)
 {
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -352,15 +301,7 @@ data.append('type', type);
 data.append('email', your_email);
 data.append('password', your_password);
 
-
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+var xmlhttp=createXmlHttpRquestObject();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
