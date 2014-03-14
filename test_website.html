@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>QUnit SnapChatBordeaux</title>
+<link rel="stylesheet" href="css/qunit-1.14.0.css">
+</head>
+<body>
+<!-- PREREQUIS POUR LES TESTS -->
+<div id="homespan"></div>
+<div id="friendsspan"></div>
+<div id="settingsspan"></div>
+<div id="logoutspan"></div>
+    
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="js/qunit-1.14.0.js"></script>
+<script src="js/website.js"></script>
+
+</body>
+<script>
+test( "homespan en francais doit contenir accueil", function() {
+    var traductor = new Traductor('fr');
+    
+    traductor.tradNavBar();
+    
+    equal('Accueil', document.getElementById('homespan').innerHTML);
+});
+</script>
+</html>
