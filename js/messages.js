@@ -1,6 +1,8 @@
 var your_email;
 var your_password;
 var booleanscreen;
+var message_duration;
+var timeOut;
 
 function checkSession() {
 
@@ -49,11 +51,44 @@ function showMessageList() {
     xmlhttp.send("email=" + your_email + "&password=" + your_password);
 }
 
+
+function getMessageElement()
+  { 
+  var video = document.getElementById("video");
+  var music = document.getElementById("music");
+  if(video != null)
+  return video;
+  else
+  if(music != null)
+  return music;
+  else return "";
+  }
+  
+  function setMessageTimeout(str)
+  { 
+  var content = getMessageElement();
+  if(content!=""){
+  content.onloadedmetadata=function () {
+  message_duration = message_duration + ((Math.round(content.duration) + 1) * 1000);  
+  timeOut = setTimeout(function () {
+                deleteMessage(str, true)
+            }, message_duration);
+  };
+  }
+  else
+  {
+  timeOut = setTimeout(function () {
+                deleteMessage(str, true)
+            }, message_duration);
+  }
+}
+  
 function showMessage(str) {
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
     }
+	message_duration=60000;
     var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -68,9 +103,7 @@ function showMessage(str) {
             loadEventBeforeUnload(str.split("?")[1]);
             booleanscreen = true;
             loadEventPrintScreen(str.split("?q=")[1]);
-            setTimeout(function () {
-                deleteMessage(str.split("?q=")[1], true)
-            }, 60000);
+			setMessageTimeout(str.split("?q=")[1]);			
         }
     }
     xmlhttp.open("POST", str.split("?")[0], true);
@@ -84,6 +117,7 @@ function showMessagePicture(str) {
         document.getElementById("txtHint").innerHTML = "";
         return;
     }
+	message_duration=60000;
     var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -103,9 +137,7 @@ function showMessagePicture(str) {
             loadEventBeforeUnload(str.split("?")[1]);
             booleanscreen = true;
             loadEventPrintScreen(str.split("?q=")[1]);
-            setTimeout(function () {
-                deleteMessage(str.split("?q=")[1], true)
-            }, 60000);
+            setMessageTimeout(str.split("?q=")[1]);
         }
     }
     xmlhttp.open("POST", str.split("?")[0], true);
@@ -121,6 +153,7 @@ function deleteMessage(str, showlist) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             setCookie("readedmessage", "", -30);
             unloadEventBeforeUnload();
+			clearTimeout(timeOut);
             if (showlist)
                 showMessageList();
         }

@@ -60,7 +60,7 @@ echo "</td></tr></table></p><content>";
 if($row['MSG_TYPE']=="video")
 {
 echo "<h3>Message from ".$name."</h3>";
-echo "<content>"."<p></br><video controls autoplay>
+echo "<content>"."<p></br><video id=\"video\" controls autoplay>
 <source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this video format.
 </video></p>";
@@ -70,7 +70,7 @@ Your browser does not support this video format.
 if($row['MSG_TYPE']=="music")
 {
 echo "<h3>Message from ".$name."</h3>";
-echo "<content>"."<p></br><audio controls autoplay>
+echo "<content>"."<p></br><audio id=\"music\" controls autoplay>
 <source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this audio format.
 </audio>";
