@@ -99,6 +99,7 @@
                 text = text.replace("Unread message</label>", "Message non lu</label>");
                 text = text.replace("You have no unread message</label>", "Vous n'avez aucun message non lu</label>");
                 text = text.replace("<h3>Message from", "<h3>Message de");
+				text = text.replace("Message already watched !", "Message déjà vu !");
                 text = text.replace("Welcome to our website ", "Bienvenue sur notre site ");
                 text = text.replace("<h3>You have no friend request", "<h3>Vous n'avez aucune demande d'ami");
                 text = text.replace("<h3>You have no friend", "<h3>Vous n'avez pas encore d'ami");

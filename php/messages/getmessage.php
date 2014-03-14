@@ -19,6 +19,7 @@ $userId = mysql_result($result, 0);
 
 $sql="SELECT * FROM MESSAGE WHERE MSG_ID = '".$q."' AND MSG_USER_ID_TO = '".$userId."'";
 $result = mysql_query($sql);
+$rownum = mysql_num_rows ($result);
 $row = mysql_fetch_array($result);
 
 
@@ -27,7 +28,8 @@ $resultName = mysql_query($sqlName);
 $name = mysql_result($resultName, 0);
 
 
-
+if($rownum == 1)
+{
 if($row['MSG_TYPE']=="text")
 {
 echo "<h3>Message from ".$name."</h3>";
@@ -82,6 +84,9 @@ if($row['MSG_TYPE']=="picture")
 echo "<h3>Message from ".$name."</h3></br>";
 echo "<file>".$row['MSG_CONTENT'];
 }
+}
+else 
+echo "Message already watched !";
 
 
 

@@ -90,8 +90,10 @@ function showMessage(str) {
     }	
     var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var reponseText = xmlhttp.responseText;
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {		
+            var reponseText = xmlhttp.responseText;			
+			if(!(reponseText.indexOf("Message already watched !")>=0))
+			{
             var res = reponseText.split("<content>")[0];
             var trad = new Traductor(navigator.language);
             res = trad.tradReponseText(res);
@@ -102,7 +104,17 @@ function showMessage(str) {
             loadEventBeforeUnload(str.split("?")[1]);
             booleanscreen = true;
             loadEventPrintScreen(str.split("?q=")[1]);
-			setMessageTimeout(str.split("?q=")[1]);			
+			setMessageTimeout(str.split("?q=")[1]);
+			}
+			else
+			{
+            var trad = new Traductor(navigator.language);
+            reponseText = trad.tradReponseText(reponseText);
+			document.getElementById("txtHint").innerHTML = reponseText;
+			timeOut = setTimeout(function () {
+            showMessageList();
+            }, 3000);
+			}			
         }
     }
     xmlhttp.open("POST", str.split("?")[0], true);
@@ -119,7 +131,9 @@ function showMessagePicture(str) {
 	var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var reponseText = xmlhttp.responseText;
+            var reponseText = xmlhttp.responseText;					
+			if(!(reponseText.indexOf("Message already watched !")>=0))
+			{
             var res = reponseText.split("<file>")[0];
             var trad = new Traductor(navigator.language);
             res = trad.tradReponseText(res);
@@ -136,6 +150,16 @@ function showMessagePicture(str) {
             booleanscreen = true;
             loadEventPrintScreen(str.split("?q=")[1]);
             setMessageTimeout(str.split("?q=")[1]);
+			}
+			else
+			{
+			var trad = new Traductor(navigator.language);
+            reponseText = trad.tradReponseText(reponseText);
+			document.getElementById("txtHint").innerHTML = reponseText;
+			timeOut = setTimeout(function () {
+            showMessageList();
+            }, 3000);
+			}
         }
     }
     xmlhttp.open("POST", str.split("?")[0], true);
