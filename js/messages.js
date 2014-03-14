@@ -1,7 +1,6 @@
 var your_email;
 var your_password;
 var booleanscreen;
-var message_duration;
 var timeOut;
 
 function checkSession() {
@@ -66,6 +65,7 @@ function getMessageElement()
   
   function setMessageTimeout(str)
   { 
+  var message_duration=60000;
   var content = getMessageElement();
   if(content!=""){
   content.onloadedmetadata=function () {
@@ -87,8 +87,7 @@ function showMessage(str) {
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
-    }
-	message_duration=60000;
+    }	
     var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -117,8 +116,7 @@ function showMessagePicture(str) {
         document.getElementById("txtHint").innerHTML = "";
         return;
     }
-	message_duration=60000;
-    var xmlhttp = createXmlHttpRquestObject();
+	var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var reponseText = xmlhttp.responseText;
