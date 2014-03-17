@@ -2,6 +2,7 @@ var your_email;
 var your_password;
 var booleanscreen;
 var timeOut;
+var timeInter;
 
 function checkSession() {
 
@@ -63,6 +64,19 @@ function getMessageElement()
   else return "";
   }
   
+  function showMessageTimeout(duration)
+  {
+  duration = duration / 1000;
+  timeInter = setInterval(function(){  
+  timeMessage = document.getElementById("timeMessage");
+  if(timeMessage != null) 
+  {
+  timeMessage.innerHTML=duration;
+  }
+  duration = duration - 1;
+  },1000);  
+  }
+  
   function setMessageTimeout(str)
   { 
   var message_duration=60000;
@@ -70,6 +84,7 @@ function getMessageElement()
   if(content!=""){
   content.onloadedmetadata=function () {
   message_duration = message_duration + ((Math.round(content.duration) + 1) * 1000);  
+  showMessageTimeout(message_duration);
   timeOut = setTimeout(function () {
                 deleteMessage(str, true)
             }, message_duration);
@@ -77,6 +92,7 @@ function getMessageElement()
   }
   else
   {
+  showMessageTimeout(message_duration);
   timeOut = setTimeout(function () {
                 deleteMessage(str, true)
             }, message_duration);
@@ -138,6 +154,7 @@ function showMessagePicture(str) {
             var trad = new Traductor(navigator.language);
             res = trad.tradReponseText(res);
             var file = reponseText.split("<file>")[1];
+			console.log(file);
             document.getElementById("txtHint").innerHTML = res;
             FileAPI.Image(file)
                 .resize(screen.height / 2, screen.width / 2, 'max')
@@ -175,6 +192,7 @@ function deleteMessage(str, showlist) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             setCookie("readedmessage", "", -30);
             unloadEventBeforeUnload();
+			clearInterval(timeInter);
 			clearTimeout(timeOut);
             if (showlist)
                 showMessageList();

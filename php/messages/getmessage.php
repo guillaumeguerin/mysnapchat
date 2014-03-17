@@ -30,9 +30,12 @@ $name = mysql_result($resultName, 0);
 
 if($rownum == 1)
 {
+echo "<h3>Message from ".$name."</h3>";
+echo "<br>The following message will be destroyed in <font color='red' size='5'>  <label id='timeMessage'></label></font> seconds.<br>";
+
 if($row['MSG_TYPE']=="text")
 {
-echo "<h3>Message from ".$name."</h3>";
+
 echo "<content>"."<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT']."</td></tr></table></p>";
 }
 
@@ -41,8 +44,7 @@ if($row['MSG_TYPE']=="screenshotalert")
 $datetime = strtotime($row['MSG_CONTENT']);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
-	
-echo "<h3>Message from ".$name."</h3>";
+
 echo "<p></br><table id=\"box-table-a\"><tr><td>I took a screenshot from the message you sent me ";
 timeago2($difference);
 echo "</td></tr></table></p><content>";
@@ -53,15 +55,13 @@ if($row['MSG_TYPE']=='alert')
 $datetime = strtotime($row['MSG_CONTENT']);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
-	
-echo "<h3>Message from ".$name."</h3>";
+
 echo "<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT'];
 echo "</td></tr></table></p><content>";
 }
 
 if($row['MSG_TYPE']=="video")
 {
-echo "<h3>Message from ".$name."</h3>";
 echo "<content>"."<p></br><video id=\"video\" controls autoplay>
 <source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this video format.
@@ -71,7 +71,6 @@ Your browser does not support this video format.
 
 if($row['MSG_TYPE']=="music")
 {
-echo "<h3>Message from ".$name."</h3>";
 echo "<content>"."<p></br><audio id=\"music\" controls autoplay>
 <source src=\"".$row['MSG_CONTENT']."\">
 Your browser does not support this audio format.
@@ -81,7 +80,6 @@ Your browser does not support this audio format.
 
 if($row['MSG_TYPE']=="picture")
 {
-echo "<h3>Message from ".$name."</h3></br>";
 echo "<file>".$row['MSG_CONTENT'];
 }
 }

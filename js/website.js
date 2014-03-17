@@ -98,6 +98,8 @@
                 text = text.replace("Unread messages</label>", "Messages non lus</label>");
                 text = text.replace("Unread message</label>", "Message non lu</label>");
                 text = text.replace("You have no unread message</label>", "Vous n'avez aucun message non lu</label>");
+				text = text.replace("<br>The following message will be destroyed in","<br>Le message suivant s'auto-détruira dans");
+				text = text.replace("seconds.<br>","secondes.<br>");
                 text = text.replace("<h3>Message from", "<h3>Message de");
 				text = text.replace("Message already watched !", "Message déjà vu !");
                 text = text.replace("Welcome to our website ", "Bienvenue sur notre site ");
