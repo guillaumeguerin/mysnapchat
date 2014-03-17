@@ -36,7 +36,7 @@ echo "<br>The following message will be destroyed in <font color='red' size='5'>
 if($row['MSG_TYPE']=="text")
 {
 
-echo "<content>"."<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT']."</td></tr></table></p>";
+echo "<content><p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>".$row['MSG_CONTENT']."</center></font></td></tr></table></p>";
 }
 
 if($row['MSG_TYPE']=="screenshotalert")
@@ -45,9 +45,9 @@ $datetime = strtotime($row['MSG_CONTENT']);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
 
-echo "<p></br><table id=\"box-table-a\"><tr><td>I took a screenshot from the message you sent me ";
+echo "<p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>I took a screenshot from the message you sent me ";
 timeago2($difference);
-echo "</td></tr></table></p><content>";
+echo ".</center></font></td></tr></table></p><content>";
 }
 
 if($row['MSG_TYPE']=='alert')
@@ -56,8 +56,7 @@ $datetime = strtotime($row['MSG_CONTENT']);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
 
-echo "<p></br><table id=\"box-table-a\"><tr><td>".$row['MSG_CONTENT'];
-echo "</td></tr></table></p><content>";
+echo "<p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>".$row['MSG_CONTENT']."</center></font></td></tr></table></p><content>";
 }
 
 if($row['MSG_TYPE']=="video")
@@ -80,7 +79,7 @@ Your browser does not support this audio format.
 
 if($row['MSG_TYPE']=="picture")
 {
-echo "<file>".$row['MSG_CONTENT'];
+echo "</br><file>".$row['MSG_CONTENT'];
 }
 }
 else 

@@ -154,7 +154,6 @@ function showMessagePicture(str) {
             var trad = new Traductor(navigator.language);
             res = trad.tradReponseText(res);
             var file = reponseText.split("<file>")[1];
-			console.log(file);
             document.getElementById("txtHint").innerHTML = res;
             FileAPI.Image(file)
                 .resize(screen.height / 2, screen.width / 2, 'max')
@@ -304,6 +303,11 @@ function sendMessage(obj, type) {
 
     if (type == "text") {
         var content = obj.content.value;
+		
+		find = "'";
+        re = new RegExp(find, 'g');
+        content = content.replace(re, "\\'");
+		
         booleantype = true;
         data.append('content', content);
     } else {

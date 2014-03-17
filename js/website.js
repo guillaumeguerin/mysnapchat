@@ -135,7 +135,39 @@
                 text = text.replace("Welcome to Snap chat Bordeaux !", "Bienvenue sur Snap chat Bordeaux");
 
 
-                find = " days ago</td>";
+                find = " days ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " jours.</center>");
+
+                find = " day ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " jour.</center>");
+
+                find = " hours ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " heures.</center>");
+
+                find = " hour ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " heure.</center>");
+
+                find = " minutes ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " minutes.</center>");
+
+                find = " minute ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " minute.</center>");
+
+                find = " seconds ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " secondes.</center>");
+
+                find = " second ago.</center>";
+                re = new RegExp(find, 'g');
+                text = text.replace(re, " seconde.</center>");
+				
+				                find = " days ago</td>";
                 re = new RegExp(find, 'g');
                 text = text.replace(re, " jours</td>");
 
