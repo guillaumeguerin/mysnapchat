@@ -1,6 +1,7 @@
 <html>
 
 <head>
+
     <title>Snap Chat Bordeaux</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
@@ -18,12 +19,12 @@
     </noscript>
     <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 
-
     <script type="text/javascript" src="js/cookies.js"></script>
     <script type="text/javascript" src="js/website.js"></script>
-    <script type="text/javascript" src="js/friends.js"></script>
+    <script type="text/javascript" src="js/about.js"></script>
     <script type="text/javascript" src="js/xmlhttprequest.js"></script>
 </head>
+
 
 <body class="homepage" onload="checkSession()">
 
@@ -34,7 +35,7 @@
         <script>
         </script>
         <nav id="nav">
-  <a id="home" href="index.html" class="fa fa-home"><span id="homespan">Home</span></a>
+            <a id="home" href="index.html" class="fa fa-home"><span id="homespan">Home</span></a>
             <a id="messages" href="messages.html" class="fa fa-envelope"><span id="messagespan">Messages</span></a>
             <a id="friends" href="friends.html" class="fa fa-user"><span id="friendsspan">Friends</span></a>
             <a id="settings" href="settings.html" class="fa fa-cog"><span id="settingsspan">Settings</span></a>
@@ -45,48 +46,56 @@
             var trad = new Traductor(navigator.language);
             trad.tradNavBar();
         </script>
-        </head>
 
         <!-- Main -->
         <div id="main">
             <article id="work" class="panel">
                 <header>
-                    <h2 id=ptitle>Friends</h2>
+                    <h3>FAQ</h3>
                 </header>
+                
+				<p>
+                <b><u>-<label id="home1">How could I register or login ?</label></u></b>
+				<br>
+				<center><img src="css/images/tutorial/home.png"></center>
+				<br>
+				<label id="home2">To register to our website click on <u>Sign Up</u></label> <b><font color="red">(1)</font></b> <label id="home3">and follow the instructions on the page</label>.
+				<br>
+				<label id="home4">To connect on our website click on <u>Sign In</u></label> <b><font color="red">(2)</font></b> <label id="home5">and follow the instructions on the page</label>.
+				</p>
+				
+				<p>
+				<b><u>-<label id="friends1">How could I add a friend ?</label></u></b>
+				<br>
+				<center><img src="css/images/tutorial/friends.png"></center>
+				<br>
+				<label id="friends2">Go to the friend page</label> <b><font color="red">(1)</font></b>, <label id="friends3">write your friend's email</label> <b><font color="red">(2)</font></b> <label id="friends4">and send your request</label> <b><font color="red">(3)</font></b>.
+				</p>
+				<p>
+				<b><u>-<label id="messages1">How could I see my messages ?</label></u></b>
+				<br>
+				<center><img src="css/images/tutorial/message.png"></center>
+				<br>
+				<label id="messages2">Go to the messages page</label> <b><font color="red">(1)</font></b>, <label id="messages3">click on View</label> <b><font color="red">(2)</font></b>.
+				</p>
+				<p>
+				<b><u>-<label id="settings1">How could I change my settings or delete my account ?</label></u></b>
+				<br>
+				<center><img src="css/images/tutorial/settings.png"></center>
+				<br>
+				<label id="settings2">To modify your settings go to the settings page</label> <b><font color="red">(1)</font></b>, <label id="settings3">modify the settings you want to modify</label> <b><font color="red">(2)</font></b> <label id="settings4">and click on the button</label> <b><font color="red">(3)</font></b>, <label id="settings5">you can modify your settings one by one or together</label>.
+				<br>
+				<label id="settings6">To delete your account, go to the settings page</label> <b><font color="blue">(1')</font></b>, <label id="settings7">write "Yes"</label> <b><font color="blue">(2')</font></b> <label id="settings8">and click on the button</label> <b><font color="blue">(3')</font></b>.
+				</p>
+                   
+                   
 
-
-                <p>
-                    <form onsubmit="addFriend()" method="post" action="javascript:void(0);">
-                        <div>
-
-
-                            <div class="row half">
-                                <div class="6u">
-                                    <input type="text" class="text" name="friend-email" id="friend-email" placeholder="Your friend's email" required/>
-                                </div>
-                            </div>
-
-                            </br>
-                            <div class="row">
-                                <div class="12u">
-                                    <input id="add-friend" type="submit" class="button" VALUE="Add" />
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                    <br>
-                </p>
-
-
-                <p>
-                    <div id="txtHint" class="textInt" oncontextmenu="return false" style="text-align: center; margin: 0 auto;"><b>Friends will be listed here. Please activate Javascript.</b>
-                    </div>
-                </p>
+                
 
             </article>
         </div>
 
+      
         <!-- Footer -->
         <div id="footer">
             <ul class="links">
@@ -107,11 +116,8 @@
 
     </div>
     <script>
-        work.style.height = "40em";
-        main.style.overflow = "auto";
-        work.style.overflow = "auto";
-        var pm = new PageModificator(navigator.userAgent, navigator.language);
-        pm.NavigatorActive('friends');
+        var pm = new PageModificator(navigator.userAgent, navigator.language);        
+        pm.NavigatorActive('about');
     </script>
 </body>
 

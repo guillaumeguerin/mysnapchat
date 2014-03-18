@@ -7,6 +7,7 @@
                 document.getElementById('friendsspan').innerHTML = "Amis";
                 document.getElementById('settingsspan').innerHTML = "Paramètres";
                 document.getElementById('logoutspan').innerHTML = "Déconnection";
+				document.getElementById('aboutspan').innerHTML = "À propos";
             }
         }
     }
@@ -87,6 +88,41 @@
                 document.getElementById('dtitle').innerHTML = "Suppression du compte";
                 document.getElementById('deletea').value = "Supprimer le compte";
                 document.getElementById('confirmation').placeholder = "Êtes-vous sûr ? Écrivez 'Oui' si vous voulez supprimer votre compte et cliquez sur le bouton.";
+            }
+        }
+    }
+	
+	
+	    this.tradAbout = function () {
+        if (language != null) {
+            if (language.indexOf("fr") >= 0) {
+			
+                document.getElementById('home1').innerHTML = "Comment puis-je m'enregister ou me connecter ?";
+				document.getElementById('home2').innerHTML = "Pour s'enregistrer à notre site cliquez sur <u>S'enregistrer</u>";
+				document.getElementById('home3').innerHTML = "et suivez les instructions sur la page";
+				document.getElementById('home4').innerHTML = "Pour vous connecter à notre site cliquez sur <u>Se connecter</u>";
+				document.getElementById('home5').innerHTML = "et suivez les instructions sur la page";
+				
+				document.getElementById('friends1').innerHTML = "Comment puis-je ajouter un ami ?";
+				document.getElementById('friends2').innerHTML = "Allez sur la page amis";
+				document.getElementById('friends3').innerHTML = "écrivez l'adresse email de votre ami";
+				document.getElementById('friends4').innerHTML = "et envoyez votre demande";
+				
+				document.getElementById('messages1').innerHTML = "Comment puis-je voir mes messages ?";
+				document.getElementById('messages2').innerHTML = "Allez sur la page messages";
+				document.getElementById('messages3').innerHTML = "cliquez sur Regarder";
+				
+				document.getElementById('settings1').innerHTML = "Comment puis-je changer mes paramètres ou supprimer mon compte ?";
+				document.getElementById('settings2').innerHTML = "Pour modifier vos paramètres allez sur la page paramètres";
+				document.getElementById('settings3').innerHTML = "modifiez les paramètres que vous voulez modifier";
+				document.getElementById('settings4').innerHTML = "et cliquez sur le bouton";
+				document.getElementById('settings5').innerHTML = "vous pouvez modifier vos paramètre un par un ou par plusieurs";
+				document.getElementById('settings6').innerHTML = "Pour supprimer votre compte, allez sur la page paramètres";
+				document.getElementById('settings7').innerHTML = 'écrivez "Oui"';
+				document.getElementById('settings8').innerHTML = "et cliquez sur le bouton";
+				
+				
+                
             }
         }
     }
@@ -367,6 +403,11 @@ var PageModificator = function (userAgent, language) {
             settings.style.display = 'none';
             logout.style.display = 'none';
             traductor.tradRegister();
+        }
+		
+		if (pageName == 'about') {
+			document.getElementById('about').className = "fa fa-question active";		
+           traductor.tradAbout();
         }
 
 
