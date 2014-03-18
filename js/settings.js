@@ -5,7 +5,8 @@ function checkSession() {
 
     var email = getCookie("email");
     var password = getCookie("password");
-
+	if(email!="" && password!="")
+		{
     var xmlhttp = createXmlHttpRquestObject();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -15,7 +16,7 @@ function checkSession() {
                 your_password = password;
                 showSettings();
             } else {
-                window.location.href = "index.html"
+                window.location.href = "index.html";
             }
         }
     }
@@ -23,7 +24,12 @@ function checkSession() {
     xmlhttp.open("POST", "php/logindb.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("e=" + email + "&p=" + password);
-}
+	}
+	else
+	{
+	window.location.href = "index.html";
+	}
+	}
 
 
 function showSettings() {
