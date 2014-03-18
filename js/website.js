@@ -283,37 +283,14 @@ var PageModificator = function (userAgent, language) {
             }
 
             if (userAgent.indexOf("Android") > 0) {
-                /*gallery.style.display = 'none';
-				messages.style.display = 'none';
-				friends.style.display = 'none';
-				settings.style.display = 'none';
-				logout.style.display = 'none';
-				bar.style.display = 'none';
-				signin.style.display = 'none';*/
-                apple.style.display = 'none';
                 windows.style.display = 'none';
                 laptop.style.display = 'none';
                 txt += "Android";
             } else if (userAgent.indexOf("Windows Phone") > 0) {
-                /*gallery.style.display = 'none';
-				messages.style.display = 'none';
-				friends.style.display = 'none';
-				settings.style.display = 'none';
-				logout.style.display = 'none';
-				bar.style.display = 'none';
-				signin.style.display = 'none';*/
-                apple.style.display = 'none';
                 android.style.display = 'none';
                 laptop.style.display = 'none';
                 txt += "Windows Phone";
             } else if (userAgent.indexOf("iPhone OS") > 0) {
-                /*gallery.style.display = 'none';
-				messages.style.display = 'none';
-				friends.style.display = 'none';
-				settings.style.display = 'none';
-				logout.style.display = 'none';
-				bar.style.display = 'none';
-				signin.style.display = 'none';*/
                 android.style.display = 'none';
                 windows.style.display = 'none';
                 laptop.style.display = 'none';

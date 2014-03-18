@@ -16,7 +16,7 @@ function checkSession() {
                 your_password = password;
                 showFriendList();
             } else {
-                window.location.href = "index.html"
+                window.location.href = "index.html";
             }
         }
     }
