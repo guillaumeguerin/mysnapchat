@@ -6,16 +6,16 @@ function checkSession() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var reponseText = xmlhttp.responseText;
-            if (reponseText != " You have written a wrong email or a wrong password. ") {
+            if (reponseText != " You have written a wrong email or a wrong password. ") 
+				{
+				messages.style.display = '';
+                friends.style.display = '';
+                settings.style.display = '';
+                logout.style.display = '';
                 var trad = new Traductor(navigator.language);
                 reponseText = trad.tradReponseText(reponseText);
                 document.getElementById("signbar").innerHTML = reponseText;
-            } else {
-                messages.style.display = 'none';
-                friends.style.display = 'none';
-                settings.style.display = 'none';
-                logout.style.display = 'none';
-            }
+				} 
         }
     }
 

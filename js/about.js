@@ -7,12 +7,13 @@ function checkSession() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var reponseText = xmlhttp.responseText;
             if (reponseText != " You have written a wrong email or a wrong password. ") {
+				messages.style.display = '';
+                friends.style.display = '';
+                settings.style.display = '';
+                logout.style.display = '';
                 
             } else {
-                messages.style.display = 'none';
-                friends.style.display = 'none';
-                settings.style.display = 'none';
-                logout.style.display = 'none';
+                
             }
         }
     }
