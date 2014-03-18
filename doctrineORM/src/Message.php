@@ -1,6 +1,8 @@
 <?php
+require_once "messageRepository.php";
 /**
- * @Entity @Table(name="messages")
+ * @Entity(repositoryClass="messageRepository") 
+ * @Table(name="messages")
  **/
 class Message
 {

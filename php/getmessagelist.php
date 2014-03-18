@@ -8,7 +8,7 @@ else
 $email = strval($_POST['email']);
 $password = strval($_POST['password']);
 
-include '../timeago.php';
+include 'timeago.php';
 require_once "../doctrineORM/bootstrap.php";
 include "../doctrineORM/src/User.php";
 
@@ -77,6 +77,5 @@ $name = mysql_result($resultName, 0);
   echo "</tr>";
   }
 echo "</table></p>";
-mysql_close($con);
 }
 ?> 

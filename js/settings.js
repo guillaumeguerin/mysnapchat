@@ -65,7 +65,7 @@ xmlhttp.onreadystatechange=function()
     document.getElementById("txtHint").innerHTML=reponseText;
     }
   }
-xmlhttp.open("POST","php/settings/getsettings.php",true);
+xmlhttp.open("POST","php/getsettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password);
 }
@@ -163,7 +163,7 @@ xmlhttp.onreadystatechange=function()
     }
   }  
   
-xmlhttp.open("POST","php/settings/updatesettings.php",true);
+xmlhttp.open("POST","php/updatesettings.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("email="+your_email+"&password="+your_password+"&ne="+newEmail+"&np="+newPassword+"&nn="+newName+"&nd="+newDescription);
 }

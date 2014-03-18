@@ -7,39 +7,33 @@
 	else
 	{
 	
-    include("../connect.php");
+    require_once "../doctrineORM/bootstrap.php";
+	include "../doctrineORM/src/User.php";
+
 	
 	$type = $_POST["type"];
 	$email = $_POST["email"];
 	$password = $_POST["password"];
+	$receiverId = $_POST['receiver'];
 	
+	$messageRepository = $entityManager->getRepository('Message');
 	
-	$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
-	$result = mysql_query($sql);
-	$userId = mysql_result($result, 0);
-	
-	$content="Please don\'t spam the admin account !";
-	if($_POST['receiver']=='1')
-	{
-	$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $_POST['receiver'] ."', '".$userId."', 'alert', '". $content ."');";
-	mysql_query($sql);
-	}
-    else
-	{
+	//$content="Please don\'t spam the admin account !";
+	//if($_POST['receiver']=='1')
+	//{
+	//$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $_POST['receiver'] ."', '".$userId."', 'alert', '". $content ."');";
+	//mysql_query($sql);
+	//}
+    //else
+	//{
     if($type == "text" || $type == "music" || $type == "video" ||$type == "picture"){
-
-        
-        
-
 
         if($type == "text"){
             $content = $_POST['content'];
 			if($content != NULL){
 		
 		
-		
-            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
-			mysql_query($sql);
+			$messageRepository->sendMessage($email, $receiverId, $type, $content);
 			echo "Your message has been sent.";
         }
         }
@@ -103,18 +97,9 @@
                   
 				  
                 }
-              
-        
+        if($content != NULL) {
 		
-
-
-
-
-        if($content != NULL){
-		
-				
-            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";			  
-           $result= mysql_query($sql);
+           $messageRepository->sendMessage($email, $receiverId, $type, $content);
 		   echo "Your message has been sent.";
         }
 	}
@@ -130,6 +115,5 @@
 	
 	}
 	}
-	mysql_close($con);
 	}
 ?>

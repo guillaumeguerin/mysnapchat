@@ -72,9 +72,5 @@ echo "
 
 
 echo $user->getProfile_picture();
-		
- 
-
-mysql_close($con);
 }
 ?> 

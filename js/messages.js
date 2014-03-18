@@ -373,7 +373,7 @@ xmlhttp.onreadystatechange=function()
 	progressbarpercent.innerHTML = Math.round((e.loaded/e.total) * 100) + '%';
 }, false);
   
-xmlhttp.open("POST","php/messages/sendmessage.php",true);
+xmlhttp.open("POST","php/sendmessage.php",true);
 xmlhttp.send(data);
 }
 else
