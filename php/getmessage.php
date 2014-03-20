@@ -14,13 +14,6 @@ include 'timeago.php';
 require_once "../doctrineORM/bootstrap.php";
 include "../doctrineORM/src/User.php";
 
-require_once('FirePHPCore/FirePHP.class.php');
-require_once('FirePHPCore/fb.php');
-$firephp = FirePHP::getInstance(true);
-ob_start();
-$firephp->log('start');
-$firephp->log('derp');
-
 $msg = $entityManager->find('Message', $q);
 
 if($msg->getType()=="text")

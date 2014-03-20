@@ -182,7 +182,7 @@ xmlhttp.onreadystatechange=function()
 		showMessageList();
 	}
   }
-xmlhttp.open("POST","php/messages/deletemessage.php",true);
+xmlhttp.open("POST","php/deletemessage.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("q="+str+"&e="+your_email);
 }

@@ -16,7 +16,7 @@ include "../doctrineORM/src/User.php";
 $repository = $entityManager->getRepository('User');
 $result = $repository->checkUser($e, $p);
 if($result)
-	echo "Welcome to our website " . $row['NAME'] .".";
+	echo "Welcome to our website " . $result->getName() .".";
 else
 	echo "You have written a wrong email or a wrong password.";
 }

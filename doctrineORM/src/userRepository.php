@@ -61,11 +61,11 @@ class userRepository extends EntityRepository
         $query = $entityManager->createQuery($dql);
         $query->setParameter("email", $email);
         $query->setParameter("password", $password);
-        $user = $query->getResult();
+        $user = $query->getSingleResult();
         if(!$user)
-            return False;
+            return null;
         else
-            return True;
+            return $user;
     }
 
     public function getUserByEmail($email) 
@@ -156,5 +156,17 @@ class userRepository extends EntityRepository
 
         $this->getEntityManager()->flush();
         return $user;
+    }
+
+    public function removeUser($email)
+    {
+        $user = $this->getUserByEmail($email);
+        if(!$user)
+            echo "user not found";
+        else {
+            $em = $this->getEntityManager();
+            $em->remove($user);
+            $em->flush();
+        }
     }
 }

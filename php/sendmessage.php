@@ -1,20 +1,17 @@
 <?php
-
 	if(empty($_POST) )
 	{
 	echo "Access denied";
 	}
 	else
 	{
-	
-    require_once "../doctrineORM/bootstrap.php";
-	include "../doctrineORM/src/User.php";
-
-	
-	$type = $_POST["type"];
-	$email = $_POST["email"];
-	$password = $_POST["password"];
+	$type = $_POST['type'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
 	$receiverId = $_POST['receiver'];
+
+	require_once "../doctrineORM/bootstrap.php";
+	include "../doctrineORM/src/User.php";
 	
 	$messageRepository = $entityManager->getRepository('Message');
 	
@@ -31,7 +28,6 @@
         if($type == "text"){
             $content = $_POST['content'];
 			if($content != NULL){
-		
 		
 			$messageRepository->sendMessage($email, $receiverId, $type, $content);
 			echo "Your message has been sent.";
@@ -107,13 +103,9 @@
 	echo "Wrong file type";
 	}
 	else
-	echo "Wrong file size";
-        
-		  
-    
+	echo "Wrong file size";	  
 	}
 	
-	}
 	}
 	}
 ?>
