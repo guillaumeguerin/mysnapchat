@@ -47,7 +47,7 @@ function showFriendList() {
             document.getElementById("txtHint").innerHTML = reponseText;
         }
     }
-    xmlhttp.open("POST", "php/friends/getfriendlist.php", true);
+    xmlhttp.open("POST", "php/getfriendlist.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("email=" + your_email + "&password=" + your_password);
 }
@@ -77,7 +77,7 @@ function addFriend() {
         }
     }
 
-    xmlhttp.open("POST", "php/friends/addfriend.php", true);
+    xmlhttp.open("POST", "php/addfriend.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("e=" + your_email + "&fe=" + friend_email);
 }

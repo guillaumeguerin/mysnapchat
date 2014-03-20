@@ -1,45 +1,35 @@
 <?php
-
 	if(empty($_POST) )
 	{
 	echo "Access denied";
 	}
 	else
 	{
+	$type = $_POST['type'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$receiverId = $_POST['receiver'];
+
+	require_once "../doctrineORM/bootstrap.php";
+	include "../doctrineORM/src/User.php";
 	
-    include("../connect.php");
+	$messageRepository = $entityManager->getRepository('Message');
 	
-	$type = $_POST["type"];
-	$email = $_POST["email"];
-	$password = $_POST["password"];
-	
-	
-	$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
-	$result = mysql_query($sql);
-	$userId = mysql_result($result, 0);
-	
-	$content="Please don\'t spam the admin account !";
-	if($_POST['receiver']=='1')
-	{
-	$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $_POST['receiver'] ."', '".$userId."', 'alert', '". $content ."');";
-	mysql_query($sql);
-	}
-    else
-	{
+	//$content="Please don\'t spam the admin account !";
+	//if($_POST['receiver']=='1')
+	//{
+	//$sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $_POST['receiver'] ."', '".$userId."', 'alert', '". $content ."');";
+	//mysql_query($sql);
+	//}
+    //else
+	//{
     if($type == "text" || $type == "music" || $type == "video" ||$type == "picture"){
-
-        
-        
-
 
         if($type == "text"){
             $content = $_POST['content'];
 			if($content != NULL){
 		
-		
-		
-            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";
-			mysql_query($sql);
+			$messageRepository->sendMessage($email, $receiverId, $type, $content);
 			echo "Your message has been sent.";
         }
         }
@@ -54,13 +44,13 @@
 		if($type == "music"){
             $allowedExts = array("mp3");      
 			$path = "messages/musics/";			
-			$typem = "audio/mpeg";
+			$typem = "audio";
         }
 		else
         if($type == "video"){
             $allowedExts = array("mp4");
 			$path = "messages/videos/";
-			$typem = "video/mp4";
+			$typem = "video";
         }
 		else
         if($type == "picture"){
@@ -103,18 +93,9 @@
                   
 				  
                 }
-              
-        
+        if($content != NULL) {
 		
-
-
-
-
-        if($content != NULL){
-		
-				
-            $sql = "INSERT INTO MESSAGE (MSG_USER_ID_FROM, MSG_USER_ID_TO, MSG_TYPE, MSG_CONTENT) VALUES ('". $userId ."', '". $_POST['receiver'] ."', '".$type."', '". $content ."');";			  
-           $result= mysql_query($sql);
+           $messageRepository->sendMessage($email, $receiverId, $type, $content);
 		   echo "Your message has been sent.";
         }
 	}
@@ -122,14 +103,9 @@
 	echo "Wrong file type";
 	}
 	else
-	echo "Wrong file size";
-        
-		  
-    
+	echo "Wrong file size";	  
 	}
 	
 	}
-	}
-	mysql_close($con);
 	}
 ?>

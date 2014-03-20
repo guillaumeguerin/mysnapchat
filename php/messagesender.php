@@ -13,16 +13,15 @@ $email = strval($_POST['email']);
 $password = strval($_POST['password']);
 
 
-include '../connect.php';
+require_once "../doctrineORM/bootstrap.php";
+include "../doctrineORM/src/User.php";
 
-$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
-$result = mysql_query($sql);
-$userId = mysql_result($result, 0);
 
-$sql="SELECT * FROM FRIENDS WHERE FDS_USER_ID_1 = '".$userId."' AND FDS_RELATIONSHIP = '1'";
-$result = mysql_query($sql);
+$repository = $entityManager->getRepository('User');
+$user = $repository->getUserByEmail($email);
+$friends = $user->getFriends();
 
-if(mysql_num_rows($result)==0)
+if(count($friends) == 0)
 {
 echo "<h3>You need to have at least a friend to send messages.</h3>";
 }
@@ -41,12 +40,9 @@ echo '<div class="row">';
 echo '<div class="12u" style="margin-bottom:1em;">
 	<select name="receiver">';
 
-while($row = mysql_fetch_array($result))
+foreach($friends as $friend)
 {
-	$sqlFriend = "SELECT * FROM user WHERE ID = '".$row['FDS_USER_ID_2']."'";
-	$resultFriend = mysql_query($sqlFriend);
-	$rowFriend = mysql_fetch_array($resultFriend);
-	echo "<option value=".$rowFriend['ID'].">".$rowFriend['NAME']."</option>";
+	echo "<option value=".$friend->getId().">".$friend->getName()."</option>";
 }
 
 
@@ -98,7 +94,6 @@ echo '<div class="row">
 </div></form>';
 }
 }
-mysql_close($con);
 }
 
 ?>

@@ -47,7 +47,7 @@ function showSettings() {
             document.getElementById("txtHint").innerHTML = reponseText;
         }
     }
-    xmlhttp.open("POST", "php/settings/getsettings.php", true);
+    xmlhttp.open("POST", "php/getsettings.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("email=" + your_email + "&password=" + your_password);
 }
@@ -126,7 +126,7 @@ function modifySettings(obj) {
             }
         }
 
-        xmlhttp.open("POST", "php/settings/updatesettings.php", true);
+        xmlhttp.open("POST", "php/updatesettings.php", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("email=" + your_email + "&password=" + your_password + "&ne=" + newEmail + "&np=" + newPassword + "&nn=" + newName + "&nd=" + newDescription);
     } else {
@@ -166,7 +166,7 @@ function deleteAccount(obj) {
                 window.location.href = "index.html"
             }
         }
-        xmlhttp.open("POST", "php/settings/deleteaccount.php", true);
+        xmlhttp.open("POST", "php/deleteaccount.php", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("email=" + your_email + "&password=" + your_password);
     }

@@ -59,7 +59,7 @@ function showMessageList() {
             document.getElementById("txtHint").innerHTML = reponseText;
         }
     }
-    xmlhttp.open("POST", "php/messages/getmessagelist.php", true);
+    xmlhttp.open("POST", "php/getmessagelist.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("email=" + your_email + "&password=" + your_password);
 }
@@ -210,7 +210,7 @@ function deleteMessage(str, showlist) {
                 showMessageList();
         }
     }
-    xmlhttp.open("POST", "php/messages/deletemessage.php", true);
+    xmlhttp.open("POST", "php/deletemessage.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("q=" + str + "&e=" + your_email);
 }
@@ -246,7 +246,7 @@ function showMessageSender(str) {
                 deleteMessage(readedMessage, false);
         }
     }
-    xmlhttp.open("POST", "php/messages/messagesender.php", true);
+    xmlhttp.open("POST", "php/messagesender.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("type=" + str + "&email=" + your_email + "&password=" + your_password);
 }
@@ -367,7 +367,7 @@ function sendMessage(obj, type) {
                 progressbarpercent.innerHTML = Math.round((e.loaded / e.total) * 100) + '%';
             }, false);
 
-            xmlhttp.open("POST", "php/messages/sendmessage.php", true);
+            xmlhttp.open("POST", "php/sendmessage.php", true);
             xmlhttp.send(data);
         } else {
             if (navigator.language != null) {

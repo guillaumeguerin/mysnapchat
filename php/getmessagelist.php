@@ -8,14 +8,15 @@ else
 $email = strval($_POST['email']);
 $password = strval($_POST['password']);
 
-include '../connect.php';
-include '../timeago.php';
+include 'timeago.php';
+require_once "../doctrineORM/bootstrap.php";
+include "../doctrineORM/src/User.php";
 
-$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
-$result = mysql_query($sql);
-$userId = mysql_result($result, 0);
-$sql="SELECT * FROM MESSAGE WHERE MSG_USER_ID_TO = '".$userId."' ORDER BY MSG_ID DESC";
-$result = mysql_query($sql);
+
+$repository = $entityManager->getRepository('User');
+$user = $repository->getUserByEmail($email);
+$messages = $user->getReceivedMessages();
+$row_num = count($messages);
 
 /*echo "<table id=\"box-table-a\">
 <tr>
@@ -25,7 +26,6 @@ $result = mysql_query($sql);
 </tr>"
 ;*/
 								
-$row_num = mysql_num_rows($result);	
 if($row_num>1){
 echo "<h3>You have ".$row_num." <label id=\"unreadm\">Unread messages</label></h3>
 <p><table id=\"box-table-a\">";
@@ -40,37 +40,34 @@ else
 echo "<h3>You have ".$row_num." <label id=\"unreadm\">Unread message</label></h3>
 <p><table id=\"box-table-a\">";
 
-while($row = mysql_fetch_array($result))
+foreach($messages as $msg)
   {
   echo "<tr>";
-  if($row['MSG_TYPE']=='text'){
-  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-comment-o\" class=\"button\"><span id=\"view\"> View</span></a></td>";
+  if($msg->getType()=='text'){
+  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/getmessage.php?q=".$msg->getId()."')\" class=\"fa fa-comment-o\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
-  else if(($row['MSG_TYPE']=='screenshotalert')||($row['MSG_TYPE']=='alert')){
-  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-warning\" class=\"button\"><span id=\"view\"> View</span></a></td>";
+  else if(($msg->getType()=='screenshotalert')||($msg->getType()=='alert')){
+  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/getmessage.php?q=".$msg->getId()."')\" class=\"fa fa-warning\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
   
- else if($row['MSG_TYPE']=='video'){
-  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-film\" class=\"button\"><span id=\"view\"> View</span></a></td>";
+ else if($msg->getType()=='video'){
+  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/getmessage.php?q=".$msg->getId()."')\" class=\"fa fa-film\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
-  else if($row['MSG_TYPE']=='picture'){
-  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessagePicture('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-camera\" class=\"button\"><span id=\"view\"> View</span></a></td>";
+  else if($msg->getType()=='picture'){
+  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessagePicture('php/getmessage.php?q=".$msg->getId()."')\" class=\"fa fa-camera\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
-    else if($row['MSG_TYPE']=='music'){
-  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/messages/getmessage.php?q=".$row['MSG_ID']."')\" class=\"fa fa-music\" class=\"button\"><span id=\"view\"> View</span></a></td>";
+    else if($msg->getType()=='music'){
+  echo "<td> <a href=\"javascript:void(0)\" onclick=\"showMessage('php/getmessage.php?q=".$msg->getId()."')\" class=\"fa fa-music\" class=\"button\"><span id=\"view\"> View</span></a></td>";
   }
   else{
-  echo "<td>" . $row['MSG_TYPE'] . "</td>";
+  echo "<td>" . $msg->getType() . "</td>";
   }  
-    $sqlName = "SELECT name FROM user WHERE ID = '".$row['MSG_USER_ID_FROM']."'";
-  $resultName = mysql_query($sqlName);
-$name = mysql_result($resultName, 0);
-  echo "<td>" . $name . "</td>";
+  echo "<td>" . $user->getName() . "</td>";
     /*  $sqlName = "SELECT name FROM user WHERE ID = '".$row['MSG_USER_ID_TO']."'";
   $resultName = mysql_query($sqlName);
 $name = mysql_result($resultName, 0);
   echo "<td>" . $name . "</td>";*/
-  $datetime = strtotime($row['MSG_TIME']);
+  $datetime = strtotime($msg->getDate());
   $datetimenow = strtotime("now");
   $difference = $datetimenow - $datetime;
   
@@ -80,6 +77,5 @@ $name = mysql_result($resultName, 0);
   echo "</tr>";
   }
 echo "</table></p>";
-mysql_close($con);
 }
 ?> 

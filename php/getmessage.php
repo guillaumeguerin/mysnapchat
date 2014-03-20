@@ -10,83 +10,66 @@ $q = strval($_POST['q']);
 $email = strval($_POST['email']); 
 $password = strval($_POST['password']);
 
-include '../connect.php';
-include '../timeago.php';
+include 'timeago.php';
+require_once "../doctrineORM/bootstrap.php";
+include "../doctrineORM/src/User.php";
 
-$sql = "SELECT ID FROM user WHERE EMAIL = '".$email."' AND PASSWORD = '".$password."'";
-$result = mysql_query($sql);
-$userId = mysql_result($result, 0);
+$msg = $entityManager->find('Message', $q);
 
-$sql="SELECT * FROM MESSAGE WHERE MSG_ID = '".$q."' AND MSG_USER_ID_TO = '".$userId."'";
-$result = mysql_query($sql);
-$rownum = mysql_num_rows ($result);
-$row = mysql_fetch_array($result);
-
-
-$sqlName = "SELECT name FROM user WHERE ID = '".$row['MSG_USER_ID_FROM']."'";
-$resultName = mysql_query($sqlName);
-$name = mysql_result($resultName, 0);
-
-
-if($rownum == 1)
+if($msg->getType()=="text")
 {
-echo "<h3>Message from ".$name."</h3>";
-echo "<br>The following message will be destroyed in <font color='red' size='5'>  <label id='timeMessage'></label></font> seconds.<br>";
-
-if($row['MSG_TYPE']=="text")
-{
-
-echo "<content><p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>".$row['MSG_CONTENT']."</center></font></td></tr></table></p>";
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3>";
+echo "<content>"."<p></br><table id=\"box-table-a\"><tr><td>".$msg->getContent()."</td></tr></table></p>";
 }
 
-if($row['MSG_TYPE']=="screenshotalert")
+
+if($msg->getType()=="screenshotalert")
 {
-$datetime = strtotime($row['MSG_CONTENT']);
+$datetime = strtotime($msg->getContent());
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
-
-echo "<p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>I took a screenshot from the message you sent me ";
+	
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3>";
+echo "<p></br><table id=\"box-table-a\"><tr><td>I took a screenshot from the message you sent me ";
 timeago2($difference);
-echo ".</center></font></td></tr></table></p><content>";
+echo "</td></tr></table></p><content>";
 }
 
-if($row['MSG_TYPE']=='alert')
+if($msg->getType()=='alert')
 {
-$datetime = strtotime($row['MSG_CONTENT']);
+$datetime = strtotime($msg->getContent);
 $datetimenow = strtotime("now");
 $difference = $datetimenow - $datetime;
-
-echo "<p></br><table id=\"box-table-a\"><tr><td><font size='5'><center>".$row['MSG_CONTENT']."</center></font></td></tr></table></p><content>";
+	
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3>";
+echo "<p></br><table id=\"box-table-a\"><tr><td>".$msg->getContent;
+echo "</td></tr></table></p><content>";
 }
 
-if($row['MSG_TYPE']=="video")
+if($msg->getType()=="video")
 {
-echo "<content>"."<p></br><video id=\"video\" controls autoplay>
-<source src=\"".$row['MSG_CONTENT']."\">
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3>";
+echo "<content>"."<p></br><video controls autoplay>
+<source src=\"".$msg->getContent."\">
 Your browser does not support this video format.
 </video></p>";
 }
 
 
-if($row['MSG_TYPE']=="music")
+if($msg->getType()=="music")
 {
-echo "<content>"."<p></br><audio id=\"music\" controls autoplay>
-<source src=\"".$row['MSG_CONTENT']."\">
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3>";
+echo "<content>"."<p></br><audio controls autoplay>
+<source src=\"".$msg->getContent."\">
 Your browser does not support this audio format.
 </audio>";
 }
 
 
-if($row['MSG_TYPE']=="picture")
+if($msg->getType()=="picture")
 {
-echo "</br><file>".$row['MSG_CONTENT'];
+echo "<h3>Message from ".$msg->getSender()->getName()."</h3></br>";
+echo "<file>".$msg->getContent;
 }
-}
-else 
-echo "Message already watched !";
-
-
-
-mysql_close($con);
 }
 ?> 
