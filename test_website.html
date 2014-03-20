@@ -6,25 +6,127 @@
 <link rel="stylesheet" href="css/qunit-1.14.0.css">
 </head>
 <body>
-<!-- PREREQUIS POUR LES TESTS -->
-<div id="homespan"></div>
-<div id="friendsspan"></div>
-<div id="settingsspan"></div>
-<div id="logoutspan"></div>
-    
+<!-- DIV FOR TESTING NAVBAR -->
+<div id="homespan" hidden></div>
+<div id="friendsspan" hidden></div>
+<div id="settingsspan" hidden></div>
+<div id="logoutspan" hidden></div>
+<div id="aboutspan" hidden></div>
+   
+ <!-- DIV FOR TESTING INDEX -->
+<div id="signin" hidden></div>
+<div id="signup" hidden></div>
+<div id="description" hidden></div>
+
+<!-- DIV  FOR TESTING FOOTER -->
+<div id="createb" hidden></div>
+<div id="projetf" hidden></div>
+
+<!-- DIV FOR TESTING REGISTER -->
+
+
+<div id="txtHint" hidden></div>
+
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
+<script src="js/mock.js"></script>
+<script src="js/xmlhttprequest.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/messages.js"></script>
 <script src="js/qunit-1.14.0.js"></script>
 <script src="js/website.js"></script>
 
+
 </body>
 <script>
-test( "homespan en francais doit contenir accueil", function() {
-    var traductor = new Traductor('fr');
-    
+
+module("testing of traductor");
+var traductor = new Traductor('fr');
+
+test( "testing of the navigation bar", function() {
+   
     traductor.tradNavBar();
-    
+  
     equal('Accueil', document.getElementById('homespan').innerHTML);
+    equal('Amis', document.getElementById('friendsspan').innerHTML);
+    equal('Paramètres', document.getElementById('settingsspan').innerHTML);
+    equal('Déconnection', document.getElementById('logoutspan').innerHTML);
+    equal("À propos", document.getElementById('aboutspan').innerHTML);
+    notEqual('kelkechose', document.getElementById('homespan').innerHTML);
+    notEqual('Autre', document.getElementById('friendsspan').innerHTML);
+
 });
+
+test("testing of the index bar", function(){
+    traductor.tradIndex();
+    equal('Se connecter', document.getElementById('signin').innerHTML);
+    equal("S'enregistrer", document.getElementById('signup').innerHTML);
+    equal("Snap Chat Bordeaux est une application disponible en tant que site web mais également pour smartphones.", document.getElementById('description').innerHTML);
+});
+
+test("testing of the footer bar", function(){
+    traductor.tradFooter();
+    equal('Créé par', document.getElementById('createb').innerHTML);
+    equal("Projet pour l'Université de Bordeaux", document.getElementById('projetf').innerHTML);
+    notEqual("Snap Chat smartphones.", document.getElementById('createb').innerHTML);
+});
+
+</script>
+
+<script>
+// FUNCTION MOCKER POUR LES TESTS
+var redirected = false;
+function redirectToHomePage () {
+	redirected = true;
+}
+var listStatus ="not showed";
+
+function getCookie (key) {
+	var map = {email : 'mail@l.l', password: 'pass'};
+	return map[key];
+}
+
+function showMessageList() {
+	listStatus = 'listShowed';
+}
+
+// FIN DES MOCK
+
+module("testing of message.js");
+//testing checksession() 
+test("test user is not connected", function () {
+	var server = new MockHttpServer();
+	server.handle = function (request) {
+	    request.setResponseHeader("Content-Type", "application/robot");
+	    request.receive(200, " You have written a wrong email or a wrong password. ");
+	};
+	server.start(); // start mocking xmlHttpRequest
+	
+	checkSession (); //code to test
+
+	server.stop(); // stop mocking xmlHttpRequest
+
+ 	equal(redirected, true);
+});
+
+
+test("test user is connected and has messages", function () {
+	var server = new MockHttpServer();
+	server.handle = function (request) {
+	    request.setResponseHeader("Content-Type", "application/robot");
+	    request.receive(200, "");
+	};
+
+	server.start();
+
+	checkSession ();
+
+	server.stop();
+
+	equal('listShowed', listStatus);
+
+});
+
+
 </script>
 </html>

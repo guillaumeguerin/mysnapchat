@@ -7,7 +7,7 @@
                 document.getElementById('friendsspan').innerHTML = "Amis";
                 document.getElementById('settingsspan').innerHTML = "Paramètres";
                 document.getElementById('logoutspan').innerHTML = "Déconnection";
-				document.getElementById('aboutspan').innerHTML = "À propos";
+		document.getElementById('aboutspan').innerHTML = "À propos";
             }
         }
     }
