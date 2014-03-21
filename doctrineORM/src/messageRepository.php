@@ -16,10 +16,12 @@ class messageRepository extends EntityRepository
 		$message->setType($type);
 		$message->setContent($content);
 
+
 		$em->persist($message);
 		$em->flush();
 		//$sender->addSentMessage($message);
 		$receiver->addReceivedMessage($message);
 		$em->flush();
+		return $message;
 	}
 }

@@ -18,13 +18,6 @@ $user = $repository->getUserByEmail($email);
 $messages = $user->getReceivedMessages();
 $row_num = count($messages);
 
-/*echo "<table id=\"box-table-a\">
-<tr>
-<th>TYPE</th>
-<th>FROM</th>
-<th>TIME</th>
-</tr>"
-;*/
 								
 if($row_num>1){
 echo "<h3>You have ".$row_num." <label id=\"unreadm\">Unread messages</label></h3>
@@ -63,11 +56,8 @@ foreach($messages as $msg)
   echo "<td>" . $msg->getType() . "</td>";
   }  
   echo "<td>" . $user->getName() . "</td>";
-    /*  $sqlName = "SELECT name FROM user WHERE ID = '".$row['MSG_USER_ID_TO']."'";
-  $resultName = mysql_query($sqlName);
-$name = mysql_result($resultName, 0);
-  echo "<td>" . $name . "</td>";*/
-  $datetime = strtotime($msg->getDate());
+  
+  $datetime = strtotime($msg->getDate()->format('Y-m-d H:i:s'));
   $datetimenow = strtotime("now");
   $difference = $datetimenow - $datetime;
   

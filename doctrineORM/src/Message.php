@@ -12,7 +12,10 @@ class Message
     protected $type;
     /** @Column(type="string") **/
     protected $content;
-    /**@Column(type="datetime")**/
+     /**
+     * @Column(type="datetime")
+     * @var DateTime
+     */
     protected $date;
     /**
      * @ManyToOne(targetEntity="User", inversedBy="sent_messages")
@@ -26,7 +29,7 @@ class Message
 	public function __construct()
     {
         $this->type = "undefined";
-        $this->date = null;
+        $this->date = new DateTime();
         $this->content = "undefined";
 	}
 
@@ -41,7 +44,7 @@ class Message
     }
 
     public function setType($type)
-    {
+    {   
         $this->type = $type;
     }
 

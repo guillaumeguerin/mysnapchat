@@ -140,6 +140,7 @@ class User
     public function addFriend($friend)
     {
         $this->friends[] = $friend;
+        if($this->getId() != $friend->getId())
         $friend->friends[] = $this;
     }
 
