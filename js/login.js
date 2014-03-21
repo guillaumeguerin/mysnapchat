@@ -13,7 +13,7 @@ function login() {
                 setCookie("email", email, 30);
                 setCookie("password", password, 30);
                 //document.getElementById("txtHint").innerHTML=getCookie("email")+" "+getCookie("password");
-                window.location.href = "index.html";
+                redirectToHomePage ();
             } else {
                 var trad = new Traductor(navigator.language);
                 reponseText = trad.tradReponseText(reponseText);

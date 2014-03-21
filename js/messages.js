@@ -4,10 +4,6 @@ var booleanscreen;
 var timeOut;
 var timeInter;
 
-function redirectToHomePage () {
-	window.location.href = "index.html";	
-}
-
 
 function checkSession() {
 

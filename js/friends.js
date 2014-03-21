@@ -16,7 +16,7 @@ function checkSession() {
                 your_password = password;
                 showFriendList();
             } else {
-                window.location.href = "index.html";
+                redirectToHomePage ();
             }
         }
     }
@@ -27,7 +27,7 @@ function checkSession() {
 	}
 	else
 	{
-	window.location.href = "index.html";
+	redirectToHomePage ();
 	}
 }
 

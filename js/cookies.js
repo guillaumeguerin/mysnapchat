@@ -19,3 +19,7 @@ function flogout() {
     setCookie("email", "", -30);
     setCookie("password", "", -30);
 }
+
+function redirectToHomePage () {
+	window.location.href = "index.html";	
+}

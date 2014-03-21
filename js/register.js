@@ -47,7 +47,7 @@ function register() {
                     document.getElementById("txtHint").innerHTML = "";
                     setCookie("email", email, 30);
                     setCookie("password", password, 30);
-                    window.location.href = "index.html";
+                    redirectToHomePage ();
                 } else {
                     var trad = new Traductor(navigator.language);
                     reponseText = trad.tradReponseText(reponseText);
