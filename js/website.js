@@ -97,21 +97,27 @@
         if (language != null) {
             if (language.indexOf("fr") >= 0) {
 			
+				document.getElementById('ptitle').innerHTML = "Foire aux questions"
+			
+				document.getElementById('home0').innerHTML = "Comment puis-je m'enregister ou me connecter ?";
                 document.getElementById('home1').innerHTML = "Comment puis-je m'enregister ou me connecter ?";
 				document.getElementById('home2').innerHTML = "Pour s'enregistrer à notre site cliquez sur <u>S'enregistrer</u>";
 				document.getElementById('home3').innerHTML = "et suivez les instructions sur la page";
 				document.getElementById('home4').innerHTML = "Pour vous connecter à notre site cliquez sur <u>Se connecter</u>";
 				document.getElementById('home5').innerHTML = "et suivez les instructions sur la page";
 				
+				document.getElementById('friends0').innerHTML = "Comment puis-je ajouter un ami ?";
 				document.getElementById('friends1').innerHTML = "Comment puis-je ajouter un ami ?";
 				document.getElementById('friends2').innerHTML = "Allez sur la page amis";
 				document.getElementById('friends3').innerHTML = "écrivez l'adresse email de votre ami";
 				document.getElementById('friends4').innerHTML = "et envoyez votre demande";
 				
+				document.getElementById('messages0').innerHTML = "Comment puis-je voir mes messages ?";
 				document.getElementById('messages1').innerHTML = "Comment puis-je voir mes messages ?";
 				document.getElementById('messages2').innerHTML = "Allez sur la page messages";
 				document.getElementById('messages3').innerHTML = "cliquez sur Regarder";
 				
+				document.getElementById('settings0').innerHTML = "Comment puis-je changer mes paramètres ou supprimer mon compte ?";
 				document.getElementById('settings1').innerHTML = "Comment puis-je changer mes paramètres ou supprimer mon compte ?";
 				document.getElementById('settings2').innerHTML = "Pour modifier vos paramètres allez sur la page paramètres";
 				document.getElementById('settings3').innerHTML = "modifiez les paramètres que vous voulez modifier";
