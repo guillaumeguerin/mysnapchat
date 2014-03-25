@@ -1,6 +1,7 @@
 <?php
 
-// modifiez les 3 paramètre ci dessous pour vous connecter à votre propre base de données (addresse_du_serveur, nom_utilisateur, mot_de_passe)
+// modifiez les 3 paramètre ci dessous pour vous connecter à votre propre base de données 
+// mysql_connect("addresse_du_serveur", "nom_utilisateur", "mot_de_passe");
 $con = mysql_connect("sql301.0fees.net","fees0_14337243","j3qxtbh9");
 if (!$con)
   {
